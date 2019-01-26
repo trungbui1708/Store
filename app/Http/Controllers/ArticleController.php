@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Http\Request;
 use App\User;
+use App\Http\Requests\ArticleRequest;
 class ArticleController extends Controller
 {
     /**
@@ -35,8 +36,14 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ArticleRequest $request)
     {
+        $this->validate($request,[
+            'article_title' => 'unique:articles,title',
+        ],[
+            'article_title.unique' => 'Tiêu đề đã tồn tại.',
+        ]);
+
         $article = new Article();
         $article->fill($request->all());
         $article->slug  = changeTitle($request->title);
@@ -74,7 +81,7 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Article $article)
+    public function update(ArticleRequest $request, Article $article)
     {
         $article->fill($request->all());
         $article->slug = changeTitle($request->title);
