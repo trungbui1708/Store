@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class DistributionRequest extends FormRequest
+class UpdateMenuRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,16 +24,14 @@ class DistributionRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|unique:distributions,name|min:3|max:30'
+            'name' => 'required|min:3|max:30'
         ];
     }
-    public function messages()
-    {
+    public function messages() {
         return [
-            'name.required' => 'Tên thể loại không được để trống.',
-            'name.unique' => 'Tên thể loại đã tồn tại.',
-            'name.min' => 'Tên thể loại không ít hơn 3 kí tự.',
-            'name.max' => 'Tên thể loại không lớn hơn 30 ký tự'
+            'name.required' => 'Loại danh mục không được để trống.',
+            'name.min' => 'Loại danh mục không ít hơn 3 kí tự.',
+            'name.max' => 'Loại danh mục không lớn hơn 30 ký tự'
         ];
     }
 }

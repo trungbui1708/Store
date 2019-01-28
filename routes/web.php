@@ -15,13 +15,14 @@
 // });
 //'middleware' => 'admincheck'
 Route::group(['prefix' => 'admin'],function() {
-    Route::resource('menu','MenuController');
-    Route::resource('category','CategoryController');
-    Route::resource('distribution','DistributionController');
-    Route::resource('product','ProductController');
-    Route::resource('user','UserController');
-    Route::post('importCategory','CategoryController@importData')->name('category.import');
-    Route::resource('article','ArticleController');
+    Route::resource('menus','MenuController');
+    Route::resource('categories','CategoryController');
+    Route::resource('distributions','DistributionController');
+    Route::resource('products','ProductController');
+    Route::resource('users','UserController');
+
+    Route::post('import', 'CategoryController@import')->name('import');
+    Route::resource('articles','ArticleController');
     // Route::resource('question','QuestionController');
     // Route::resource('expert','ExpertController');
     // Route::resource('slide','SlideController');
@@ -30,12 +31,15 @@ Route::group(['prefix' => 'admin'],function() {
     // });
 });
 
-Route::get('/drive', 'DriveController@getDrive'); // retreive folders
+// Route::get('/drive', 'DriveController@getDrive'); // retreive folders
  
-Route::get('/drive/upload', 'DriveController@uploadFile'); // File upload form
+// Route::get('/drive/upload', 'DriveController@uploadFile'); // File upload form
  
-Route::post('/drive/upload', 'DriveController@uploadFile'); // Upload file to Drive from Form
+// Route::post('/drive/upload', 'DriveController@uploadFile'); // Upload file to Drive from Form
  
-Route::get('/drive/create', 'DriveController@create'); // Upload file to Drive from Storage
+// Route::get('/drive/create', 'DriveController@create'); // Upload file to Drive from Storage
  
-Route::get('/drive/delete/{id}', 'DriveController@deleteFile'); // Delete file or folder
+// Route::get('/drive/delete/{id}', 'DriveController@deleteFile'); // Delete file or folder
+Route::get('/admin/login','AdminController@getLogin')->name('admin.login');
+Route::post('/admin/login','AdminController@postLogin')->name('admin.loginpost');
+Route::get('/admin/logout','AdminController@getLogout')->name('admin.logout');

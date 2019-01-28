@@ -18,7 +18,7 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('distribution.store')}}" method="POST">
+                        <form action="{{route('distributions.store')}}" method="POST">
                         	<input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label>Tên</label>

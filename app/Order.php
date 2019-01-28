@@ -10,9 +10,9 @@ class Order extends Model
     protected $fillable = ['name','email','address','phone','sum_money','delivery_date','user_id','status'];//khai báo các trường
 
     public function user() {
-        return $this->belongsTo('App\User','user_id','id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
     public function order_detail() {
-        return $this->hasMany('App\OrderDetail','order_id','id');
+        return $this->hasMany(OrderDetail::class,'order_id','id');
     }
 }

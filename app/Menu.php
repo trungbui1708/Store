@@ -10,6 +10,6 @@ class Menu extends Model
     protected $fillable = ['name','slug','status'];//khai báo các trường
 
     public function category() {
-        $this->hasMany('App\Category','menu_id','id');
+        $this->hasMany(Category::class,'menu_id','id');
     }
 }

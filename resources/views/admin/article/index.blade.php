@@ -7,7 +7,7 @@
                         <h1 class="page-header">Sản phẩm
                             <small>Danh Sách</small>
                         </h1>
-                        <a href="{{route('article.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;">+ Thêm</button></a>
+                        <a href="{{route('articles.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;">+ Thêm</button></a>
                     </div>
                     <!-- /.col-lg-12 -->
                    
@@ -36,11 +36,11 @@
                                 </td>
                                 <td>{{$al->slug}}</td>
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="{{route('article.show',$al)}}">Chi tiết</a></td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('article.destroy',$al)}}"  style="display: inline-table;" method="POST" onsubmit="return confirm('Bạn có muốn xóa không?');">
+                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('articles.destroy',$al)}}"  style="display: inline-table;" method="POST" onsubmit="return confirm('Bạn có muốn xóa không?');">
                                     {{ csrf_field() }} {{ method_field('DELETE') }}
                                     <button  type="submit" style="background: none;border: none;">Xóa</button>
                                 </form></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('article.edit',$al)}}">Edit</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('articles.edit',$al)}}">Edit</a></td>
                             </tr>
                             @endforeach
                         </tbody>

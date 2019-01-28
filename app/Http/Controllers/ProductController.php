@@ -6,7 +6,8 @@ use App\Product;
 use Illuminate\Http\Request;
 use App\Distribution;
 use App\User;
-use App\Http\Requests\ProductRequest;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 class ProductController extends Controller
 {
     /**
@@ -38,7 +39,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductRequest $request)
+    public function store(StoreProductRequest $request)
     {
         $this->validate($request,[
             'name' => 'unique:products,name',
@@ -46,7 +47,7 @@ class ProductController extends Controller
             'name.unique' => 'Tên sản phẩm đã bị trùng',
         ]);
         $product = Product::create($request->all());
-        return redirect()->route('product.show',$product)->with('thongbao','Thêm thành công.');
+        return redirect()->route('products.show',$product)->with('thongbao','Thêm thành công.');
     }
 
     /**
@@ -80,12 +81,11 @@ class ProductController extends Controller
      * @param  \App\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductRequest $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
-        
         $product->fill($request->all());
         $product->save();
-        return redirect()->route('product.show',$product)->with('thongbao','Thêm thành công.');
+        return redirect()->route('products.show',$product)->with('thongbao','Thêm thành công.');
     }
 
     /**
@@ -98,6 +98,6 @@ class ProductController extends Controller
     {
         $product->delete();
         session()->flash('destroy_success');
-        return redirect()->route('product.index')->with('thongbao','Xóa thành công.');
+        return redirect()->route('products.index')->with('thongbao','Xóa thành công.');
     }
 }

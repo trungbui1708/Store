@@ -18,7 +18,7 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('menu.update',$menu)}}" method="POST">
+                        <form action="{{route('menus.update',$menu)}}" method="POST">
                         	{{ csrf_field()}} {{ method_field('PUT') }}
                             <div class="form-group">
                                 <label>Tên</label>

@@ -6,7 +6,9 @@ use App\Category;
 use Illuminate\Http\Request;
 use App\Menu;
 use Excel;
-use App\Http\Requests\CategoryRequest;
+use App\Http\Requests\StoreCategoryRequest;
+use App\Http\Requests\UpdateCategoryRequest;
+use App\Imports\CategoryImport;
 class CategoryController extends Controller
 {
     /**
@@ -37,19 +39,19 @@ class CategoryController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(StoreCategoryRequest $request)
     {
         $this->validate($request,[
             'name' => 'unique:categories,name'
         ],[
-            'name.unique' => 'Tên thể loại đã tồn tại.',
+            
         ]);
 
         $category = new Category();
         $category->slug= changeTitle($request->name);
         $category->fill($request->all());
         $category->save();
-        return redirect()->route('category.show',$category)->with('thongbao','Thêm thành công.');
+        return redirect()->route('categories.show',$category)->with('thongbao','Thêm thành công.');
     }
 
     /**
@@ -82,12 +84,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, Category $category)
     {
         $category->name = changeTitle($request->name);
         $category->fill($request->all());
         $category->save();
-        return redirect()->route('category.show',$category)->with('thongbao','Sửa thành công.');
+        return redirect()->route('categories.show',$category)->with('thongbao','Sửa thành công.');
     }
 
     /**
@@ -100,7 +102,7 @@ class CategoryController extends Controller
     {
         $category->delete();
         session()->flash('destroy_success');
-        return redirect()->route('category.index')->with('thongbao','Xóa thành công.');
+        return redirect()->route('categories.index')->with('thongbao','Xóa thành công.');
     }
 
     public function importData(Request $request){
@@ -114,9 +116,29 @@ class CategoryController extends Controller
                     $category->slug = changeTitle($value->name);
                     $category->menu_id = $value->menu_id;
                     $category->save();
-                    return redirect()->route('category.index')->with('thongbao','Thêm thành công.');
+                    return redirect()->route('categories.index')->with('thongbao','Thêm thành công.');
                 }
             }
         }
+    }
+
+    public function import(Request $request) 
+    {
+        if($request->hasFile('file')){
+            Excel::load($request->file('file')->getRealPath(), function ($reader) {
+                foreach ($reader->toArray() as $key => $row) {
+                    $data['name'] = $row['name'];
+                    $data['menu_id'] = $row['menu_id'];
+
+                    if(!empty($data)) {
+                        DB::table('categories')->insert($data);
+                    }
+                }
+            });
+        }
+
+        Session::put('success', 'Youe file successfully import in database!!!');
+
+        return back();
     }
 }

@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Article;
 use Illuminate\Http\Request;
 use App\User;
-use App\Http\Requests\ArticleRequest;
+use App\Http\Requests\UpdateArticleRequest;
+use App\Http\Requests\StoreArticleRequest;
 class ArticleController extends Controller
 {
     /**
@@ -36,19 +37,13 @@ class ArticleController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ArticleRequest $request)
+    public function store(StoreArticleRequest $request)
     {
-        $this->validate($request,[
-            'article_title' => 'unique:articles,title',
-        ],[
-            'article_title.unique' => 'Tiêu đề đã tồn tại.',
-        ]);
-
         $article = new Article();
         $article->fill($request->all());
         $article->slug  = changeTitle($request->title);
         $article->save();
-        return redirect()->route('article.show',$article)->with('thongbao','Thêm thành công.');
+        return redirect()->route('articles.show',$article)->with('thongbao','Thêm thành công.');
     }
 
     /**
@@ -81,12 +76,12 @@ class ArticleController extends Controller
      * @param  \App\Article  $article
      * @return \Illuminate\Http\Response
      */
-    public function update(ArticleRequest $request, Article $article)
+    public function update(UpdateArticleRequest $request, Article $article)
     {
         $article->fill($request->all());
         $article->slug = changeTitle($request->title);
         $article->save();
-        return redirect()->route('article.show',$article)->with('thongbao','Sửa thành công.');
+        return redirect()->route('articles.show',$article)->with('thongbao','Sửa thành công.');
     }
 
     /**
@@ -99,6 +94,6 @@ class ArticleController extends Controller
     {
         $article->delete();
         session()->flash('destroy_success');
-        return redirect()->route('article.index')->with('thongbao','Xóa thành công.');
+        return redirect()->route('articles.index')->with('thongbao','Xóa thành công.');
     }
 }

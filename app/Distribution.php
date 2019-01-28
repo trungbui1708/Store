@@ -10,9 +10,9 @@ class Distribution extends Model
     protected $fillable = ['name','slug','status','category_id'];//khai báo các trường
 
     public function category() {
-        return $this->belongsTo('App\Category','category_id','id');
+        return $this->belongsTo(Category::class,'category_id','id');
     }
     public function product() {
-        return $this->hasMany('App\Product','distribution_id','id');
+        return $this->hasMany(Product::class,'distribution_id','id');
     }
 }

@@ -16,73 +16,73 @@
                             <a href="admin"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                         </li>
                         <li>
-                        <a href="{{route('menu.index')}}"><i class="fa fa-bar-chart-o fa-fw"></i>Menu<span class="fa arrow"></span></a>
+                        <a href="{{route('menus.index')}}"><i class="fa fa-bar-chart-o fa-fw"></i>Menu<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('menu.index')}}">Danh sách</a>
+                                    <a href="{{route('menus.index')}}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('menu.create')}}">Thêm menu</a>
+                                    <a href="{{route('menus.create')}}">Thêm menu</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{route('category.index')}}"><i class="fa fa-bar-chart-o fa-fw"></i>Thư mục<span class="fa arrow"></span></a>
+                            <a href="{{route('categories.index')}}"><i class="fa fa-bar-chart-o fa-fw"></i>Thư mục<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('category.index')}}">Danh sách</a>
+                                    <a href="{{route('categories.index')}}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('category.create')}}">Thêm</a>
+                                    <a href="{{route('categories.create')}}">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                        <a href="{{route('distribution.index')}}"><i class="fa fa-bar-chart-o fa-fw"></i>Phân loại<span class="fa arrow"></span></a>
+                        <a href="{{route('distributions.index')}}"><i class="fa fa-bar-chart-o fa-fw"></i>Phân loại<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('distribution.index')}}">Danh sách</a>
+                                    <a href="{{route('distributions.index')}}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('distribution.create')}}">Thêm quyền</a>
+                                    <a href="{{route('distributions.create')}}">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                        <a href="{{route('user.index')}}"><i class="fa fa-bar-chart-o fa-fw"></i>Người dùng<span class="fa arrow"></span></a>
+                        <a href="{{route('users.index')}}"><i class="fa fa-bar-chart-o fa-fw"></i>Người dùng<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('user.index')}}">Danh sách</a>
+                                    <a href="{{route('users.index')}}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('user.create')}}">Thêm sản Phẩm</a>
+                                    <a href="{{route('users.create')}}">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{route('product.index')}}"><i class="fa fa-users fa-fw"></i>Sản phẩm<span class="fa arrow"></span></a>
+                            <a href="{{route('products.index')}}"><i class="fa fa-users fa-fw"></i>Sản phẩm<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('product.index')}}">Danh sách</a>
+                                    <a href="{{route('products.index')}}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('product.create')}}">Thêm</a>
+                                    <a href="{{route('products.create')}}">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
-                            <a href="{{route('article.index')}}"><i class="fa fa-users fa-fw"></i>Bài viết<span class="fa arrow"></span></a>
+                            <a href="{{route('articles.index')}}"><i class="fa fa-users fa-fw"></i>Bài viết<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="{{route('article.index')}}">Danh sách</a>
+                                    <a href="{{route('articles.index')}}">Danh sách</a>
                                 </li>
                                 <li>
-                                    <a href="{{route('article.create')}}">Thêm</a>
+                                    <a href="{{route('articles.create')}}">Thêm</a>
                                 </li>
                             </ul>
                             <!-- /.nav-second-level -->

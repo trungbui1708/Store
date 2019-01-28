@@ -22,7 +22,7 @@
                     <label>Tên không dấu</label>
                     <input class="form-control" name="name" disabled value="{{$menu->slug}}" placeholder="Vui lòng nhập thông tin" />
                 </div>
-            <a class="btn btn-primary" href="{{route('menu.index')}}" role="button">Back</a>
+            <a class="btn btn-primary" href="{{route('menus.index')}}" role="button">Back</a>
             </div>
             <!-- /.row -->
     </div>

@@ -26,7 +26,7 @@
                         <label>Danh mục</label>
                         <input class="form-control" name="name" disabled value="{{$distribution->category->name}}" placeholder="Vui lòng nhập thông tin" />
                     </div>
-                <a class="btn btn-primary" href="{{route('distribution.index')}}" role="button">Back</a>
+                <a class="btn btn-primary" href="{{route('distributions.index')}}" role="button">Back</a>
             </div>
             <!-- /.row -->
     </div>

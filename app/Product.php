@@ -11,10 +11,10 @@ class Product extends Model
     //khai báo các trường
 
     public function distribution() {
-        return $this->belongsTo('App\Distribution','distribution_id','id');
+        return $this->belongsTo(Distribution::class,'distribution_id','id');
     }
     public function user() {
-        return $this->belongsTo('App\User','user_id','id');
+        return $this->belongsTo(User::class,'user_id','id');
     }
     
 }

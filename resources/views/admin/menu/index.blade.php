@@ -7,7 +7,7 @@
                         <h1 class="page-header">Menu
                             <small>Danh Sách</small>
                         </h1>
-                        <a href="{{route('menu.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
+                        <a href="{{route('menus.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
                     </div>
                     <!-- /.col-lg-12 -->
                          @if(session('thongbao'))
@@ -35,11 +35,11 @@
                                 <td>{{$tb->name}}</td>
                                 <td>{{$tb->slug}}</td>
                                 <td>{{$tb->status}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('menu.destroy',$tb)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
+                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('menus.destroy',$tb)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
                                     {{ csrf_field() }} {{ method_field('DELETE') }}
                                     <button type="submit" style="background: none;border: none;">Xóa</button>
                                 </form></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('menu.edit',$tb)}}">Edit</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('menus.edit',$tb)}}">Edit</a></td>
                             </tr>
                             @endforeach
                         </tbody>

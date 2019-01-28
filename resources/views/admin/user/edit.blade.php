@@ -18,7 +18,7 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('user.update',$user)}}" method="POST">
+                        <form action="{{route('users.update',$user)}}" method="POST">
                         	{{ csrf_field()}} {{ method_field('PUT') }}
                             <div class="form-group">
                                 <label>Họ và tên</label>

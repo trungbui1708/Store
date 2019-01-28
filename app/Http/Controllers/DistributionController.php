@@ -5,7 +5,8 @@ namespace App\Http\Controllers;
 use App\Distribution;
 use Illuminate\Http\Request;
 use App\Category;
-use App\Http\Requests\DistributionRequest;
+use App\Http\Requests\StoreDistributionRequest;
+use App\Http\Requests\UpdateDistributionRequest;
 
 class DistributionController extends Controller
 {
@@ -37,13 +38,13 @@ class DistributionController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(DistributionRequest $request)
+    public function store(StoreDistributionRequest $request)
     {
         $distribution = new Distribution();
         $distribution->slug = changeTitle($request->name);
         $distribution->fill($request->all());
         $distribution->save();
-        return redirect()->route('distribution.show',$distribution)->with('thongbao','Thêm thành công');
+        return redirect()->route('distributions.show',$distribution)->with('thongbao','Thêm thành công');
     }
 
     /**
@@ -76,19 +77,12 @@ class DistributionController extends Controller
      * @param  \App\Distribution  $distribution
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Distribution $distribution)
+    public function update(UpdateDistributionRequest $request, Distribution $distribution)
     {
-        $this->validate($request,[
-            'name' => 'required|unique:distributions,name|min:3|max:30'
-        ],[
-            'name.required' => 'Tên thể loại không được để trống.',
-            'name.min' => 'Tên thể loại không ít hơn 3 kí tự.',
-            'name.max' => 'Tên thể loại không lớn hơn 30 ký tự'
-        ]);
         $distribution->slug = changeTitle($request->name);
         $distribution->fill($request->all());
         $distribution->save(); 
-        return redirect()->route('distribution.show',$distribution)->with('thongbao','Sửa thành công');
+        return redirect()->route('distributions.show',$distribution)->with('thongbao','Sửa thành công');
     }
 
     /**
@@ -101,6 +95,6 @@ class DistributionController extends Controller
     {
         $distribution->delete();
         session()->flash('destroy_success');
-        return redirect()->route('distribution.index')->with('thongbao','Xóa thành công.');
+        return redirect()->route('distributions.index')->with('thongbao','Xóa thành công.');
     }
 }

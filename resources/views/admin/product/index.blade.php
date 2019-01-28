@@ -7,7 +7,7 @@
                         <h1 class="page-header">Danh mục
                             <small>Danh Sách</small>
                         </h1>
-                        <a href="{{route('product.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
+                        <a href="{{route('products.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
                     </div>
                     <!-- /.col-lg-12 -->
                          @if(session('thongbao'))
@@ -36,12 +36,12 @@
                                 <td>{{$tb->name}}</td>
                                 <td><p><img width="100px" src="{{$tb->images}}"></p></td>
                                 <td>{{$tb->price}}</td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('product.show',$tb)}}">Chi tiết</a></td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('product.destroy',$tb)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('products.show',$tb)}}">Chi tiết</a></td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('products.destroy',$tb)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
                                     {{ csrf_field() }} {{ method_field('DELETE') }}
                                     <button type="submit" style="background: none;border: none;">Xóa</button>
                                 </form></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('product.edit',$tb)}}">Edit</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('products.edit',$tb)}}">Edit</a></td>
                             </tr>
                             @endforeach
                         </tbody>

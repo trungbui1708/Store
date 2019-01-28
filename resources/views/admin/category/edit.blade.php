@@ -18,7 +18,7 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('category.update',$category)}}" method="POST">
+                        <form action="{{route('categories.update',$category)}}" method="POST">
                         	{{ csrf_field()}} {{ method_field('PUT') }}
                             <div class="form-group">
                                 <label>Tên</label>

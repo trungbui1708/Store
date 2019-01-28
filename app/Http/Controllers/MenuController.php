@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use Illuminate\Http\Request;
-use App\Http\Requests\MenuRequest;
+use App\Http\Requests\StoreMenuRequest;
+use App\Http\Requests\UpdateMenuRequest;
+
 class menuController extends Controller
 {
     /**
@@ -34,19 +36,13 @@ class menuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MenuRequest $request)
-    {
-        $this->validate($request,[
-            'name' => 'unique:menu,name'
-        ],[
-            'name.unique' => 'Loại danh mục đã tồn tại.',
-        ]);
-        
+    public function store(StoreMenuRequest $request)
+    {   
         $menu = new menu();
         $menu->fill($request->all());
         $menu->slug = changeTitle($request->name);
         $menu->save();
-        return redirect()->route('menu.show',$menu)->with('thongbao','Thêm thành công.');
+        return redirect()->route('menus.show',$menu)->with('thongbao','Thêm thành công.');
     }
 
     /**
@@ -79,12 +75,12 @@ class menuController extends Controller
      * @param  \App\menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(MenuRequest $request, menu $menu)
+    public function update(UpdateMenuRequest $request, menu $menu)
     {
         $menu->slug = changeTitle($request->name);
         $menu->fill($request->all());
         $menu->save();
-        return redirect()->route('menu.show',$menu)->with('thongbao','Sửa thành công.');
+        return redirect()->route('menus.show',$menu)->with('thongbao','Sửa thành công.');
     }
 
     /**
@@ -97,6 +93,6 @@ class menuController extends Controller
     {
         $menu->delete();
         session()->flash('destroy_success');
-        return redirect()->route('menu.index')->with('thongbao','Xóa thành công.');
+        return redirect()->route('menus.index')->with('thongbao','Xóa thành công.');
     }
 }

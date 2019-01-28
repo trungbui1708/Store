@@ -8,7 +8,7 @@
                             <small>Danh Sách</small>
                         </h1>
                         <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="position: absolute;top: 48px;right: 77px;cursor: pointer;">Thêm nhiều</button>
-                        <a href="{{route('category.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;">+ Thêm</button></a>
+                        <a href="{{route('categories.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;">+ Thêm</button></a>
                     </div>
                     <!-- /.col-lg-12 -->
                          @if(session('thongbao'))
@@ -38,11 +38,11 @@
                                 <td>{{$ca->slug}}</td>
                                 <td>{{$ca->status}}</td>
                                 <td>{{$ca->menu->name}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('category.destroy',$ca)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
+                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('categories.destroy',$ca)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
                                     {{ csrf_field() }} {{ method_field('DELETE') }}
                                     <button type="submit" style="background: none;border: none;">Xóa</button>
                                 </form></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('category.edit',$ca)}}">Edit</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('categories.edit',$ca)}}">Edit</a></td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -59,7 +59,7 @@
                         <span aria-hidden="true" >&times;</span>
                       </button>
                     </div>
-                <form action="{{route('category.import')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('import')}}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <div class="modal-body">
                             <input type="file" name="file">

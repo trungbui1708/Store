@@ -23,7 +23,7 @@
                                     {{session('loi')}}
                                 </div>
                             @endif
-                        <form action="{{route('article.store')}}" enctype="multipart/form-data" method="POST">
+                        <form action="{{route('articles.store')}}" enctype="multipart/form-data" method="POST">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label>Người nhập</label>
@@ -35,23 +35,23 @@
                             </div>
                             <div class="form-group">
                                 <label>Tiêu đề</label>
-                                <input class="form-control" name="title" placeholder="Vui lòng nhập thông tin" />
+                            <input class="form-control" name="title" value="{{old('title')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Mô tả</label>
-                                <textarea id="demo" name="description" class="form-control ckeditor" rows="5"></textarea>
+                                <textarea id="demo" name="description" value="{{old('description')}}" class="form-control ckeditor" rows="5"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Nội Dung</label>
-                                <textarea id="demo" name="content" class="form-control ckeditor" rows="5"></textarea>
+                                <textarea id="demo" name="content" value="{{old('content')}}" class="form-control ckeditor" rows="5"></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Link Ảnh</label>
-                                <input type="text" name="thumbnail" class="form-control" />
+                                <input type="text" name="thumbnail" value="{{old('thumbnail')}}"  class="form-control" />
                             </div>
                             <div class="form-group">
                                 <label>Trạng thái</label>
-                                <input type="text" name="status" class="form-control" />
+                                <input type="text" name="status" value="{{old('status')}}" class="form-control" />
                             </div>
                             <button type="submit" class="btn btn-default">Thêm</button>
                             <button type="reset" class="btn btn-default">Làm mới</button>

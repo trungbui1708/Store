@@ -25,12 +25,12 @@ class User extends Authenticatable
      * @var array
      */
     public function article() {
-        return $this->hasMany('App\Article','user_id','id');
+        return $this->hasMany(Article::class,'user_id','id');
     }
     public function order() {
-        return $this->hasMany('App\Order','user_id','id');
+        return $this->hasMany(Order::class,'user_id','id');
     }
     public function product() {
-        return $this->hasMany('App\Product','user_id','id');
+        return $this->hasMany(Product::class,'user_id','id');
     }
 }

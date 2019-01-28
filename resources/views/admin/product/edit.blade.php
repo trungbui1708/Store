@@ -18,7 +18,7 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('product.update',$product)}}" method="POST">
+                        <form action="{{route('products.update',$product)}}" method="POST">
                         	{{ csrf_field()}} {{ method_field('PUT') }}
                             <div class="form-group">
                                 <label>Tên</label>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Hot</label>
-                                <input class="form-control" name="hot" value="{{$product->hot}}" placeholder="Vui lòng nhập thông tin" />
+                                <input type="number" class="form-control" name="hot" value="{{$product->hot}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Ảnh nền</label>

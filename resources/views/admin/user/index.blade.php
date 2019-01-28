@@ -7,7 +7,7 @@
                         <h1 class="page-header">Người dùng
                             <small>Danh Sách</small>
                         </h1>
-                        <a href="{{route('user.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
+                        <a href="{{route('users.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
                     </div>
                     <!-- /.col-lg-12 -->
                          @if(session('thongbao'))
@@ -38,8 +38,8 @@
                                     <td>{{$us->email}}</td>
                                     <td><p><img width="100px" src="{{$us->images}}"></p></td>
                                     <td>{{$us->level}}</td>
-                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('user.show',$us)}}">Chi tiết</a></td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('user.destroy',$us)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
+                                    <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('users.show',$us)}}">Chi tiết</a></td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('users.destroy',$us)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
                                         {{ csrf_field() }} {{ method_field('DELETE') }}
                                         <button type="submit"
                                                 {{-- @if(Auth::user()->level > 2)
@@ -47,7 +47,7 @@
                                                 @endif --}}
                                                 style="background: none;border: none;">Xóa</button>
                                     </form></td>
-                                    <td class="center"><i class="fa fa-pencil fa-fw"></i><a  href="{{route('user.edit',$us)}}">Edit</a></td>
+                                    <td class="center"><i class="fa fa-pencil fa-fw"></i><a  href="{{route('users.edit',$us)}}">Edit</a></td>
                                 </tr>
                             @endforeach
                         </tbody>

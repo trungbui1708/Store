@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
-use App\Http\Requests\UserRequest;
+use App\Http\Requests\StoreUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
@@ -35,13 +36,8 @@ class UserController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(UserRequest $request)
+    public function store(StoreUserRequest $request)
     {
-        $this->validate($request,[
-            'name' => 'unique:users,name',
-            'username' => 'unique:users,username',
-            'email' => 'unique:users,email'
-        ],[]);
         $user = new User();
         $user->name = $request->name;
         $user->email = $request->email;
@@ -53,7 +49,7 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->status = $request->status;
         $user->save();
-        return redirect()->route('user.show',$user)->with('thongbao','Thêm thành công.');
+        return redirect()->route('users.show',$user)->with('thongbao','Thêm thành công.');
     }
 
     /**
@@ -85,7 +81,7 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UserRequest $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
         $user->name = $request->name;
         $user->email = $request->email;
@@ -97,7 +93,7 @@ class UserController extends Controller
         $user->address = $request->address;
         $user->status = $request->status;
         $user->save();
-        return redirect()->route('user.show',$user)->with('thongbao','Thêm thành công.');
+        return redirect()->route('users.show',$user)->with('thongbao','Thêm thành công.');
     }
 
     /**
@@ -110,6 +106,6 @@ class UserController extends Controller
     {
         $user->delete();
         session()->flash('destroy_success');
-        return redirect()->route('user.index')->with('thongbao','Xóa thành công.');
+        return redirect()->route('users.index')->with('thongbao','Xóa thành công.');
     }
 }

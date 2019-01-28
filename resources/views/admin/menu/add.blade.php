@@ -18,7 +18,7 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('menu.store')}}" method="POST">
+                        <form action="{{route('menus.store')}}" method="POST">
                         	<input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label>Tên</label>

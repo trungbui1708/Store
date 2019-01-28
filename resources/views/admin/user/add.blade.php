@@ -18,7 +18,7 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('user.store')}}" method="POST">
+                        <form action="{{route('users.store')}}" method="POST">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                     <label>Họ và tên</label>

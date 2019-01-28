@@ -42,7 +42,7 @@
                     <label>Trạng thái</label>
                     <input type="text" name="status" value="{{$article->status}}" class="form-control" />
                 </div>
-                <a class="btn btn-primary" href="{{route('article.index')}}" role="button">Back</a>
+                <a class="btn btn-primary" href="{{route('articles.index')}}" role="button">Back</a>
             </div>4
             <!-- /.row -->
     </div>

@@ -23,7 +23,7 @@
                                     {{session('loi')}}
                                 </div>
                             @endif
-                        <form action="{{route('article.update',$article)}}" enctype="multipart/form-data" method="POST">
+                        <form action="{{route('articles.update',$article)}}" enctype="multipart/form-data" method="POST">
                         	{{csrf_field()}} {{method_field('PUT')}}
                             <div class="form-group">
                                 <label>Người nhập</label>

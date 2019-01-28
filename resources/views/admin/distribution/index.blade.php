@@ -7,7 +7,7 @@
                         <h1 class="page-header">Danh mục
                             <small>Danh Sách</small>
                         </h1>
-                        <a href="{{route('distribution.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
+                        <a href="{{route('distributions.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
                     </div>
                     <!-- /.col-lg-12 -->
                          @if(session('thongbao'))
@@ -37,11 +37,11 @@
                                 <td>{{$tb->slug}}</td>
                                 <td>{{$tb->status}}</td>
                                 <td>{{$tb->category->name}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('distribution.destroy',$tb)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
+                                <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('distributions.destroy',$tb)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
                                     {{ csrf_field() }} {{ method_field('DELETE') }}
                                     <button type="submit" style="background: none;border: none;">Xóa</button>
                                 </form></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('distribution.edit',$tb)}}">Edit</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('distributions.edit',$tb)}}">Edit</a></td>
                             </tr>
                             @endforeach
                         </tbody>

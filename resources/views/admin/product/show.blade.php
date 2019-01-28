@@ -62,7 +62,7 @@
                     <label>Trạng thái</label>
                     <input class="form-control" name="name" disabled value="{{$product->status}}" placeholder="Vui lòng nhập thông tin" />
                 </div>
-                <a class="btn btn-primary" href="{{route('product.index')}}" role="button">Back</a>
+                <a class="btn btn-primary" href="{{route('products.index')}}" role="button">Back</a>
             </div>
             <!-- /.row -->
     </div>

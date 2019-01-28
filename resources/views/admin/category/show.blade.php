@@ -26,7 +26,7 @@
                         <label>Menu</label>
                         <input class="form-control" name="name" disabled value="{{$category->menu->name}}" placeholder="Vui lòng nhập thông tin" />
                     </div>
-                <a class="btn btn-primary" href="{{route('category.index')}}" role="button">Back</a>
+                <a class="btn btn-primary" href="{{route('categories.index')}}" role="button">Back</a>
             </div>
             <!-- /.row -->
     </div>

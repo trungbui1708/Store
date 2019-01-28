@@ -18,23 +18,23 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('category.store')}}" method="POST">
+                        <form action="{{route('categories.store')}}" method="POST">
                         	<input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label>Tên</label>
-                                <input class="form-control" name="name" placeholder="Vui lòng nhập thông tin" />
+                            <input class="form-control" name="name" value="{{old('name')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                     <label>Menu</label>
                                     <select class="form-control" name="menu_id">
                                         @foreach($menu as $me)
-                                            <option value="{{$me->id}}">{{$me->name}}</option>
+                                    <option value="{{$me->id}}">{{$me->name}}</option>
                                         @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">
                                         <label>Trạng thái</label>
-                                        <input class="form-control" name="status" placeholder="Vui lòng nhập thông tin" />
+                                        <input class="form-control" value="{{old('status')}}" name="status" placeholder="Vui lòng nhập thông tin" />
                                     </div>
                             <button type="submit" class="btn btn-default">Thêm</button>
                             <button type="reset" class="btn btn-default">Làm mới</button>

@@ -18,7 +18,7 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('distribution.update',$distribution)}}" method="POST">
+                        <form action="{{route('distributions.update',$distribution)}}" method="POST">
                         	{{ csrf_field()}} {{ method_field('PUT') }}
                             <div class="form-group">
                                 <label>Tên</label>
