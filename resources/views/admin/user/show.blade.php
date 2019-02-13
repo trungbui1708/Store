@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label>Link ảnh</label>
-                    <p>Image :<img width="300px" src="{{$user->images}}"></p>
+                    <p>Image :<img width="300px" src="storage/{{$user->images}}"></p>
                 </div>
                 <div class="form-group">
                     <label>Trạng thái</label>

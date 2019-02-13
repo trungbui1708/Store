@@ -16,9 +16,8 @@ class User extends Authenticatable
      */
     protected $table = 'users';
     protected $fillable = [
-        'name','username','phone','images','level','password_hash','email','address','status'
+        'name','username','phone','images','level','password','email','address','status'
     ];
-
     /**
      * The attributes that should be hidden for arrays.
      *
@@ -33,4 +32,10 @@ class User extends Authenticatable
     public function product() {
         return $this->hasMany(Product::class,'user_id','id');
     }
+    public function checkRole()
+    {
+        return $this->level == 1;
+    }
+
+    protected $hidden = ['remember_token'];
 }

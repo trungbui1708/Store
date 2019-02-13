@@ -20,8 +20,9 @@ Route::group(['prefix' => 'admin'],function() {
     Route::resource('distributions','DistributionController');
     Route::resource('products','ProductController');
     Route::resource('users','UserController');
+    Route::resource('orders','OrderController');
 
-    Route::post('import', 'CategoryController@import')->name('import');
+    Route::post('menu/many', 'MenuController@storeMany')->name('admin.menu.many');
     Route::resource('articles','ArticleController');
     // Route::resource('question','QuestionController');
     // Route::resource('expert','ExpertController');
@@ -30,7 +31,8 @@ Route::group(['prefix' => 'admin'],function() {
     //     Route::get('category/{category_parent_id}','AjaxController@getCategory');
     // });
 });
-
+//Route của người dùng
+Route::get('trangchu','PageController@index')->name('pages.index');
 // Route::get('/drive', 'DriveController@getDrive'); // retreive folders
  
 // Route::get('/drive/upload', 'DriveController@uploadFile'); // File upload form

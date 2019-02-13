@@ -24,7 +24,7 @@ class UpdateCategoryRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|min:3|max:30'
+            'name' => 'required|min:3|max:50'
         ];
     }
     public function messages()
@@ -32,7 +32,7 @@ class UpdateCategoryRequest extends FormRequest
         return [
             'name.required' => 'Tên thể loại không được để trống.',
             'name.min' => 'Tên thể loại không ít hơn 3 kí tự.',
-            'name.max' => 'Tên thể loại không lớn hơn 30 ký tự'
+            'name.max' => 'Tên thể loại không lớn hơn 50 ký tự'
         ];
     }
 }

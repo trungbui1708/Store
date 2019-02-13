@@ -30,7 +30,7 @@
                             </div>
                             <div class="form-group">
                                     <label>Danh mục</label>
-                                    <select class="form-control" name="menu_id">
+                                    <select class="form-control" name="category_id">
                                         @foreach($category as $ca)
                                             <option
                                                     @if($ca->id == $distribution->category_id)

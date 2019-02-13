@@ -87,6 +87,10 @@
                             </ul>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="{{route('orders.index')}}"><i class="fa fa-users fa-fw"></i>Hóa đơn<span class="fa arrow"></span></a>
+                            <!-- /.nav-second-level -->
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

@@ -20,11 +20,11 @@
                 </div>
                 <div class="form-group">
                     <label>Link ảnh</label>
-                    <p>Image :<img width="300px" src="{{$product->images}}"></p>
+                    <p>Image :<img width="300px" src="storage/{{$product->images}}"></p>
                 </div>
                 <div class="form-group">
                     <label>Giá</label>
-                    <input class="form-control" name="name" disabled value="{{$product->price}}" placeholder="Vui lòng nhập thông tin" />
+                    <input class="form-control" name="name" disabled value="{{number_format($product->price)}}" placeholder="Vui lòng nhập thông tin" />
                 </div>
                 <div class="form-group">
                     <label>Giảm giá</label>
@@ -40,7 +40,7 @@
                 </div>
                 <div class="form-group">
                     <label>Link ảnh nền</label>
-                    <p>Image :<img width="300px" src="{{$product->thumbnail}}"></p>
+                    <p>Image :<img width="300px" src="storage/{{$product->thumbnail}}"></p>
                 </div>
                 <div class="form-group">
                     <label>Thời gian bảo hành</label>
@@ -63,6 +63,7 @@
                     <input class="form-control" name="name" disabled value="{{$product->status}}" placeholder="Vui lòng nhập thông tin" />
                 </div>
                 <a class="btn btn-primary" href="{{route('products.index')}}" role="button">Back</a>
+                <a class="btn btn-success" href="{{route('products.create')}}" role="button">Thêm</a>
             </div>
             <!-- /.row -->
     </div>

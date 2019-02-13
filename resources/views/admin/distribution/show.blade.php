@@ -27,6 +27,7 @@
                         <input class="form-control" name="name" disabled value="{{$distribution->category->name}}" placeholder="Vui lòng nhập thông tin" />
                     </div>
                 <a class="btn btn-primary" href="{{route('distributions.index')}}" role="button">Back</a>
+                <a class="btn btn-success" href="{{route('distributions.create')}}" role="button">Thêm</a>
             </div>
             <!-- /.row -->
     </div>

@@ -8,6 +8,8 @@ use App\Distribution;
 use App\User;
 use App\Http\Requests\StoreProductRequest;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\Storage;
+
 class ProductController extends Controller
 {
     /**
@@ -41,12 +43,29 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $this->validate($request,[
-            'name' => 'unique:products,name',
-        ],[
-            'name.unique' => 'Tên sản phẩm đã bị trùng',
-        ]);
-        $product = Product::create($request->all());
+        $data = $request->except(['images']);
+        $data_tb = $request->except(['thumbnail']);
+
+        $allow_type = ["jpg","jpeg","png","svg","png","gif"];
+        if($request->hasFile('images')){
+            $images = $request->images;
+            $file_ext = $images->getClientOriginalExtension();
+            if(in_array($file_ext, $allow_type)){
+                $file_name = $request->images->store('products');
+                $data['images'] = $file_name;
+            }
+        }
+        if($request->hasFile('thumbnail')){
+            $thumbnail = $request->thumbnail;
+            $file_ext = $thumbnail->getClientOriginalExtension();
+            if(in_array($file_ext, $allow_type)){
+                $file_name_tb = $request->thumbnail->store('products');
+                $data['thumbnail'] = $file_name_tb;
+            }
+        }
+        $request->images = $file_name;
+        $request->thumbnail = $file_name_tb;
+        $product = Product::create($data);
         return redirect()->route('products.show',$product)->with('thongbao','Thêm thành công.');
     }
 
@@ -83,9 +102,32 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $product->fill($request->all());
-        $product->save();
-        return redirect()->route('products.show',$product)->with('thongbao','Thêm thành công.');
+        $data = $request->except(['images']);
+        $data_tb = $request->except(['thumbnail']);
+
+        $allow_type = ["jpg","jpeg","png","svg","png","gif"];
+        if($request->hasFile('images')){
+            $images = $request->images;
+            $file_ext = $images->getClientOriginalExtension();
+            if(in_array($file_ext, $allow_type)){
+                $file_name = $request->images->store('products');
+                $data['images'] = $file_name;
+            }
+        }
+        if($request->hasFile('thumbnail')){
+            $thumbnail = $request->thumbnail;
+            $file_ext = $thumbnail->getClientOriginalExtension();
+            if(in_array($file_ext, $allow_type)){
+                $file_name_tb = $request->thumbnail->store('products');
+                $data['thumbnail'] = $file_name_tb;
+            }
+        }
+        Storage::delete($product->images);
+        Storage::delete($product->thumbnail);
+        $request->images = $file_name;
+        $request->thumbnail = $file_name_tb;
+        $product->update($data);
+        return redirect()->route('products.show',$product)->with('thongbao','Sửa thành công.');
     }
 
     /**

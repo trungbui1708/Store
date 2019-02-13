@@ -95,4 +95,14 @@ class menuController extends Controller
         session()->flash('destroy_success');
         return redirect()->route('menus.index')->with('thongbao','Xóa thành công.');
     }
+
+    public function storeMany(Request $request){
+        // if($request->hasFile('file')){
+        //     $file = $request->file;
+        //     if($file) {
+        //         $result = $file->move('Excel', 'Menu' . "." . $file->getClientOriginalExtension());
+        //         $wsd= readExcel($result->getPathName());
+        //     }
+        // }
+    }
 }

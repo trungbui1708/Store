@@ -24,6 +24,10 @@
                                 <label>Tên</label>
                                 <input class="form-control" name="name" placeholder="Vui lòng nhập thông tin" />
                             </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" name="hienthi"  id="exampleCheck1">
+                                <label class="form-check-label" for="exampleCheck1">Hiển thị</label>
+                              </div>
                             <button type="submit" class="btn btn-default">Thêm</button>
                             <button type="reset" class="btn btn-default">Làm mới</button>
                         <form>

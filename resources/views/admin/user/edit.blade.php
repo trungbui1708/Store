@@ -18,7 +18,7 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('users.update',$user)}}" method="POST">
+                        <form action="{{route('users.update',$user)}}" method="POST" enctype="multipart/form-data">
                         	{{ csrf_field()}} {{ method_field('PUT') }}
                             <div class="form-group">
                                 <label>Họ và tên</label>
@@ -34,7 +34,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Link ảnh</label>
-                                <input class="form-control" name="images" value="{{$user->images}}" placeholder="Vui lòng nhập thông tin" />
+                                <input type="file" class="form-control" name="images" value="{{$user->images}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Email</label>

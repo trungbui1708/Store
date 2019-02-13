@@ -18,43 +18,43 @@
                     			@endforeach
                     		</div>
                     	@endif
-                        <form action="{{route('products.store')}}" method="POST">
+                        <form action="{{route('products.store')}}" method="POST" enctype="multipart/form-data">
                         	<input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
                                 <label>Tên</label>
-                                <input class="form-control" name="name" placeholder="Vui lòng nhập thông tin" />
+                            <input class="form-control" name="name" value="{{old('name')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Link ảnh</label>
-                                <input class="form-control" name="images" placeholder="Vui lòng nhập thông tin" />
+                                <input class="form-control" type="file" value="{{old('images')}}" name="images" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Giá</label>
-                                <input type="text" class="form-control" name="price" placeholder="Vui lòng nhập thông tin" />
+                                <input type="text" class="form-control" value="{{old('price')}}" name="price" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Giảm giá(%)</label>
-                                <input class="form-control" name="discount" placeholder="Vui lòng nhập thông tin" />
+                                <input class="form-control" name="discount" value="{{old('discount')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Màu</label>
-                                <input class="form-control" name="color" placeholder="Vui lòng nhập thông tin" />
+                                <input class="form-control" name="color" value="{{old('color')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Hot</label>
-                                <input type="number" class="form-control" name="hot" placeholder="Vui lòng nhập thông tin" />
+                                <input type="number" class="form-control" value="{{old('hot')}}" name="hot" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Ảnh nền</label>
-                                <input class="form-control" name="thumbnail" placeholder="Vui lòng nhập thông tin" />
+                                <input class="form-control" type="file" value="{{old('thumbnail')}}" name="thumbnail" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Thời gian bảo hành</label>
-                                <input class="form-control" name="warranty" placeholder="Vui lòng nhập thông tin" />
+                                <input class="form-control" name="warranty" value="{{old('warranty')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Hãng</label>
-                                <input class="form-control" name="brand" placeholder="Vui lòng nhập thông tin" />
+                                <input class="form-control" name="brand" value="{{old('brand')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Phân loại</label>
@@ -74,7 +74,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Trạng thái</label>
-                                <input class="form-control" name="status" placeholder="Vui lòng nhập thông tin" />
+                                <input class="form-control" name="status" value="{{old('status')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <button type="submit" class="btn btn-default">Thêm</button>
                             <button type="reset" class="btn btn-default">Làm mới</button>

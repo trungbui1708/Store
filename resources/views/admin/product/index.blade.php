@@ -34,8 +34,8 @@
                             <tr class="odd gradeX" align="center">
                                 <td>{{$tb->id}}</td>
                                 <td>{{$tb->name}}</td>
-                                <td><p><img width="100px" src="{{$tb->images}}"></p></td>
-                                <td>{{$tb->price}}</td>
+                                <td><p><img width="100px" src="storage/{{$tb->images}}"></p></td>
+                                <td>{{number_format($tb->price)}}</td>
                                 <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="{{route('products.show',$tb)}}">Chi tiết</a></td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('products.destroy',$tb)}}" onsubmit="return confirm('Bạn có muốn xóa không?');" style="display: inline-table;" method="POST">
                                     {{ csrf_field() }} {{ method_field('DELETE') }}

@@ -14,7 +14,8 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $table = Order::all();
+        return view('admin.order.index',compact('table'));
     }
 
     /**
@@ -24,7 +25,7 @@ class OrderController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.order.add');
     }
 
     /**
@@ -46,7 +47,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return view('admin.order.show',compact('order'));
     }
 
     /**

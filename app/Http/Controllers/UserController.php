@@ -7,6 +7,8 @@ use App\User;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use File;
 class UserController extends Controller
 {
     /**
@@ -38,17 +40,20 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        $user = new User();
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->username = $request->username;
-        $user->password_hash = Hash::make($user->password);
-        $user->images = $request->images;
-        $user->level = $request->level;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->status = $request->status;
-        $user->save();
+        $request->merge(['password' => Hash::make($request->password)]);
+        $data = $request->except(['images']);
+
+        $allow_type = ["jpg","jpeg","png","svg","png","gif"];
+         if($request->hasFile('images')){
+            $images = $request->images;
+            $file_ext = $images->getClientOriginalExtension();
+            if(in_array($file_ext, $allow_type)){
+                $file_name = $request->images->store('users');
+                $data['images'] = $file_name;
+            }
+        }
+        $request->images = $file_name;
+        $user = User::create($data);
         return redirect()->route('users.show',$user)->with('thongbao','Thêm thành công.');
     }
 
@@ -83,16 +88,21 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $user->name = $request->name;
-        $user->email = $request->email;
-        $user->username = $request->username;
-        $user->password_hash = Hash::make($user->password);
-        $user->images = $request->images;
-        $user->level = $request->level;
-        $user->phone = $request->phone;
-        $user->address = $request->address;
-        $user->status = $request->status;
-        $user->save();
+        $request->merge(['password' => Hash::make($request->password)]);
+        $data = $request->except(['images']);
+
+        $allow_type = ["jpg","jpeg","png","svg","png","gif"];
+         if($request->hasFile('images')){
+            $images = $request->images;
+            $file_ext = $images->getClientOriginalExtension();
+            if(in_array($file_ext, $allow_type)){
+                $file_name = $request->images->store('users');
+                $data['images'] = $file_name;
+            }
+        }
+        Storage::delete($user->images);
+        $request->images = $file_name;
+        $user->update($data);
         return redirect()->route('users.show',$user)->with('thongbao','Thêm thành công.');
     }
 
@@ -104,6 +114,7 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
+        Storage::delete($user->images);
         $user->delete();
         session()->flash('destroy_success');
         return redirect()->route('users.index')->with('thongbao','Xóa thành công.');

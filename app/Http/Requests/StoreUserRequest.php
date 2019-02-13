@@ -25,6 +25,7 @@ class StoreUserRequest extends FormRequest
     {
         return [
             'name' => 'required|unique:users,name|min:3|max:30',
+            'images' => 'required',
             'username' => 'required|unique:users,username|min:3|max:30',
             'email' => 'required|unique:users,email|email',
             'address' => 'required|min:3',
@@ -38,6 +39,7 @@ class StoreUserRequest extends FormRequest
             'name.unique' => 'Họ tên đã tồn tại',
             'name.min' => 'Vui lòng nhập nhiều hơn  3 kí tự.',
             'name.max' => 'Username không lớn hơn 30 ký tự',
+            'images.required' => 'Cân nhập ảnh',
             'username.required' => 'Username không được để trống.',
             'username.unique' => 'Tên đăng nhập đã tồn tại',
             'username.min' => 'Username không ít hơn 3 kí tự.',

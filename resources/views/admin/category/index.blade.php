@@ -31,7 +31,7 @@
                         </thead>
                         
                         <tbody>
-                        	@foreach($category as $ca)
+                            @foreach($category as $ca)
                             <tr class="odd gradeX" align="center">
                                 <td>{{$ca->id}}</td>
                                 <td>{{$ca->name}}</td>
@@ -59,7 +59,7 @@
                         <span aria-hidden="true" >&times;</span>
                       </button>
                     </div>
-                <form action="{{route('import')}}" method="post" enctype="multipart/form-data">
+                <form action="#" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <div class="modal-body">
                             <input type="file" name="file">

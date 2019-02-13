@@ -7,7 +7,8 @@
                         <h1 class="page-header">Menu
                             <small>Danh Sách</small>
                         </h1>
-                        <a href="{{route('menus.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter" style="position: absolute;top: 48px;right: 77px;cursor: pointer;">Thêm nhiều</button>
+                        <a href="{{route('menus.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;">+ Thêm</button></a>
                     </div>
                     <!-- /.col-lg-12 -->
                          @if(session('thongbao'))
@@ -47,6 +48,29 @@
                 </div>
                 <!-- /.row -->
             </div>
+            <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                      <div class="modal-content">
+                        <div class="modal-header">
+                          <h5 class="modal-title" id="exampleModalLongTitle"><b>Thêm nhiều</b></h5>
+                          <button type="button" class="close" style="margin-top: -20px;" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" >&times;</span>
+                          </button>
+                        </div>
+                    <form action="{{route('admin.menu.many')}}" method="post" enctype="multipart/form-data">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <div class="modal-body">
+                                <input type="file" name="file">
+                            </div>
+                            <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+                            <button type="submit" class="btn btn-primary">Thêm</button>
+                            </div>
+                        </form>
+                        
+                      </div>
+                    </div>
+                  </div>
             <!-- /.container-fluid -->
         </div>
         <!-- /#page-wrapper -->
