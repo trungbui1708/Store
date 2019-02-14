@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $table = 'products';//khai báo bảng trong cơ sở dữ liệu
-    protected $fillable = ['name','images','price','discount','color','hot','thumbnail','warranty','brand','distribution_id','user_id','status'];
+    protected $fillable = ['name','images','price','discount','color','hot','thumbnail','warranty','brand','slug','distribution_id','user_id','status'];
     //khai báo các trường
 
     public function distribution() {

@@ -43,8 +43,8 @@ class ProductController extends Controller
      */
     public function store(StoreProductRequest $request)
     {
-        $data = $request->except(['images']);
-        $data_tb = $request->except(['thumbnail']);
+        $request->merge(['slug' => changeTitle($request->name)]);
+        $data = $request->except(['images','thumbnail']);
 
         $allow_type = ["jpg","jpeg","png","svg","png","gif"];
         if($request->hasFile('images')){
@@ -102,8 +102,8 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $data = $request->except(['images']);
-        $data_tb = $request->except(['thumbnail']);
+        $request->merge(['slug' => changeTitle($request->name)]);
+        $data = $request->except(['images','thumbnail']);
 
         $allow_type = ["jpg","jpeg","png","svg","png","gif"];
         if($request->hasFile('images')){
