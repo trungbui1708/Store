@@ -41,12 +41,6 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        $this->validate($request,[
-            'name' => 'unique:categories,name'
-        ],[
-            
-        ]);
-
         $category = new Category();
         $category->slug= changeTitle($request->name);
         $category->fill($request->all());

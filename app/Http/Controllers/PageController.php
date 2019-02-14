@@ -14,6 +14,7 @@ class PageController extends Controller
         View::share('menu',Menu::all());
         View::share('category',Category::all());
         View::share('distribution',Distribution::all());
+        View::share('product',Product::all());
     }
     public function index(){
         $product_seller = Product::where('best_sellers',1)->get();
@@ -25,8 +26,13 @@ class PageController extends Controller
 
     public function getDistribution($id)
     {
-        $distribution = Distribution::find($id);
-        $dis_pr = Product::where('distribution_id',3)->get();
-        return view('pages.list_product',compact('distribution','dis_pr'));
+        $distribution_get = Distribution::find($id);
+        $dis_pr = Product::where('distribution_id',$id)->get();
+        return view('pages.list_product',compact('distribution_get','dis_pr'));
+    }
+
+    public function getProduct($id){
+        $product_single = Product::find($id);
+        return view('pages.product_ditail',compact('product_single'));
     }
 }

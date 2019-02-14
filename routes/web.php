@@ -39,6 +39,7 @@ Route::get('trangchu','PageController@index')->name('pages.index');
 Route::get('list','PageController@getListPage')->name('pages.list.product');
 Route::get('category/{id}/{slug}.html','PageController@getCategory');
 Route::get('distribution/{id}/{slug}.html','PageController@getDistribution');
+Route::get('product/{id}','PageController@getProduct');
 
 //nhóm rout dẩy file lên driver
 // Route::get('/drive', 'DriveController@getDrive'); // retreive folders

@@ -15,4 +15,8 @@ class Category extends Model
     public function distribution() {
         return $this->hasMany(Distribution::class,'distribution_id','id');
     }
+
+    public function product() {
+    	return $this->hasManyThrough('App\Product','App\Distribution','category_id','distribution_id','id');
+    }
 }

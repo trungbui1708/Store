@@ -1,6 +1,5 @@
 @extends('pages.layouts.index')
 @section('content')
-
 <!-- MAIN-MENU-AREA END -->
 		<!-- MAIN-CONTENT-SECTION START -->
 		<section class="main-content-section">
@@ -96,7 +95,7 @@
 																	<span>1 Review (s)</span>
 																</div>
 															</div>
-                                                            <a title="{{$pr->name}}" href="single-product.html">{{shorten_string($pr->name,7)}}</a>
+														<a title="{{$pr->name}}" href="product/{{$pr->id}}">{{shorten_string($pr->name,7)}}</a>
 															<div class="price-box">
                                                                 @if($pr->discount > 0)
                                                                     <span class="price">{{discount($pr->price,$pr->discount)}}</span>
@@ -485,7 +484,11 @@
 													<div class="single-product-item">
 														<div class="product-image">
                                                         <a href="#"><img src="storage/{{$pv->images}}" alt="product-image" /></a>
-															<a href="#" class="new-mark-box">new</a>
+															@if($dp->discount > 0)
+																<a href="#" class="new-mark-box">sale</a>
+															@else
+																<a href="#" class="new-mark-box">new</a>
+															@endif
 															<div class="overlay-content">
 																<ul>
 																	<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
@@ -508,7 +511,7 @@
 																	<span>1 Review (s)</span>
 																</div>
 															</div>
-                                                        <a href="single-product.html" title="{{$pv->name}}">{{shorten_string($pv->name,8)}}</a>
+                                                        <a href="product/{{$pv->id}}" title="{{$pv->name}}">{{shorten_string($pv->name,8)}}</a>
 															<div class="price-box">
                                                             @if($pv->discount > 0)
                                                                 <span class="price">{{discount($pv->price,$pv->discount)}}</span>
@@ -566,7 +569,11 @@
 										<div class="single-product-item">
 											<div class="product-image">
                                             <a href="#"><img src="storage/{{$pd->images}}" alt="product-image" /></a>
-												<a href="#" class="new-mark-box">Sale</a>
+													@if($pd->images > 0)
+														<a href="#" class="new-mark-box">sale</a>
+													@else
+														<a href="#" class="new-mark-box">new</a>
+													@endif
 												<div class="overlay-content">
 													<ul>
 														<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
@@ -2084,7 +2091,11 @@
 										<div class="single-product-item">
 											<div class="product-image">
                                             <a href="#"><img src="storage/{{$ph->images}}" alt="product-image" /></a>
-												<a href="#" class="new-mark-box">sale!</a>
+												@if($ph->discount > 0)
+													<a href="#" class="new-mark-box">sale</a>
+												@else
+													<a href="#" class="new-mark-box">new</a>
+												@endif
 												<div class="overlay-content">
 													<ul>
 														<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
