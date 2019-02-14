@@ -13,6 +13,8 @@
 // Route::get('/', function () {
 //     return view('admin.product.index');
 // });
+
+//nhóm route admin
 //'middleware' => 'admincheck'
 Route::group(['prefix' => 'admin'],function() {
     Route::resource('menus','MenuController');
@@ -31,17 +33,20 @@ Route::group(['prefix' => 'admin'],function() {
     //     Route::get('category/{category_parent_id}','AjaxController@getCategory');
     // });
 });
-//Route của người dùng
+
+//Route pages của người dùng
 Route::get('trangchu','PageController@index')->name('pages.index');
+Route::get('list','PageController@getListPage')->name('pages.list.product');
+Route::get('category/{id}/{slug}.html','PageController@getCategory');
+Route::get('distribution/{id}/{slug}.html','PageController@getDistribution');
+
+//nhóm rout dẩy file lên driver
 // Route::get('/drive', 'DriveController@getDrive'); // retreive folders
- 
 // Route::get('/drive/upload', 'DriveController@uploadFile'); // File upload form
- 
 // Route::post('/drive/upload', 'DriveController@uploadFile'); // Upload file to Drive from Form
- 
 // Route::get('/drive/create', 'DriveController@create'); // Upload file to Drive from Storage
- 
 // Route::get('/drive/delete/{id}', 'DriveController@deleteFile'); // Delete file or folder
+//nhóm route xác thực người dùng
 Route::get('/admin/login','AdminController@getLogin')->name('admin.login');
 Route::post('/admin/login','AdminController@postLogin')->name('admin.loginpost');
 Route::get('/admin/logout','AdminController@getLogout')->name('admin.logout');

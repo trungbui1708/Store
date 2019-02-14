@@ -89,6 +89,7 @@
         <script src="page_asset/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
+		
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -98,6 +99,12 @@
 		<!-- HEADER-TOP START -->
 		@include('pages.layouts.header')
 		@yield('content')
+		<!-- BRAND-CLIENT-AREA START -->
+		@include('pages.layouts.brand_client')
+		<!-- BRAND-CLIENT-AREA END -->
+		<!-- COMPANY-FACALITY START -->
+		@include('pages.layouts.company_facality')
+		<!-- COMPANY-FACALITY END -->
 		@include('pages.layouts.footer')
 		<!-- JS 
 		===============================================-->

@@ -66,24 +66,35 @@
                                 </div> --}}
                                 <!-- DROPDOWN MENU END -->
                             </li>
+                            @foreach ($menu as $mn)
                             <li>
-                                <a href="shop-gird.html">Make Up</a>
+                            <a href="shop-gird.html">{{$mn->name}}</a>
                                 <!-- DRODOWN-MEGA-MENU START -->
                                 <div class="drodown-mega-menu">
-                                    <div class="left-mega col-xs-6">
-                                        <div class="mega-menu-list">
-                                            <a class="mega-menu-title" href="shop-gird.html">Trang điểm mặt</a>
-                                            <ul>
-                                                <li><a href="shop-gird.html">Phấn phủ / phấn nước</a></li>
-                                                <li><a href="shop-gird.html">Kem nền BB/CC</a></li>
-                                                <li><a href="shop-gird.html">phấn má</a></li>
-                                                <li><a href="shop-gird.html">chì kẻ mày</a></li>
-                                                <li><a href="shop-gird.html">masscara</a></li>
-                                                <li><a href="shop-gird.html">make up</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                    <div class="right-mega col-xs-6">
+                                    @foreach ($category as $ca)
+                                        @if ($ca->menu_id == $mn->id)
+                                            <div class="left-mega col-xs-6">
+                                                <div class="mega-menu-list">
+                                                <a class="mega-menu-title" href="category/{{$ca->id}}/{{$ca->slug}}.html">{{$ca->name}}</a>
+                                                    <ul>
+                                                        @foreach ($distribution as $dtbt)
+                                                            @if( $dtbt->category_id == $ca->id)
+                                                                <li><a href="distribution/{{$dtbt->id}}/{{$dtbt->slug}}.html">{{$dtbt->name}}</a></li>
+                                                            @endif
+                                                        @endforeach
+                                                        {{-- <li><a href="shop-gird.html">Kem nền BB/CC</a></li>
+                                                        <li><a href="shop-gird.html">phấn má</a></li>
+                                                        <li><a href="shop-gird.html">chì kẻ mày</a></li>
+                                                        <li><a href="shop-gird.html">masscara</a></li>
+                                                        <li><a href="shop-gird.html">make up</a></li> --}}
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        @endif
+                                        
+                                    @endforeach
+                                    
+                                    {{-- <div class="right-mega col-xs-6">
                                         <div class="mega-menu-list">
                                             <a class="mega-menu-title" href="shop-gird.html">Son môi</a>
                                             <ul>
@@ -96,10 +107,11 @@
                                                 <li><a href="shop-gird.html">son SHU</a></li>
                                             </ul>
                                         </div>
-                                    </div>
+                                    </div> --}}
                                 </div>
+                            @endforeach
                                 <!-- DRODOWN-MEGA-MENU END -->
-                            </li>
+                            {{-- </li>
                             <li>
                                 <a href="shop-gird.html">Skin Care</a>
                                 <!-- DRODOWN-MEGA-MENU START -->
@@ -271,7 +283,7 @@
                                     </div>
                                 </div>
                                 <!-- DRODOWN-MEGA-MENU END -->
-                            </li>
+                            </li> --}}
                             {{-- <li><a href="#">Delivery</a></li>
                             <li><a href="about-us.html">About us</a></li> --}}
                         </ul>

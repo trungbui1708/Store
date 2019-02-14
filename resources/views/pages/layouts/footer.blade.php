@@ -87,7 +87,8 @@
                                 <!-- GOOGLE-MAP-AREA START -->
                                 <div class="google-map-area">
                                     <div class="google-map">
-                                        <div id="googleMap" style="width:100%;height:150px;"></div>
+                                        <div id="googleMap" style="width:100%;height:150px;">
+                                        </div>
                                     </div>
                                 </div>
                                 <!-- GOOGLE-MAP-AREA END -->
