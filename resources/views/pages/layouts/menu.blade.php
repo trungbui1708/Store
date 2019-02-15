@@ -6,33 +6,24 @@
                 <div class="shopping-cart-out pull-right">
                     <div class="shopping-cart">
                         <a class="shop-link" href="cart.html" title="View my shopping cart">
-                            <i class="fa fa-shopping-cart cart-icon"></i>
+                            <i class="fa fa-shopping-cart cart-icon">@if(Session::has('cart')){{Session('cart')->totalQuantity}}@else 0 @endif</i>
                             <b>My Cart</b>
-                            <span class="ajax-cart-quantity">2</span>
+                        <span class="ajax-cart-quantity"></span>
                         </a>
                         <div class="shipping-cart-overly">
+                            @foreach ($cart as $crt)
                             <div class="shipping-item">
                                 <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
                                 <div class="shipping-item-image">
-                                    <a href="#"><img src="page_asset/img/shopping-image.jpg" alt="shopping image" /></a>
+                                <a href="#"><img src="storage/{{$crt->thumbnail}}" alt="shopping image" /></a>
                                 </div>
                                 <div class="shipping-item-text">
-                                    <span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">Watch</a></span>
-                                    <span class="pro-quality"><a href="#">S,Black</a></span>
-                                    <p>$22.95</p>
+                                <span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">{{shorten_string($crt->name,6)}}</a></span>
+                                    <span class="pro-quality"><a href="#">{{$crt->brand}}</a></span>
+                                    <p>{{$crt->price}}</p>
                                 </div>
                             </div>
-                            <div class="shipping-item">
-                                <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-                                <div class="shipping-item-image">
-                                    <a href="#"><img src="page_asset/img/shopping-image2.jpg" alt="shopping image" /></a>
-                                </div>
-                                <div class="shipping-item-text">
-                                    <span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">Women Bag</a></span>
-                                    <span class="pro-quality"><a href="#">S,Gary</a></span>
-                                    <p>$19.95</p>
-                                </div>
-                            </div>
+                            @endforeach
                             <div class="shipping-total-bill">
                                 <div class="cart-prices">
                                     <span class="shipping-cost">$2.00</span>

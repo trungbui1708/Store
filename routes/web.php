@@ -51,3 +51,14 @@ Route::get('product/{id}','PageController@getProduct');
 Route::get('/admin/login','AdminController@getLogin')->name('admin.login');
 Route::post('/admin/login','AdminController@postLogin')->name('admin.loginpost');
 Route::get('/admin/logout','AdminController@getLogout')->name('admin.logout');
+
+//Route của người dùng sau khi đăng nhập
+//'middeware' => 'customer',
+Route::group(['prefix' => 'customer'],function(){
+    // Route::get('/logout','UserController@logout')->name('customer.logout');
+    // Route::post('/information','UserController@information')->name('customer.information');
+    Route::get('/cart','CartController@index')->name('customer.cart');
+    Route::get('/add-cart/{id}','CartController@getAddtoCart')->name('customer.cart.add');
+    Route::get('/delete-cart/{id}','CartController@deleteCart')->name('customer.cart.delete');
+    Route::post('/order','OrderCustomerController@orderCart')->name('customer.order');
+});

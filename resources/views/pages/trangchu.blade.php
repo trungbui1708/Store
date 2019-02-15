@@ -76,7 +76,7 @@
 															<div class="overlay-content">
 																<ul>
 																	<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-																	<li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+																	<li><a href="{{route('customer.cart.add',$pr->id)}}" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
 																	<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
 																	<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
 																</ul>
@@ -484,7 +484,7 @@
 													<div class="single-product-item">
 														<div class="product-image">
                                                         <a href="#"><img src="storage/{{$pv->images}}" alt="product-image" /></a>
-															@if($dp->discount > 0)
+															@if($pv->discount > 0)
 																<a href="#" class="new-mark-box">sale</a>
 															@else
 																<a href="#" class="new-mark-box">new</a>
@@ -492,7 +492,7 @@
 															<div class="overlay-content">
 																<ul>
 																	<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-																	<li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+																	<li><a href="{{route('customer.cart.add',$pv->id)}}" title="Shopping Cart"><i class="fa fa-shopping-cart"></i></a></li>
 																	<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
 																	<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
 																</ul>
@@ -577,7 +577,7 @@
 												<div class="overlay-content">
 													<ul>
 														<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-														<li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+														<li><a href="{{route('customer.cart.add',$pd->id)}}" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
 														<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
 														<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
 													</ul>
@@ -2099,7 +2099,7 @@
 												<div class="overlay-content">
 													<ul>
 														<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-														<li><a href="#" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+														<li><a href="{{route('customer.cart.add',$ph->id)}}" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
 														<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
 														<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
 													</ul>
