@@ -1,5 +1,8 @@
 @extends('admin.layouts.index')
 @section('content')
+@php
+    $product_decode = json_decode($product->images);
+@endphp
 	<div id="page-wrapper">
             <div class="row">
                 <div class="col-lg-12">
@@ -20,7 +23,9 @@
                 </div>
                 <div class="form-group">
                     <label>Link ảnh</label>
-                    <p>Image :<img width="300px" src="storage/{{$product->images}}"></p>
+                    @foreach ($product_decode as $pd)
+                        <p>Image :<img width="300px" src="storage/{{$pd}}"></p>
+                    @endforeach
                 </div>
                 <div class="form-group">
                     <label>Giá</label>
@@ -40,6 +45,7 @@
                 </div>
                 <div class="form-group">
                     <label>Link ảnh nền</label>
+                   
                     <p>Image :<img width="300px" src="storage/{{$product->thumbnail}}"></p>
                 </div>
                 <div class="form-group">

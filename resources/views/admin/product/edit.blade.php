@@ -17,7 +17,8 @@
                     				{{$err}} <br>
                     			@endforeach
                     		</div>
-                    	@endif
+                        @endif
+                        <img src="" alt="">
                         <form action="{{route('products.update',$product)}}" method="POST" enctype="multipart/form-data">
                         	{{ csrf_field()}} {{ method_field('PUT') }}
                             <div class="form-group">
@@ -26,7 +27,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Link ảnh</label>
-                                <input class="form-control" type="file" name="images" value="{{$product->images}}" placeholder="Vui lòng nhập thông tin" />
+                                <input class="form-control" type="file" multiple name="images" value="{{$product->images}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Giá</label>

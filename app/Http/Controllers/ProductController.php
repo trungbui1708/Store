@@ -47,14 +47,24 @@ class ProductController extends Controller
         $data = $request->except(['images','thumbnail']);
 
         $allow_type = ["jpg","jpeg","png","svg","png","gif"];
+        
         if($request->hasFile('images')){
-            $images = $request->images;
-            $file_ext = $images->getClientOriginalExtension();
-            if(in_array($file_ext, $allow_type)){
-                $file_name = $request->images->store('products');
-                $data['images'] = $file_name;
+            
+            $images_request = $request->images;
+            $array_add = array();
+            foreach($images_request as $ir)
+            {
+                $img_name = $ir->getClientOriginalName();
+                $file_ext = $ir->getClientOriginalExtension();
+                if(in_array($file_ext, $allow_type)){
+                    $file_name = $ir->store('products');
+                    array_push($array_add,$file_name);
+                }
             }
+            $json_string = json_encode($array_add);
+            $data['images'] = $json_string;
         }
+
         if($request->hasFile('thumbnail')){
             $thumbnail = $request->thumbnail;
             $file_ext = $thumbnail->getClientOriginalExtension();
@@ -63,7 +73,7 @@ class ProductController extends Controller
                 $data['thumbnail'] = $file_name_tb;
             }
         }
-        $request->images = $file_name;
+        $request->images = $json_string;
         $request->thumbnail = $file_name_tb;
         $product = Product::create($data);
         return redirect()->route('products.show',$product)->with('thongbao','Thêm thành công.');
@@ -107,12 +117,20 @@ class ProductController extends Controller
 
         $allow_type = ["jpg","jpeg","png","svg","png","gif"];
         if($request->hasFile('images')){
-            $images = $request->images;
-            $file_ext = $images->getClientOriginalExtension();
-            if(in_array($file_ext, $allow_type)){
-                $file_name = $request->images->store('products');
-                $data['images'] = $file_name;
+            
+            $images_request = $request->images;
+            $array_add = array();
+            foreach($images_request as $ir)
+            {
+                $img_name = $ir->getClientOriginalName();
+                $file_ext = $ir->getClientOriginalExtension();
+                if(in_array($file_ext, $allow_type)){
+                    $file_name = $ir->store('products');
+                    array_push($array_add,$file_name);
+                }
             }
+            $json_string = json_encode($array_add);
+            $data['images'] = $json_string;
         }
         if($request->hasFile('thumbnail')){
             $thumbnail = $request->thumbnail;
@@ -122,9 +140,14 @@ class ProductController extends Controller
                 $data['thumbnail'] = $file_name_tb;
             }
         }
-        Storage::delete($product->images);
+        $product_images = json_decode($product->images);
+        foreach($product_images as $pi)
+        {
+            Storage::delete($pi);
+        }
+        
         Storage::delete($product->thumbnail);
-        $request->images = $file_name;
+        $request->images = $json_string;
         $request->thumbnail = $file_name_tb;
         $product->update($data);
         return redirect()->route('products.show',$product)->with('thongbao','Sửa thành công.');

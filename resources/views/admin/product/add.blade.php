@@ -25,8 +25,8 @@
                             <input class="form-control" name="name" value="{{old('name')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
-                                <label>Link ảnh</label>
-                                <input class="form-control" type="file" value="{{old('images')}}" name="images" placeholder="Vui lòng nhập thông tin" />
+                                <label>Ảnh sản phẩm</label>
+                                <input class="form-control" type="file" value="{{old('images')}}" multiple="" name="images[]" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
                                 <label>Giá</label>
@@ -45,7 +45,7 @@
                                 <input type="number" class="form-control" value="{{old('hot')}}" name="hot" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
-                                <label>Ảnh nền</label>
+                                <label>Ảnh nhỏ</label>
                                 <input class="form-control" type="file" value="{{old('thumbnail')}}" name="thumbnail" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
