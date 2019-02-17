@@ -4,34 +4,40 @@
             <!-- SHOPPING-CART START -->
             <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 pull-right shopingcartarea">
                 <div class="shopping-cart-out pull-right">
+                    @if(Session::has('cart'))
+                        @php
+                            $cart = Session('cart');
+                            $list_product = $cart->items;
+                            //dd($list_product);
+                        @endphp
                     <div class="shopping-cart">
                         <a class="shop-link" href="cart.html" title="View my shopping cart">
-                            <i class="fa fa-shopping-cart cart-icon">@if(Session::has('cart')){{Session('cart')->totalQuantity}}@else 0 @endif</i>
+                            <i class="fa fa-shopping-cart cart-icon"></i>
                             <b>My Cart</b>
-                        <span class="ajax-cart-quantity"></span>
+                        <span class="ajax-cart-quantity">@if(Session::has('cart')){{Session('cart')->totalQuantity}}@else 0 @endif</span>
                         </a>
                         <div class="shipping-cart-overly">
-                            @foreach ($cart as $crt)
-                            <div class="shipping-item">
-                                <span class="cross-icon"><i class="fa fa-times-circle"></i></span>
-                                <div class="shipping-item-image">
-                                <a href="#"><img src="storage/{{$crt->thumbnail}}" alt="shopping image" /></a>
-                                </div>
-                                <div class="shipping-item-text">
-                                <span>2 <span class="pro-quan-x">x</span> <a href="#" class="pro-cat">{{shorten_string($crt->name,6)}}</a></span>
-                                    <span class="pro-quality"><a href="#">{{$crt->brand}}</a></span>
-                                    <p>{{$crt->price}}</p>
-                                </div>
-                            </div>
-                            @endforeach
+                                    @foreach ($list_product as $crt)
+                                    <div class="shipping-item">
+                                        <span class="cross-icon"><a href="{{route('customer.cart.delete',$crt['item']['id'])}}"><i class="fa fa-times-circle"></i></a></span>
+                                        <div class="shipping-item-image">
+                                        <a href="#"><img style="width:80px;" src="storage/{{$crt['item']['images']}}" alt="shopping image" /></a>
+                                        </div>
+                                        <div class="shipping-item-text">
+                                        <span>{{$crt['qty']}}<span class="pro-quan-x">x</span> <a href="#" style="text-transform: lowercase;" title="{{$crt['item']['name']}}" class="pro-cat">{{shorten_string($crt['item']['name'],2)}}</a></span>
+                                            <span class="pro-quality"><a href="#">{{$crt['item']['brand']}}</a></span>
+                                            <p>{{number_format($crt['price'])}}<sup>đ</sup></p>
+                                        </div>
+                                    </div>
+                                    @endforeach
                             <div class="shipping-total-bill">
                                 <div class="cart-prices">
                                     <span class="shipping-cost">$2.00</span>
                                     <span>Shipping</span>
                                 </div>
                                 <div class="total-shipping-prices">
-                                    <span class="shipping-total">$24.95</span>
-                                    <span>Total</span>
+                                    <span class="shipping-total">{{number_format($cart->totalPrice)}}<sup>đ</sup> </span>
+                                    <span>Tổng tiền: </span>
                                 </div>										
                             </div>
                             <div class="shipping-checkout-btn">
@@ -39,6 +45,7 @@
                             </div>
                         </div>
                     </div>
+                    @endif
                 </div>
             </div>	
             <!-- SHOPPING-CART END -->
