@@ -14,7 +14,8 @@
                 </div>
                 <!-- BSTORE-BREADCRUMB END -->
             </div>
-        </div>				
+        </div>	
+        			
         <div class="row">
             <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
                 <!-- SINGLE-PRODUCT-DESCRIPTION START -->
@@ -25,87 +26,63 @@
                             <div class="tab-content">
                                 <div class="tab-pane active" id="thumbnail_1">
                                     <div class="single-product-image">
-                                    <img src="storage/{{$product_single->images}}" alt="single-product-image" />
-                                        @if($product_single->images > 0)
+                                    <img src="storage/{{$product_single->thumbnail}}" alt="single-product-image" />
+                                        @if($product_single->discount > 0)
                                         <a class="new-mark-box" href="#">sale</a>
                                         @else
                                         <a class="new-mark-box" href="#">new</a>
                                         @endif
-                                        <a class="fancybox" href="storage/{{$product_single->images}}" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                    </div>	
-                                </div>
-                                <div class="tab-pane" id="thumbnail_2">
-                                    <div class="single-product-image">
-                                        <img src="storage/{{$product_single->thumbnail}}" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
                                         <a class="fancybox" href="storage/{{$product_single->thumbnail}}" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
                                     </div>	
                                 </div>
-                                {{-- <div class="tab-pane" id="thumbnail_3">
-                                    <div class="single-product-image">
-                                        <img src="img/product/sale/9.jpg" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
-                                        <a class="fancybox" href="img/product/sale/9.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                    </div>	
-                                </div>
-                                <div class="tab-pane" id="thumbnail_4">
-                                    <div class="single-product-image">
-                                        <img src="img/product/sale/13.jpg" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
-                                        <a class="fancybox" href="img/product/sale/13.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                    </div>	
-                                </div>
-                                <div class="tab-pane" id="thumbnail_5">
-                                    <div class="single-product-image">
-                                        <img src="img/product/sale/7.jpg" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
-                                        <a class="fancybox" href="img/product/sale/7.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                    </div>	
-                                </div>
-                                <div class="tab-pane" id="thumbnail_6">
-                                    <div class="single-product-image">
-                                        <img src="img/product/sale/12.jpg" alt="single-product-image" />
-                                        <a class="new-mark-box" href="#">new</a>
-                                        <a class="fancybox" href="img/product/sale/12.jpg" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
-                                    </div>	
-                                </div> --}}
+                                @php
+                                    $product_encode = json_decode($product_single->images);
+                                    //dd($product_encode);
+                                @endphp
+                                @if ($product_encode == "")
+
+                                @else
+                                    @foreach ($product_encode as $pes)
+                                        <div class="tab-pane" id="thumbnail_2">
+                                            <div class="single-product-image">
+                                                <img src="storage/{{$pes}}" alt="single-product-image" />
+                                                <a class="new-mark-box" href="#">new</a>
+                                                <a class="fancybox" href="storage/{{$pes}}" data-fancybox-group="gallery"><span class="btn large-btn">View larger <i class="fa fa-search-plus"></i></span></a>
+                                            </div>	
+                                        </div>
+                                    @endforeach
+                                @endif
                             </div>										
                         </div>
                         <div class="select-product">
                             <!-- Nav tabs -->
+                            
                             <ul class="nav nav-tabs select-product-tab bxslider">
-                                <li class="active">
-                                    <a href="#thumbnail_1" data-toggle="tab"><img src="img/product/sidebar_product/1.jpg" alt="pro-thumbnail" /></a>
-                                </li>
-                                <li>
-                                    <a href="#thumbnail_2" data-toggle="tab"><img src="img/product/sidebar_product/2.jpg" alt="pro-thumbnail" /></a>
-                                </li>
-                                <li>
-                                    <a href="#thumbnail_3" data-toggle="tab"><img src="img/product/sidebar_product/3.jpg" alt="pro-thumbnail" /></a>
-                                </li>
-                                <li>
-                                    <a href="#thumbnail_4" data-toggle="tab"><img src="img/product/sidebar_product/4.jpg" alt="pro-thumbnail" /></a>
-                                </li>
-                                <li>
-                                    <a href="#thumbnail_5" data-toggle="tab"><img src="img/product/sidebar_product/5.jpg" alt="pro-thumbnail" /></a>
-                                </li>
-                                <li>
-                                    <a href="#thumbnail_6" data-toggle="tab"><img src="img/product/sidebar_product/6.jpg" alt="pro-thumbnail" /></a>
-                                </li>
+                                @if ($product_encode == "")
+                                    <li class="active">
+                                        <a href="#thumbnail_1" data-toggle="tab"><img src="#" alt="pro-thumbnail" /></a>
+                                    </li>
+                                @else
+                                    @foreach ($product_encode as $pes)
+                                        <li class="active">
+                                            <a href="#thumbnail_1" data-toggle="tab"><img src="storage/{{$pes}}" alt="pro-thumbnail" /></a>
+                                        </li>
+                                    @endforeach
+                                @endif
                             </ul>										
                         </div>
                     </div>
                     <div class="col-lg-7 col-md-7 col-sm-8 col-xs-12">
                         <div class="single-product-descirption">
                         <h2>{{$product_single->name}}</h2>
-                            <div class="single-product-social-share">
+                            {{-- <div class="single-product-social-share">
                                 <ul>
                                     <li><a href="#" class="twi-link"><i class="fa fa-twitter"></i>Tweet</a></li>
                                     <li><a href="#" class="fb-link"><i class="fa fa-facebook"></i>Share</a></li>
                                     <li><a href="#" class="g-plus-link"><i class="fa fa-google-plus"></i>Google+</a></li>
                                     <li><a href="#" class="pin-link"><i class="fa fa-pinterest"></i>Pinterest</a></li>
                                 </ul>
-                            </div>
+                            </div> --}}
                             <div class="single-product-review-box">
                                 <div class="rating-box">
                                     <i class="fa fa-star"></i>
@@ -114,16 +91,17 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star-half-empty"></i>
                                 </div>
-                                <div class="read-reviews">
+                                <div class="clear" style="clear: both;"></div>
+                                {{-- <div class="read-reviews">
                                     <a href="#">Read reviews (1)</a>
                                 </div>
                                 <div class="write-review">
                                     <a href="#">Write a review</a>
-                                </div>		
+                                </div>		 --}}
                             </div>
                             <div class="single-product-condition">
-                                <p>Reference: <span>demo_1</span></p>
-                                <p>Condition: <span>New product</span></p>
+                                <p>Hãng : <span>{{$product_single->brand}}</span></p>
+                                <p>Hạn sử dụng : <span>6 tháng</span></p>
                             </div>
                             <div class="single-product-price">
                                 @if($product_single->discount > 0)
@@ -133,40 +111,42 @@
                                     <h2>{{number_format($product_single->price)}}<sup style="text-transform: lowercase">đ</sup></h2>  
                                 @endif
                             </div>
-                            <div class="single-product-desc">
+                            {{-- <div class="single-product-desc">
                                 <p>Faded short sleeves t-shirt with high neckline. Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!</p>
                                 <div class="product-in-stock">
                                     <p>300 Items<span>In stock</span></p>
                                 </div>
-                            </div>
-                            <div class="single-product-info">
+                            </div> --}}
+                            {{-- <div class="single-product-info">
                                 <a href="#"><i class="fa fa-envelope"></i></a>
                                 <a href="#"><i class="fa fa-print"></i></a>
                                 <a href="#"><i class="fa fa-heart"></i></a>
-                            </div>
-                            <div class="single-product-quantity">
+                            </div> --}}
+                            
+                            {{-- <div class="single-product-quantity">
                                 <p class="small-title">Quantity</p> 
                                 <div class="cart-quantity">
                                     <div class="cart-plus-minus-button single-qty-btn">
                                         <input class="cart-plus-minus sing-pro-qty" type="text" name="qtybutton" value="0">
                                     </div>
                                 </div>
-                            </div>
-                            <div class="single-product-size">
+                            </div> --}}
+                            {{-- <div class="single-product-size">
                                 <p class="small-title">Size </p> 
                                 <select name="product-size" id="product-size">
                                     <option value="">S</option>
                                     <option value="">M</option>
                                     <option value="">L</option>
                                 </select>
-                            </div>
-                            <div class="single-product-color">
+                            </div> --}}
+                            {{-- <div class="single-product-color">
                                 <p class="small-title">Color </p> 
                                 <a href="#"><span></span></a>
                                 <a class="color-blue" href="#"><span></span></a>
-                            </div>
+                            </div> --}}
+                            <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="single-product-add-cart">
-                                <a class="add-cart-text" title="Add to cart" href="#">Add to cart</a>
+                                <a class="add-cart-text cart_click" data-id="{{$product_single->id}}" title="Add to cart" href="#">Add to cart</a>
                             </div>
                         </div>
                     </div>
@@ -303,36 +283,19 @@
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
                 <!-- SINGLE SIDE BAR START -->
                 <div class="single-product-right-sidebar">
-                    <h2 class="left-title">Viewed products</h2>
+                    <h2 class="left-title">Sản phẩm hot</h2>
                     <ul>
-                        <li>
-                            <a href="#"><img src="img/product/sidebar_product/2.jpg" alt="" /></a>
-                            <div class="r-sidebar-pro-content">
-                                <h5><a href="#">Faded Short ...</a></h5>
-                                <p>Faded short sleeves t-shirt with high...</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#"><img src="img/product/sidebar_product/4.jpg" alt="" /></a>
-                            <div class="r-sidebar-pro-content">
-                                <h5><a href="#">Printed Chif ..</a></h5>
-                                <p>Printed chiffon knee length dress...</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#"><img src="img/product/sidebar_product/6.jpg" alt="" /></a>
-                            <div class="r-sidebar-pro-content">
-                                <h5><a href="#">Printed Sum ...</a></h5>
-                                <p>Long printed dress with thin...</p>
-                            </div>
-                        </li>
-                        <li>
-                            <a href="#"><img src="img/product/sidebar_product/1.jpg" alt="" /></a>
-                            <div class="r-sidebar-pro-content">
-                                <h5><a href="#">Printed Dress </a></h5>
-                                <p>100% cotton double printed dress....</p>
-                            </div>
-                        </li>
+                        @foreach ($product_hot as $pr)
+                            @if ($pr->hot == 1)
+                            <li>
+                                <a href="#"><img width="100px;" src="storage/{{$pr->images}}" alt="" /></a>
+                                    <div class="r-sidebar-pro-content">
+                                        <h5><a href="#">{{shorten_string($pr->name,7)}}</a></h5>
+                                        <p>Hãng : {{$pr->brand}}</p>
+                                    </div>
+                                </li>
+                            @endif
+                        @endforeach
                     </ul>
                 </div>	
                 <!-- SINGLE SIDE BAR END -->

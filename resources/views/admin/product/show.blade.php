@@ -71,6 +71,7 @@
                 <a class="btn btn-primary" href="{{route('products.index')}}" role="button">Back</a>
                 <a class="btn btn-success" href="{{route('products.create')}}" role="button">Thêm</a>
             </div>
+            <div style="clear: both"></div>
             <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->

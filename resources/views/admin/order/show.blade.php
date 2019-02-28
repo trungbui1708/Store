@@ -16,7 +16,7 @@
                 <div class="col-lg-7" style="padding-bottom:120px">
                     <div class="form-group">
                         <label>Mã hóa đơn</label>
-                        <input class="form-control" name="id" disabled value="{{$order->id}}" placeholder="Vui lòng nhập thông tin" />
+                        <input class="form-control" name="id" disabled value="{{$order->order_code}}" placeholder="Vui lòng nhập thông tin" />
                     </div>
                     <div class="form-group">
                         <label>Người mua</label>
@@ -24,15 +24,11 @@
                     </div>
                     <div class="form-group">
                         <label>Tổng tiền<nav></nav></label>
-                        <input class="form-control" name="name" disabled value="{{$order->sum_money}}" placeholder="Vui lòng nhập thông tin" />
+                        <input class="form-control" name="name" disabled value="{{number_format($order->sum_money)}}" placeholder="Vui lòng nhập thông tin" />
                     </div>
                     <div class="form-group">
                         <label>Ngày giao hàng<nav></nav></label>
                         <input class="form-control" name="name" disabled value="{{$order->delivery_date}}" placeholder="Vui lòng nhập thông tin" />
-                    </div>
-                    <div class="form-group">
-                        <label>Trạng thái</label>
-                        <input class="form-control" name="name" disabled value="{{$order->status}}" placeholder="Vui lòng nhập thông tin" />
                     </div>
                     <div class="form-group">
                         <label>Trạng thái</label>

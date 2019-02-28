@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Requests\UpdateArticleRequest;
 use App\Http\Requests\StoreArticleRequest;
+use Auth;
 class ArticleController extends Controller
 {
     /**
@@ -39,10 +40,37 @@ class ArticleController extends Controller
      */
     public function store(StoreArticleRequest $request)
     {
-        $article = new Article();
-        $article->fill($request->all());
-        $article->slug  = changeTitle($request->title);
-        $article->save();
+        if($request->status == "on")
+        {
+            $status = "1";
+        }
+        else
+        {
+            $status = "0";
+        }
+        $user_id = Auth::user()->id;
+        $request->merge(['status' => $status,'user_id' => $user_id,
+        'slug' => changeTitle($request->title)]);
+        $allow_type = ["jpg","jpeg","png","svg","png","gif"];
+        $data = $data = $request->except(['thumbnail']);
+        if($request->thumbnail == null){
+            $data['thumbnail'] = $article->thumbnail;
+            $request->thumbnail = $article->thumbnail;
+        }
+        else
+        {
+            if($request->hasFile('thumbnail')){
+                $thumbnail = $request->thumbnail;
+                $file_ext = $thumbnail->getClientOriginalExtension();
+                if(in_array($file_ext, $allow_type)){
+                    $file_name_tb = $request->thumbnail->store('articles');
+                    $data['thumbnail'] = $file_name_tb;
+                }
+            }
+            $request->thumbnail = $file_name_tb;
+        }
+        
+        $article = Article::create($data);
         return redirect()->route('articles.show',$article)->with('thongbao','Thêm thành công.');
     }
 
@@ -65,8 +93,7 @@ class ArticleController extends Controller
      */
     public function edit(Article $article)
     {
-        $user = User::all();
-        return view('admin.article.edit',compact('article','user'));
+        return view('admin.article.edit',compact('article'));
     }
 
     /**
@@ -78,9 +105,37 @@ class ArticleController extends Controller
      */
     public function update(UpdateArticleRequest $request, Article $article)
     {
-        $article->fill($request->all());
-        $article->slug = changeTitle($request->title);
-        $article->save();
+        if($request->status == "on")
+        {
+            $status = "1";
+        }
+        else
+        {
+            $status = "0";
+        }
+        $user_id = Auth::user()->id;
+        $request->merge(['status' => $status,'user_id' => $user_id,
+        'slug' => changeTitle($request->title)]);
+        $allow_type = ["jpg","jpeg","png","svg","png","gif"];
+        $data = $data = $request->except(['thumbnail']);
+        if($request->thumbnail == null){
+            $data['thumbnail'] = $article->thumbnail;
+            $request->thumbnail = $article->thumbnail;
+        }
+        else
+        {
+            if($request->hasFile('thumbnail')){
+                $thumbnail = $request->thumbnail;
+                $file_ext = $thumbnail->getClientOriginalExtension();
+                if(in_array($file_ext, $allow_type)){
+                    $file_name_tb = $request->thumbnail->store('articles');
+                    $data['thumbnail'] = $file_name_tb;
+                }
+            }
+            $request->thumbnail = $file_name_tb;
+        }
+        
+        $article->update($data);
         return redirect()->route('articles.show',$article)->with('thongbao','Sửa thành công.');
     }
 

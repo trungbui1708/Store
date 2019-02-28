@@ -26,14 +26,6 @@
                         <form action="{{route('articles.store')}}" enctype="multipart/form-data" method="POST">
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="form-group">
-                                <label>Người nhập</label>
-                                <select class="form-control" name="user_id">
-                                    @foreach($user as $ur)
-                                        <option value="{{$ur->id}}">{{$ur->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label>Tiêu đề</label>
                             <input class="form-control" name="title" value="{{old('title')}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
@@ -46,13 +38,14 @@
                                 <textarea id="demo" name="content" value="{{old('content')}}" class="form-control ckeditor" rows="5"></textarea>
                             </div>
                             <div class="form-group">
-                                <label>Link Ảnh</label>
-                                <input type="text" name="thumbnail" value="{{old('thumbnail')}}"  class="form-control" />
+                                <label>Ảnh nền</label>
+                                <input type="file" name="thumbnail" value="{{old('thumbnail')}}" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label>Trạng thái</label>
-                                <input type="text" name="status" value="{{old('status')}}" class="form-control" />
-                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" 
+                                        class="form-check-input" id="exampleCheck1" name="status">
+                                <label class="form-check-label" for="exampleCheck1">Hiển thị</label>
+                              </div>
                             <button type="submit" class="btn btn-default">Thêm</button>
                             <button type="reset" class="btn btn-default">Làm mới</button>
                         <form>

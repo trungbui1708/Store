@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Order extends Model
 {
     protected $table = 'orders';//khai báo bảng trong cơ sở dữ liệu
-    protected $fillable = ['name','email','address','phone','sum_money','delivery_date','user_id','status'];//khai báo các trường
+    protected $fillable = ['sum_money','count','delivery_date','user_id','status','order_detail','order_code'];//khai báo các trường
 
     public function user() {
         return $this->belongsTo(User::class,'user_id','id');

@@ -11,7 +11,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="">advisory123.com</a>
+                <a class="navbar-brand" href="{{route('admin.page')}}">advisory123.com</a>
             </div>
             <!-- /.navbar-header -->
             <ul class="nav navbar-top-links navbar-right">
@@ -22,7 +22,7 @@
                     </a>
                     
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i></a>
+                    <li><a href="#"><i class="fa fa-user fa-fw"> {{Auth::user()->name}}</i></a>
                         </li>
                         <li><a href="#"><i class="fa fa-gear fa-fw"></i>Đổi mật khẩu</a>
                         </li>

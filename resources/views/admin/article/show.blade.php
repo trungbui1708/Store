@@ -36,13 +36,19 @@
                 </div>
                 <div class="form-group">
                     <label>Link Ảnh</label>
-                    <p>Image :<img width="300px" src="{{$article->thumbnail}}"></p>
+                    <p>Image :<img width="300px" src="storage/{{$article->thumbnail}}"></p>
                 </div>
-                <div class="form-group">
-                    <label>Trạng thái</label>
-                    <input type="text" name="status" value="{{$article->status}}" class="form-control" />
-                </div>
+                <div class="form-check">
+                    <input type="checkbox" 
+                        @if ($article->status == 1)
+                            {{'checked'}}
+                        @endif 
+                        disabled
+                    class="form-check-input" id="exampleCheck1" name="status">
+                    <label class="form-check-label" for="exampleCheck1">Hiển thị</label>
+                  </div>
                 <a class="btn btn-primary" href="{{route('articles.index')}}" role="button">Back</a>
+                <a class="btn btn-success" href="{{route('articles.edit',$article)}}" role="button">Sửa</a>
             </div>4
             <!-- /.row -->
     </div>

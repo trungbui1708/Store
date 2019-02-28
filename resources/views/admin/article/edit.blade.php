@@ -26,18 +26,6 @@
                         <form action="{{route('articles.update',$article)}}" enctype="multipart/form-data" method="POST">
                         	{{csrf_field()}} {{method_field('PUT')}}
                             <div class="form-group">
-                                <label>Người nhập</label>
-                                <select class="form-control" name="user_id">
-                                    @foreach($user as $ur)
-                                        <option
-                                                @if($ur->id == $article->user_id)
-                                                {{"selected"}}
-                                                @endif
-                                                value="{{$ur->id}}">{{$ur->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="form-group">
                                 <label>Tiêu đề</label>
                             <input class="form-control" name="title" value="{{$article->title}}"  placeholder="Vui lòng nhập thông tin" />
                             </div>
@@ -50,13 +38,17 @@
                                 <textarea id="demo" name="content"   class="form-control ckeditor" rows="5">{!!$article->content!!}</textarea>
                             </div>
                             <div class="form-group">
-                                <label>Link Ảnh</label>
-                            <input type="text" name="thumbnail" value="{{$article->thumbnail}}" class="form-control" />
+                                <label>Ảnh nền</label>
+                                <input type="file" name="thumbnail" value="{{$article->thumbnail}}" class="form-control" />
                             </div>
-                            <div class="form-group">
-                                <label>Trạng thái</label>
-                                <input type="text" name="status" value="{{$article->status}}" class="form-control" />
-                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" 
+                                    @if ($article->status == 1)
+                                        {{'checked'}}
+                                    @endif 
+                                class="form-check-input" id="exampleCheck1" name="status">
+                                <label class="form-check-label" for="exampleCheck1">Hiển thị</label>
+                              </div>
                             <button type="submit" class="btn btn-default">Sửa</button>
                             <button type="reset" class="btn btn-default">Làm mới</button>
                         <form>

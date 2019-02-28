@@ -80,7 +80,7 @@ class CategoryController extends Controller
      */
     public function update(UpdateCategoryRequest $request, Category $category)
     {
-        $category->name = changeTitle($request->name);
+        $category->slug = changeTitle($request->name);
         $category->fill($request->all());
         $category->save();
         return redirect()->route('categories.show',$category)->with('thongbao','Sửa thành công.');

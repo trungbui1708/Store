@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <!-- HEADER-LEFT-MENU START -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            {{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="header-left-menu">
                     <div class="welcome-info">
                         Welcome <span>BootExperts</span>
@@ -41,17 +41,21 @@
                     </div>
                 </div>
             </div>
-            <!-- HEADER-LEFT-MENU END -->
+            <!-- HEADER-LEFT-MENU END --> --}}
             <!-- HEADER-RIGHT-MENU START -->
-            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="header-right-menu">
                     <nav>
                         <ul class="list-inline">
-                            <li><a href="checkout.html">Check Out</a></li>
+                            {{-- <li><a href="checkout.html">Check Out</a></li>
                             <li><a href="wishlist.html">Wishlist</a></li>
-                            <li><a href="my-account.html">My Account</a></li>
-                            <li><a href="cart.html">My Cart</a></li>
-                            <li><a href="registration.html">Sign in</a></li>
+                            <li><a href="my-account.html">My Account</a></li> --}}
+                            @if (Auth::check())
+                                <li><a href="{{route('pages.account')}}">Xin chào: {{Auth::user()->email}}</a></li>
+                                <li><a href="{{route('pages.logout')}}">Đăng xuất</a></li>
+                            @else
+                                <li><a href="{{route('pages.get.login')}}">Đặng nhập/Đăng ký</a></li>
+                            @endif
                         </ul>									
                     </nav>
                 </div>
@@ -64,11 +68,11 @@
 <!-- HEADER-MIDDLE START -->
 <section class="header-middle">
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
+        <div class="row" style="z-index: 10;" >
+            <div class="col-sm-12" style="z-index: 900;">
                 <!-- LOGO START -->
                 <div class="logo">
-                    <a href="index.html"><img src="page_asset/img/logo.png" alt="bstore logo" /></a>
+                <a href="{{route('pages.index')}}"><img src="images/logo.png" alt="bstore logo" /></a>
                 </div>
                 <!-- LOGO END -->
                 <!-- HEADER-RIGHT-CALLUS START -->
@@ -81,7 +85,7 @@
                 <div class="categorys-product-search">
                     <form action="#" method="get" class="search-form-cat">
                         <div class="search-product form-group">
-                            <select name="catsearch" class="cat-search">
+                            {{-- <select name="catsearch" class="cat-search">
                                 <option value="">Categories</option>
                                 <option value="2">--Women</option>
                                 <option value="3">---T-Shirts</option>
@@ -111,11 +115,14 @@
                                 <option value="25">-handb</option>
                                 <option value="66">--phone</option>
                                 <option value="27">---house</option>									
-                            </select>
-                            <input type="text" class="form-control search-form" name="s" placeholder="Enter your search key ... " />
+                            </select> --}}
+                            <input type="text" id="search" class="form-control search-form" name="s" placeholder="Enter your search key ... " />
                             <button class="search-button" value="Search" name="s" type="submit">
                                 <i class="fa fa-search"></i>
-                            </button>									 
+                            </button>	
+                            <ul class="search_product" style="background: #fff">
+                              
+                            </ul>								 
                         </div>
                     </form>
                 </div>
@@ -124,6 +131,10 @@
         </div>
     </div>
 </section>
+<script>
+    
+        
+</script>
 <!-- HEADER-MIDDLE END -->
 <!-- MAIN-MENU-AREA START -->
 @include('pages.layouts.menu')

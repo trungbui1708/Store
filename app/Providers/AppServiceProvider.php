@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\View;
 use App\Cart;
+use App\Product;
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -21,6 +24,12 @@ class AppServiceProvider extends ServiceProvider
                 View::share('cart',$cart);
             }
         });
+        view()->composer('*', function ($view) {
+
+            $view->with('_list_products', Product::all());
+
+        });
+        
     }
 
     /**

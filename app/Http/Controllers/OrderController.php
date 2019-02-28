@@ -83,4 +83,8 @@ class OrderController extends Controller
     {
         //
     }
+
+    public function createPostOrder(Request $request){
+        
+    }
 }

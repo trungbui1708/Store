@@ -84,12 +84,11 @@
 		============================================ -->
         <link rel="stylesheet" href="page_asset/css/ie.css">
 		
-		<!-- MODERNIZR JS 
+		<!-- IE CSS 
 		============================================ -->
         <script src="page_asset/js/vendor/modernizr-2.6.2.min.js"></script>
     </head>
     <body>
-		
         <!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -109,6 +108,7 @@
 		<!-- JS 
 		===============================================-->
 		<!-- jquery js -->
+		<script src="https://unpkg.com/lazyload@2.0.0-beta.2/lazyload.js"></script>
 		<script src="page_asset/js/vendor/jquery-1.11.3.min.js"></script>
 		
 		<!-- fancybox js -->
@@ -158,8 +158,8 @@
 			google.maps.event.addDomListener(window, 'load', initialize);				
 		</script>
 		<!-- main js -->
-        <script src="page_asset/js/main.js"></script>
+		<script src="page_asset/js/main.js"></script>
     </body>
-
+	@include('pages.layouts.script')
 <!-- Nulled by http://www.baobinh.net by tieulonglanh -->
 </html>

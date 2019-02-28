@@ -32,10 +32,10 @@
                             <tr class="odd gradeX" align="center">
                                 <td>{{$al->id}}</td>
                                 <td>{{$al->title}}
-                                    <p><img width="100px" src="{{$al->thumbnail}}"></p>
+                                    <p><img width="100px" src="storage/{{$al->thumbnail}}"></p>
                                 </td>
                                 <td>{{$al->slug}}</td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="{{route('article.show',$al)}}">Chi tiết</a></td>
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i><a href="{{route('articles.show',$al)}}">Chi tiết</a></td>
                                 <td class="center"><i class="fa fa-trash-o  fa-fw" ></i><form action="{{route('articles.destroy',$al)}}"  style="display: inline-table;" method="POST" onsubmit="return confirm('Bạn có muốn xóa không?');">
                                     {{ csrf_field() }} {{ method_field('DELETE') }}
                                     <button  type="submit" style="background: none;border: none;">Xóa</button>

@@ -523,6 +523,7 @@ span.mobile-menu-title{
 	padding-top:25px;
 	float:left;
 	margin-bottom:25px;
+	max-width: 150px;
 }
 .logo a{
 	display:block;
@@ -531,7 +532,6 @@ span.mobile-menu-title{
 	float: right;
 	height: 43px;
 	margin-top: 50px;
-	overflow: hidden;
 	padding-right: 15px;
 	padding-top: 0px;
 	width: 550px;
@@ -547,7 +547,7 @@ span.mobile-menu-title{
 	min-height: 41px;
 	outline: medium none;
 	padding: 6px 10px;
-	width: 365px;
+	width: 100%;
 	background:#fff;
 }
 .search-form:focus, .search-form:active{
@@ -564,7 +564,6 @@ span.mobile-menu-title{
 	height:42px;
 	color:#464646;
 	text-transform:uppercase;
-	overflow:hidden;
 }
 .cat-search{
 	background:#fff url("img/caret.png") no-repeat scroll 92% 45%;
@@ -865,7 +864,7 @@ input.search-form[placeholder]:-ms-input-placeholder {
 	visibility: hidden;
 }
 .shopping-cart:hover .shipping-cart-overly{
-	height:428px;
+	height:auto;
 	opacity:1;
 	visibility: visible;
 }
@@ -3485,7 +3484,7 @@ div.wishlists-chart table tr td a:hover{
 	padding: 5px;
 	width: 100%;
 }
-.qtybutton{
+.qtybuttons{
 	background: #fbfbfb;
 	border: 1px solid #ccc;
 	color: #c0c0c0;
@@ -3501,14 +3500,14 @@ div.wishlists-chart table tr td a:hover{
 	text-align:center;
 }
 
-.qtybutton:hover{
+.qtybuttons:hover{
 	color:#000;
 }
-.inc{
+.incs{
 	float:right;
 	position:relative;
 }
-.inc:before{
+.incs:before{
 	position:absolute;
 	content:"+";
 	left:0;
@@ -3517,13 +3516,13 @@ div.wishlists-chart table tr td a:hover{
 	width:100%;
 	font-family:arial;
 }
-.dec{
+.decs{
 	float: left;
 	font-size: 28px;
 	line-height: 19px;
 	position:relative;
 }
-.dec:before{
+.decs:before{
 	position:absolute;
 	content:"-";
 	left:0;
@@ -4395,16 +4394,16 @@ span.large-btn:hover i{
 .single-qty-btn .sing-pro-qty{
 	background:#fff;
 }
-.single-qty-btn .qtybutton{
+.single-qty-btn .qtybuttons{
 	height:28px;
 	width:28px;
 	margin-top:0;
 }
-.single-qty-btn .inc{
+.single-qty-btn .incs{
 	margin-left:3px;
 	float:left;
 }
-.single-qty-btn .dec{
+.single-qty-btn .decs{
 	float:left;
 }
 .single-product-quantity a:hover{

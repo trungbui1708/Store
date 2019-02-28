@@ -1,80 +1,106 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Khóa Học Lập Trình Laravel Framework 5.x Tại Khoa Phạm">
-    <meta name="author" content="">
-
-    <title>Admin - Đặng Văn Đô</title>
-    <base href="{{asset('')}}">
-    <!-- Bootstrap Core CSS -->
-    <link href="admin_asset/bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-
-    <!-- MetisMenu CSS -->
-    <link href="admin_asset/bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="admin_asset/dist/css/sb-admin-2.css" rel="stylesheet">
-
-    <!-- Custom Fonts -->
-    <link href="admin_asset/bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-
-</head>
-
-<body>
-        @if(count($errors) > 0)
-            <div class="alert alert-danger">
-            @foreach($errors->all() as $er)
-                {{$er}} <br>
-            @endforeach
-            </div>
-        @endif
-
-        @if(session('thongbao'))
-            <div class="alert alert-danger">
-                {{session('thongbao')}}
-            </div>
-        @endif
-    <div class="container">
-        <div class="row">
-            <div class="col-md-4 col-md-offset-4">
-                <div class="login-panel panel panel-default">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">Đăng nhập</h3>
+@extends('pages.layouts.index')
+@section('content')
+<section class="main-content-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <!-- BSTORE-BREADCRUMB START -->
+                    <div class="bstore-breadcrumb">
+                        <a href="index.html">Trang chủ</a>
+                        <span><i class="fa fa-caret-right"></i></span>
+                        <span>Đăng ký / Đăng nhập</span>
                     </div>
-                    <div class="panel-body">
-                    <form role="form" action="{{route('admin.loginpost')}}" method="POST">
-                            <input type="hidden" name="_token" value="{{csrf_token()}}">
-                            <fieldset>
-                                <div class="form-group">
-                                <input class="form-control" placeholder="E-mail" value="{{old('email')}}" name="email" type="text" autofocus>
+                    <!-- BSTORE-BREADCRUMB END -->
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <h2 class="page-title">Đăng ký / Đăng nhập</h2>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <!-- CREATE-NEW-ACCOUNT START -->
+                    <div class="create-new-account">
+                    <form class="new-account-box primari-box" id="create-new-account" method="post" action="{{route('pages.register')}}">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">
+                            <h3 class="box-subheading">Đăng ký</h3>
+                            <div class="form-content">
+                                <p>Please enter your email address to create an account.</p>
+                                <div class="form-group primary-form-group">
+                                    <label for="email">Họ và Tên</label>
+                                    <input type="text" value="{{old('name')}}" name="name" placeholder="Họ và tên" id="name" class="form-control input-feild" required>
                                 </div>
-                                <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                <div class="form-group primary-form-group">
+                                    <label for="email">Email</label>
+                                    <input type="text" value="{{old('email')}}" name="email" placeholder="Email" id="email" class="form-control input-feild" required>
                                 </div>
-                                <button type="submit" class="btn btn-lg btn-success btn-block">Đăng nhập</button>
-                            </fieldset>
-                        </form>
+                                <div class="form-group primary-form-group">
+                                    <label for="email">Mật khẩu</label>
+                                    <input type="password" value="{{old('password')}}" placeholder="Mật khẩu" name="password" id="password" class="form-control input-feild" required>
+                                </div>
+                                <div class="form-group primary-form-group">
+                                    <label for="email">Địa chỉ</label>
+                                    <input type="text" value="{{old('address')}}" placeholder="Địa chỉ" name="address" id="address" class="form-control input-feild" required>
+                                </div>
+                                <div class="form-group primary-form-group">
+                                    <label for="email">Số điện thoại</label>
+                                    <input type="text" value="{{old('phone')}}" name="phone" placeholder="Số điện thoại" id="phone" class="form-control input-feild" required>
+                                </div>
+                                @if(count($errors) > 0)
+                                    <div class="alert alert-danger">
+                                        @foreach($errors->all() as $err)
+                                            <p style="color:red;margin: 0px;">{{$err}}</p>                                        @endforeach
+                                    </div>
+                                @endif
+                                <div class="submit-button">
+                                    <button type="submit" class="btn main-btn"> <span>
+                                            <i class="fa fa-user submit-icon"></i>
+                                            Create an account
+                                        </span>		</button>
+                                    {{-- <a href="checkout-registration.html" id="SubmitCreate" class="btn main-btn">
+                                       									
+                                    </a> --}}
+                                </div>
+                            </div>
+                        </form>							
                     </div>
+                    <!-- CREATE-NEW-ACCOUNT END -->
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                    <!-- REGISTERED-ACCOUNT START -->
+                    <div class="primari-box registered-account">
+                    <form class="new-account-box" id="accountLogin" method="post" action="{{route('pages.post.login')}}">
+                        <input type="hidden" name="_token" value="{{csrf_token()}}">    
+                        <h3 class="box-subheading">Đăng nhập</h3>
+                            <div class="form-content">
+                                <div class="form-group primary-form-group">
+                                    <label for="loginemail">Email address</label>
+                                    <input type="text" value="" name="email" id="loginemail" class="form-control input-feild">
+                                </div>
+                                <div class="form-group primary-form-group">
+                                    <label for="password">Password</label>
+                                    <input type="password" value="" name="password" id="password" class="form-control input-feild">
+                                </div>
+                                <div class="forget-password">
+                                    <p><a href="#">Forgot your password?</a></p>
+                                </div>
+                                @if (session('thongbao'))
+                                    <p style="color:red;">{{session('thongbao')}}</p>
+                                @endif
+                                <div class="submit-button">
+                                    <button type="submit" class="btn main-btn">
+                                        <span>
+                                            <i class="fa fa-lock submit-icon"></i>
+                                             Sign in
+                                        </span>
+                                    </button>
+                                </div>
+                            </div>
+                        </form>							
+                    </div>
+                    <!-- REGISTERED-ACCOUNT END -->
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+@endsection
 
-    <!-- jQuery -->
-    <script src="admin_asset/bower_components/jquery/dist/jquery.min.js"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="admin_asset/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-
-    <!-- Metis Menu Plugin JavaScript -->
-    <script src="admin_asset/bower_components/metisMenu/dist/metisMenu.min.js"></script>
-
-    <!-- Custom Theme JavaScript -->
-    <script src="admin_asset/dist/js/sb-admin-2.js"></script>
-
-</body>
-
-</html>

@@ -304,6 +304,19 @@ textarea {
         page-break-after: avoid;
     }
 }
-
-
+.buy-class{
+    background: #ff4f4f none repeat scroll 0 0;
+    border-radius: 4px;
+    color: #fff;
+    display: block;
+    float: right;
+    font-size: 20px;
+    line-height: 50px;
+    padding: 0 16px;
+    transition: all 500ms ease 0s;border: none;
+}
+.buy-class:hover{
+    background: #3a3d42 none repeat scroll 0 0;
+    border-color: #3a3d42;
+}
 h1,h2,h3,h4,h5,h6,h7{color:#000;margin:0;}

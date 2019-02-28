@@ -15,8 +15,9 @@
 // });
 
 //nhóm route admin
-//'middleware' => 'admincheck'
-Route::group(['prefix' => 'admin'],function() {
+//
+Route::group(['prefix' => 'admin','middleware' => 'admincheck'],function() {
+    Route::get('/admin','AdminController@getAdminPage')->name('admin.page');
     Route::resource('menus','MenuController');
     Route::resource('categories','CategoryController');
     Route::resource('distributions','DistributionController');
@@ -24,22 +25,12 @@ Route::group(['prefix' => 'admin'],function() {
     Route::resource('users','UserController');
     Route::resource('orders','OrderController');
 
-    Route::post('menu/many', 'MenuController@storeMany')->name('admin.menu.many');
+    //Route::post('menu/many', 'MenuController@storeMany')->name('admin.menu.many');
     Route::resource('articles','ArticleController');
-    // Route::resource('question','QuestionController');
-    // Route::resource('expert','ExpertController');
-    // Route::resource('slide','SlideController');
-    // Route::group(['prefix' => 'ajax'],function() {
-    //     Route::get('category/{category_parent_id}','AjaxController@getCategory');
-    // });
 });
 
 //Route pages của người dùng
-Route::get('trangchu','PageController@index')->name('pages.index');
-Route::get('list','PageController@getListPage')->name('pages.list.product');
-Route::get('category/{id}/{slug}.html','PageController@getCategory');
-Route::get('distribution/{id}/{slug}.html','PageController@getDistribution');
-Route::get('product/{id}','PageController@getProduct');
+
 
 //nhóm rout dẩy file lên driver
 // Route::get('/drive', 'DriveController@getDrive'); // retreive folders
@@ -47,18 +38,38 @@ Route::get('product/{id}','PageController@getProduct');
 // Route::post('/drive/upload', 'DriveController@uploadFile'); // Upload file to Drive from Form
 // Route::get('/drive/create', 'DriveController@create'); // Upload file to Drive from Storage
 // Route::get('/drive/delete/{id}', 'DriveController@deleteFile'); // Delete file or folder
+
 //nhóm route xác thực người dùng
-Route::get('/admin/login','AdminController@getLogin')->name('admin.login');
-Route::post('/admin/login','AdminController@postLogin')->name('admin.loginpost');
+Route::get('/admin/login','LoginController@getLogin')->name('admin.login');
+Route::post('/admin/login','LoginController@postLogin')->name('admin.loginpost');
 Route::get('/admin/logout','AdminController@getLogout')->name('admin.logout');
 
+
 //Route của người dùng sau khi đăng nhập
+    Route::get('/','PageController@index')->name('pages.index');
+    Route::get('list','PageController@getListPage')->name('pages.list.product');
+    Route::get('category/{id}/{slug}.html','PageController@getCategory');
+    Route::get('distribution/{id}/{slug}.html','PageController@getDistribution');
+    Route::get('product/{id}','PageController@getProduct');
+    Route::get('/account','PageController@getViewAccount')->name('pages.account');
+    Route::get('article_single/{slug}','PageController@getArticleSingle')->name('pages.single');
+    
+    //Route xác thực người dùng
+    Route::get('login','LoginController@getLoginPage')->name('pages.get.login');
+    Route::post('login','LoginController@postLoginPage')->name('pages.post.login');
+    Route::get('logout','AdminController@getLogoutPage')->name('pages.logout');
+    Route::post('regis','LoginController@postRegisPage')->name('pages.register');
+    Route::get('/search','PageController@searchProduct')->name('customer.search');
+    Route::post('/cart_ajax','CartController@addCartAjax')->name('cart.ajax');
+    Route::post('/delete_ajax','CartController@deleteCartAjax')->name('delete.ajax');
+    Route::get('/cart-detail','PageController@getCartAjax')->name('cart.detail');
+    
+    Route::post('/delete_ajax_one','CartController@deleteOneCartAjax')->name('web.cart.deleteone');
+
 //'middeware' => 'customer',
 Route::group(['prefix' => 'customer'],function(){
-    // Route::get('/logout','UserController@logout')->name('customer.logout');
-    // Route::post('/information','UserController@information')->name('customer.information');
     Route::get('/cart','CartController@index')->name('customer.cart');
     Route::get('/add-cart/{id}','CartController@getAddtoCart')->name('customer.cart.add');
     Route::get('/delete-cart/{id}','CartController@deleteCart')->name('customer.cart.delete');
-    Route::post('/order','OrderCustomerController@orderCart')->name('customer.order');
+    Route::post('/create/order','CartController@createPostOrder')->name('create.post.order');
 });

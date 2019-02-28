@@ -60,7 +60,7 @@
                         <span aria-hidden="true" >&times;</span>
                       </button>
                     </div>
-                <form action="{{route('import')}}" method="post" enctype="multipart/form-data">
+                {{-- <form action="{{route('import')}}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="_token" value="{{csrf_token()}}">
                         <div class="modal-body">
                             <input type="file" name="file">
@@ -69,7 +69,7 @@
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
                         <button type="submit" class="btn btn-primary">Thêm</button>
                         </div>
-                    </form>
+                    </form> --}}
                     
                   </div>
                 </div>
