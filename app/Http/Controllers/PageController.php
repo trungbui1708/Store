@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 use App\User;
 use Illuminate\Support\Facades\Hash;
 use App\Article;
+use App\Order;
+use App\OrderDetail;
+use App\Http\Requests\ChangePasswordRequest;
 class PageController extends Controller
 {
     public function index(){
@@ -73,5 +76,32 @@ class PageController extends Controller
         $article_single = Article::where('slug',$slug)->first();
         $article_hot = Article::where('hot',1)->inRandomOrder()->take(5)->get();
         return view('pages.article_single',compact('article_single','article_hot'));
+    }
+
+    public function getChangePassword()
+    {
+        return view('pages.change_password');
+    }
+    public function postChangePassword(ChangePasswordRequest $request)
+    {
+        $request->merge(['password' => Hash::make($request->password)]);
+        $user = Auth::user();
+        $user->update($request->all());
+        return redirect()->route('pages.account')->with('thongbao','Đổi mật khẩu thành công.');
+    }
+    public function getOrder()
+    {
+        if(Auth::check())
+        {
+            $order = Order::where('user_id',Auth::user()->id)->get();
+            return view('pages.order',compact('order'));
+        }
+        
+    }
+    
+    public function getOrderDetail($id)
+    {   
+        $order = Order::find($id);
+        return view('pages.orderdetail',compact('order'));
     }
 }

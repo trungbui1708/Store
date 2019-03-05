@@ -74,7 +74,9 @@
                             @endif
                         </tbody>
                     </table>
+                    @if(Session::has('cart'))
                     <h1 style="float:right; padding-bottom: 10px;" >Tổng tiền : <span class="total_detail">{{number_format($cart->totalPrice)}}</span><sup>đ</sup> </h1>
+                    @endif
                     @if (session('no_product'))
                         <span style="font-size: 20px;color: #ec1e1e">
                             {{ session('no_product') }}

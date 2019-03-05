@@ -32,13 +32,6 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'],function() {
 //Route pages của người dùng
 
 
-//nhóm rout dẩy file lên driver
-// Route::get('/drive', 'DriveController@getDrive'); // retreive folders
-// Route::get('/drive/upload', 'DriveController@uploadFile'); // File upload form
-// Route::post('/drive/upload', 'DriveController@uploadFile'); // Upload file to Drive from Form
-// Route::get('/drive/create', 'DriveController@create'); // Upload file to Drive from Storage
-// Route::get('/drive/delete/{id}', 'DriveController@deleteFile'); // Delete file or folder
-
 //nhóm route xác thực người dùng
 Route::get('/admin/login','LoginController@getLogin')->name('admin.login');
 Route::post('/admin/login','LoginController@postLogin')->name('admin.loginpost');
@@ -53,7 +46,11 @@ Route::get('/admin/logout','AdminController@getLogout')->name('admin.logout');
     Route::get('product/{id}','PageController@getProduct');
     Route::get('/account','PageController@getViewAccount')->name('pages.account');
     Route::get('article_single/{slug}','PageController@getArticleSingle')->name('pages.single');
-    
+    Route::get('/change-password','PageController@getChangePassword')->name('change.password');
+    Route::post('/change-password','PageController@postChangePassword')->name('post.change.password');
+    Route::get('/pages-order','PageController@getOrder')->name('pages.order');
+    Route::get('/pages-orderdetail/{id}','PageController@getOrderDetail')->name('pages.orderDetail');
+
     //Route xác thực người dùng
     Route::get('login','LoginController@getLoginPage')->name('pages.get.login');
     Route::post('login','LoginController@postLoginPage')->name('pages.post.login');

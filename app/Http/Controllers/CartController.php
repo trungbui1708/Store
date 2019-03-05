@@ -98,8 +98,10 @@ class CartController extends Controller
 				'order_detail' => $order_detail
 			];
 			Order::create($order);	
+			Session::forget('cart');
 			return redirect()->route('cart.detail')
 			->with("alert",$order['order_code']);
 		}
+		
 	}
 }

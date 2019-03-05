@@ -13,6 +13,6 @@ class Order extends Model
         return $this->belongsTo(User::class,'user_id','id');
     }
     public function order_detail() {
-        return $this->hasMany(OrderDetail::class,'order_id','id');
+        return $this->hasMany(OrderDetail::class,'orders_id','id');
     }
 }

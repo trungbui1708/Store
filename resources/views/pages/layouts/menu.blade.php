@@ -89,6 +89,7 @@
                                 <!-- DRODOWN-MEGA-MENU START -->
                                 <div class="drodown-mega-menu">
                                     @foreach ($category as $ca)
+                                    @if ($ca->menu_id)
                                         @if ($ca->menu_id == $mn->id)
                                             <div class="left-mega col-xs-6">
                                                 <div class="mega-menu-list">
@@ -103,9 +104,8 @@
                                                 </div>
                                             </div>
                                         @endif
-                                        
+                                    @endif
                                     @endforeach
-                                    
                                 </div>
                             @endforeach
                             </ul>
