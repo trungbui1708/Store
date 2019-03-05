@@ -89,10 +89,11 @@ class CartController extends Controller
 			$cart = Session('cart');
 			$order_detail = json_encode($cart->items);
 			//dd($cart->totalPrice);
+			$delivery_date = date("Y/m/d H:i:s", strtotime("+3 day"));
 			$order = [
 				'sum_money' => $cart->totalPrice,
 				'order_code' => str_random(10),
-				'delivery_date' => date("Y/m/d H:i"),
+				'delivery_date' => $delivery_date,
 				'user_id' => Auth::user()->id,
 				'count' => $cart->totalQuantity,
 				'order_detail' => $order_detail

@@ -30,7 +30,7 @@
                 <th class="cart-product">Mã hóa đơn</th>
                 <th class="cart-avail text-center">Số lượng</th>
                 <th class="cart_quantity text-center">Ngày mua hàng</th>
-                <th class="cart_quantity text-center">Ngày nhận hàng</th>
+                <th class="cart_quantity text-center">Ngày giao hàng</th>
                 <th class="cart-description">Tổng tiền</th>
                 <th class="cart_quantity text-center">Chi tiết đơn hàng</th>
               </tr>
@@ -48,7 +48,7 @@
                 <td class="cart-product">
                   <p class="product-name">{{$ord->count }}</p>
                 </td>
-                <td class="cart-avail">{{date('I:H d-m-Y',strtotime($ord->created_at)) }}</td>
+                <td class="cart-avail">{{date('H:i:s d-m-Y',strtotime($ord->created_at)) }}</td>
                 <td class="cart-unit text-center">
                   <p class="product-name text-center">{{date('d-m-Y',strtotime($ord->delivery_date)) }}</p>
                 </td>
