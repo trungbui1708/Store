@@ -18,7 +18,7 @@ class LoginController extends Controller
     }
     public function postLogin(Request $request){
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            return redirect()->route('categories.index')->with('thongbao','Đăng nhập thành công');
+            return redirect()->route('admin.page')->with('thongbao','Đăng nhập thành công');
         }
         else{
             return redirect()->route('admin.login')->with('thongbao','Sai tài khoản hoặc mật khẩu');

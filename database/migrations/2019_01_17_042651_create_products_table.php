@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->string('thumbnail');
             $table->date('warranty');//Bảo hành
             $table->string('brand');
+            $table->integer('quantity');
             $table->integer('distribution_id')->unsigned();
             $table->foreign('distribution_id')->references('id')->on('distributions')->onDelete('cascade');
             $table->integer('user_id')->unsigned();

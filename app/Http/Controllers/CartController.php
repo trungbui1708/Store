@@ -87,8 +87,21 @@ class CartController extends Controller
 	public function createPostOrder(Request $request){
 		if(Session::has('cart')){
 			$cart = Session('cart');
+			foreach ($cart->items as $ci) {
+				if($ci['qty'] <= $ci['item']['quantity'])
+				{
+					$ci['item']->quantity = $ci['item']->quantity - $ci['qty'];
+					$ci['item']->save();
+				}
+				else
+				{
+					return redirect()->route('cart.detail')->with('thongbao','Mã sản phẩm : '.$ci['item']['code_id'].' trong kho chỉ có '.$ci['item']['quantity'].' sản phẩm');
+				}
+				//
+			}
+
 			$order_detail = json_encode($cart->items);
-			//dd($cart->totalPrice);
+			
 			$delivery_date = date("Y/m/d H:i:s", strtotime("+3 day"));
 			$order = [
 				'sum_money' => $cart->totalPrice,
@@ -103,6 +116,9 @@ class CartController extends Controller
 			return redirect()->route('cart.detail')
 			->with("alert",$order['order_code']);
 		}
-		
+		else
+		{	
+			return redirect()->route('pages.index')->with('thongbao','Giỏ hàng trống.');
+		}
 	}
 }

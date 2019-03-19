@@ -109,7 +109,9 @@
                 <label><strong>Range:</strong><input type="text" id="slidevalue" /></label>
               </li>
               <li>
-                <div id="price-range"></div>
+                <div id="price-range">
+                  
+                </div>
               </li>
             </ul>
           </div>

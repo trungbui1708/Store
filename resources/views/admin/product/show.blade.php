@@ -23,13 +23,19 @@
                 </div>
                 <div class="form-group">
                     <label>Link ảnh</label>
-                    @foreach ($product_decode as $pd)
-                        <p>Image :<img width="300px" src="storage/{{$pd}}"></p>
-                    @endforeach
+                    @if(isset ($product_decode)  )
+                        @foreach ($product_decode as $pd)
+                            <p>Image :<img width="300px" src="storage/{{$pd}}"></p>
+                        @endforeach
+                    @endif
                 </div>
                 <div class="form-group">
                     <label>Giá</label>
                     <input class="form-control" name="name" disabled value="{{number_format($product->price)}}" placeholder="Vui lòng nhập thông tin" />
+                </div>
+                <div class="form-group">
+                    <label>Số lượng</label>
+                    <input class="form-control" name="quantity" disabled value="{{number_format($product->quantity)}}" placeholder="Vui lòng nhập thông tin" />
                 </div>
                 <div class="form-group">
                     <label>Giảm giá</label>

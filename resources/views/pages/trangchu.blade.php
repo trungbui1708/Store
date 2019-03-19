@@ -94,7 +94,7 @@
 																	<i class="fa fa-star-half-empty"></i>
 																</div>
 																<div class="review-box">
-																	<span>1 Review (s)</span>
+																	<span>{{$pr->views}} Review (s)</span>
 																</div>
 															</div>
 														<a title="{{$pr->name}}" href="product/{{$pr->id}}">{{shorten_string($pr->name,7)}}</a>
@@ -119,7 +119,7 @@
 						</div>
 						<!-- NEW-PRODUCT-AREA END -->
 					</div>
-					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+					{{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
 						<!-- SALE-PRODUCTS START -->
 						<div class="Sale-Products">
 							<div class="left-title-area">
@@ -187,7 +187,7 @@
 							</div>
 						</div>
 						<!-- SALE-PRODUCTS END -->
-					</div>
+					</div> --}}
 				</div>
 				<!-- TOW-COLUMN-PRODUCT END -->
 				<div class="row">
@@ -252,7 +252,7 @@
 												<a href="product/{{$pd->id}}" title="{{$pd->name}}">{{shorten_string($pd->name,5)}}</a>
 												<div class="price-box">
                                                         @if($pd->discount > 0)
-                                                        <span class="price">{{discount($pd->price,$pv->discount)}}</span>
+                                                        <span class="price">{{discount($pd->price,$pd->discount)}}</span>
                                                         <span class="old-price">{{number_format($pd->price)}}<sup>đ</sup></span>
                                                     @else
                                                         <span class="price">{{number_format($pd->price)}}<sup>đ</sup></span>
@@ -316,7 +316,7 @@
                                             <a href="product/{{$ph->id}}">{{shorten_string($ph->name,5)}}</a>
 												<div class="price-box">
 													@if($ph->discount > 0)
-													<span class="price">{{discount($ph->price,$pv->discount)}}</span>
+													<span class="price">{{discount($ph->price,$ph->discount)}}</span>
 													<span class="old-price">{{number_format($ph->price)}}<sup>đ</sup></span>
 												@else
 													<span class="price">{{number_format($ph->price)}}<sup>đ</sup></span>

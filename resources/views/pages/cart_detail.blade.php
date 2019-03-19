@@ -7,11 +7,17 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <h2 class="page-title">Giỏ hàng của bạn</h2>
             </div>
+            @if(session('thongbao'))
+                <div class="alert alert-success">
+                    {{session('thongbao')}}
+                </div>
+            @endif
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="table-responsive">
                     <table class="table table-bordered" id="cart-summary">
                         <thead>
                             <tr>
+                                <th class="cart-product">Mã sản phẩm</th>
                                 <th class="cart-product">Hình ảnh</th>
                                 <th class="cart-description">Sản phẩm</th>
                                 <th class="cart-avail text-center">Giá tiền</th>
@@ -30,6 +36,11 @@
                                 @endphp 
                                 @foreach ($list_product as $crt)
                                 <tr>
+                                    <td class="cart-description">
+                                        <p class="product-name">
+                                           {{$crt['item']['code_id']}}
+                                        </p>
+                                    </td>
                                     <td class="cart-product">
                                         <a href="product/{{$crt['item']['id']}}">
                                             <img alt="Blouse" style="width:50px;" src="storage/{{$crt['item']['images']}}">
@@ -40,7 +51,6 @@
                                             <a href="product/{{$crt['item']['id']}}">{{$crt['item']['name']}}</a>
                                         </p>
                                         <small>{{$crt['item']['brand']}}</small>
-                                       
                                     </td>
                                     <td class="text-center">
                                         <ul class="price">

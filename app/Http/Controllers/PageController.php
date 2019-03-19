@@ -33,7 +33,10 @@ class PageController extends Controller
     }
 
     public function getProduct($id){
-        $product_single = Product::find($id);
+        $product_single = Product::where('id',$id)->first();
+        $view_plus = $product_single->views + 1;
+        $product_single->views = $view_plus;
+        $product_single->save();
         return view('pages.product_ditail',compact('product_single'));
     }
 

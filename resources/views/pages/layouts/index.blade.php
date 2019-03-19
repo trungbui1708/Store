@@ -20,9 +20,9 @@
 		
 		<!-- FONTS
 		============================================ -->	
-		<link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'> 
+		{{-- <link href='http://fonts.googleapis.com/css?family=Oswald:400,700' rel='stylesheet' type='text/css'> 
 		<link href='http://fonts.googleapis.com/css?family=Open+Sans:400,300,600' rel='stylesheet' type='text/css'>
-		<link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic&amp;subset=latin,latin-ext' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic&amp;subset=latin,latin-ext' rel=' --}}{{-- stylesheet' type='text/css'> --}}
 				
 		<!-- animate CSS
 		============================================ -->
@@ -108,7 +108,7 @@
 		<!-- JS 
 		===============================================-->
 		<!-- jquery js -->
-		<script src="https://unpkg.com/lazyload@2.0.0-beta.2/lazyload.js"></script>
+		
 		<script src="page_asset/js/vendor/jquery-1.11.3.min.js"></script>
 		
 		<!-- fancybox js -->
@@ -139,8 +139,8 @@
 		</script>
 
 		<!-- Google Map js -->
-        <script src="https://maps.googleapis.com/maps/api/js"></script>	
-		<script>
+       {{--  <script src="https://maps.googleapis.com/maps/api/js"></script>	 --}}
+		{{-- <script>
 			function initialize() {
 			  var mapOptions = {
 				zoom: 8,
@@ -156,7 +156,7 @@
 
 			}
 			google.maps.event.addDomListener(window, 'load', initialize);				
-		</script>
+		</script> --}}
 		<!-- main js -->
 		<script src="page_asset/js/main.js"></script>
     </body>

@@ -10,7 +10,7 @@
                         <a href="{{route('products.create')}}"><button class="btn btn-success" style="position: absolute;top: 48px;right: 0px;cursor: pointer;z-index:999999;">+ Thêm</button></a>
                     </div>
                     <!-- /.col-lg-12 -->
-                         @if(session('thongbao'))
+                        @if(session('thongbao'))
                         <div class="alert alert-success">
                             {{session('thongbao')}}
                         </div>
@@ -19,7 +19,7 @@
                    
                         <thead>
                             <tr align="center">
-                                <th>ID</th>
+                                <th>Mã sản phẩm</th>
                                 <th>Tên</th>
                                 <th>Ảnh</th>
                                 <th>Giá</th>
@@ -32,7 +32,7 @@
                         <tbody>
                         	@foreach($table as $tb)
                             <tr class="odd gradeX" align="center">
-                                <td>{{$tb->id}}</td>
+                                <td>{{$tb->code_id}}</td>
                                 <td>{{$tb->name}}</td>
                                 <td><p><img width="100px" src="storage/{{$tb->images}}"></p></td>
                                 <td>{{number_format($tb->price)}}</td>

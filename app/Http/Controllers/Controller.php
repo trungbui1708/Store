@@ -10,6 +10,8 @@ use App\Product;
 use App\Menu;
 use App\Category;
 use App\Distribution;
+use App\Order;
+use App\Article;
 use Illuminate\Support\Facades\View;
 
 class Controller extends BaseController
@@ -20,6 +22,8 @@ class Controller extends BaseController
         View::share('category',Category::all());
         View::share('distribution',Distribution::all());
         View::share('product',Product::all());
+        View::share('order',Order::all());
+        View::share('article',Article::all());
         View::share('product_hot',Product::where('hot',1)->paginate(5));
     }
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;

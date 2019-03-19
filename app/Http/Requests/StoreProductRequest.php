@@ -31,6 +31,7 @@ class StoreProductRequest extends FormRequest
             'thumbnail' => 'required',
             'warranty' => 'required',
             'brand' => 'required',
+            'quantity' =>'required|numberic|min:1'
             'distribution_id' => 'required',
             'user_id' => 'required',
         ];
@@ -47,6 +48,9 @@ class StoreProductRequest extends FormRequest
             'thumbnail.required' => 'Link ảnh nền ko được để trống',
             'warranty.required' => 'Thời gian bảo hành không được để trống',
             'brand.required' => 'Hãng không được để trống',
+            'quantity.required' => 'Vui lòng không để trống',
+            'quantity.numberic' => 'Số lượng phải là số!',
+            'quantity.min' => 'Số lượng không nhỏ hơn 1.',
             'distribution_id.required' => 'Tên phân loại không được để trống',
             'user_id.required' => 'Người nhập không được để trống'
         ];

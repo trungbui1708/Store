@@ -11,7 +11,6 @@
 			$('.cart_click').click(function(event){
 				event.preventDefault();
 				var id = $(this).attr('data-id');
-                console.log(id);
 				var url = "{{route('cart.ajax')}}";
 				var _token = $('input[name="_token"]').val();
 				$.ajax({
@@ -21,7 +20,7 @@
                     cache : false,
                     data : {id:id,_token:_token},
                     success: function(data){
-                    console.log(data);
+                        console.log("test");
                         var html="";
                         var total= 0;
                         var total_price=0;
@@ -39,7 +38,7 @@
                         console.log(html);
                         $('.list-item-cart').html(html);
                         $('.ajax-cart-quantity').html(total);
-                        $('.total_price').html(total_price.toLocaleString('en-US') + '<sup>đ</sup>' ); 
+                        $('.shipping-total').html(total_price.toLocaleString('en-US') + '<sup>đ</sup>' ); 
                         deleteCart();
                     },
 				});
@@ -214,10 +213,10 @@
     function addCart(){
         $('.add_cart').click(function(event){
             event.preventDefault();
+
             var id = $(this).data('id');
             var url = "{{route('cart.ajax')}}";
             var _token = $('input[name="_token"]').val();
-            console.log(id);
             $.ajax({
                 url: url,
                 method: "post",
@@ -230,8 +229,15 @@
                     var total= 0;
                     var total_price=0;
                     $.each(data, function(index, value){
-                       
-                        total+=value.qty;
+                        if(value.qty < value.item.quantity)
+                        {
+                            total+=value.qty;
+                        }
+                        else
+                        {
+                            total=value.item.quantity;
+                        }
+                        console.log(total);
                         total_price+=value.price;
                         value.price = value.price.toLocaleString('en-US');
                         value.item.price=parseInt(value.item.price).toLocaleString('en-US');
@@ -280,7 +286,14 @@
                         var total= 0;
                         var total_price=0;
                         $.each(data, function(index, value){
-                        total+=value.qty;
+                        if(value.qty < value.item.quantity)
+                        {
+                            total+=value.qty;
+                        }
+                        else
+                        {
+                            alert('Sản phẩm trong kho không đủ');
+                        }
                         total_price+=value.price;
                         value.price = value.price.toLocaleString('en-US');
                         value.item.price=parseInt(value.item.price).toLocaleString('en-US');
@@ -326,6 +339,8 @@
         deleteOne();
         deleteCart();
     });
+
+
 
     
 </script>

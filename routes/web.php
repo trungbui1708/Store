@@ -16,6 +16,7 @@
 
 //nhóm route admin
 //
+use App\Product;
 Route::group(['prefix' => 'admin','middleware' => 'admincheck'],function() {
     Route::get('/admin','AdminController@getAdminPage')->name('admin.page');
     Route::resource('menus','MenuController');
@@ -27,6 +28,9 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'],function() {
 
     //Route::post('menu/many', 'MenuController@storeMany')->name('admin.menu.many');
     Route::resource('articles','ArticleController');
+
+    Route::get('orderDate','ThongKeController@getOrderDate')->name('get.order.date');
+    Route::post('orderDate','ThongKeController@postOrderDate')->name('post.order.date');
 });
 
 //Route pages của người dùng
@@ -70,3 +74,13 @@ Route::group(['prefix' => 'customer'],function(){
     Route::get('/delete-cart/{id}','CartController@deleteCart')->name('customer.cart.delete');
     Route::post('/create/order','CartController@createPostOrder')->name('create.post.order');
 });
+
+// Route::get('return_o',function(){
+//     $product = Product::all();
+//     $year = now()->year;
+//     foreach ($product as $v) {
+//         $v->code_id = $year.$v->distribution_id.$v->id;
+//         $v->save();
+//     }
+//     echo "Thành công";
+// });

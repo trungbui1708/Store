@@ -12,9 +12,9 @@
                     </div>
                     <!-- /.col-lg-12 -->
                          @if(session('thongbao'))
-                        <div class="alert alert-success">
-                            {{session('thongbao')}}
-                        </div>
+                            <div class="alert alert-success">
+                                {{session('thongbao')}}
+                            </div>
                         @endif
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                    
@@ -57,7 +57,7 @@
                             <span aria-hidden="true" >&times;</span>
                           </button>
                         </div>
-                    <form action="{{route('admin.menu.many')}}" method="post" enctype="multipart/form-data">
+                    <form action="#" method="post" enctype="multipart/form-data">
                         <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="modal-body">
                                 <input type="file" name="file">

@@ -91,6 +91,18 @@
                             <a href="{{route('orders.index')}}"><i class="fa fa-users fa-fw"></i>Hóa đơn<span class="fa arrow"></span></a>
                             <!-- /.nav-second-level -->
                         </li>
+                        <li>
+                            <a href="#"><i class="fa fa-users fa-fw"></i>Thống kê<span class="fa arrow"></span></a>
+                            <!-- /.nav-second-level -->
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="{{route('get.order.date')}}">Thống kê theo ngày</a>
+                                </li>
+                                <li>
+                                    <a href="">Thêm</a>
+                                </li>
+                            </ul>
+                        </li>
                     </ul>
                 </div>
                 <!-- /.sidebar-collapse -->

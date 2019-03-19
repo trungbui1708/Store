@@ -26,11 +26,10 @@ class UpdateProductRequest extends FormRequest
         return [
             'name' => 'required|min:3',
             'price' => 'required|numeric',
-            'images' => 'required',
             'discount'=>'numeric',
-            'thumbnail' => 'required',
             'warranty' => 'required',
             'brand' => 'required',
+            'quantity' => 'required|numeric',
             'distribution_id' => 'required',
             'user_id' => 'required',
         ];
@@ -41,11 +40,11 @@ class UpdateProductRequest extends FormRequest
             'name.min' => 'Tên sản phẩm không ít hơn 3 ký tự',
             'price.required' => 'Giá sản phẩm không được để trống',
             'price.numeric' => 'Giá sản phẩm phải là số',
-            'images.required' => 'Link ảnh không được để trống',
             'discount.numeric' => 'Giảm giá sản phẩm phải là số',
-            'thumbnail.required' => 'Link ảnh nền ko được để trống',
             'warranty.required' => 'Thời gian bảo hành không được để trống',
             'brand.required' => 'Hãng không được để trống',
+            'quantity.required' => 'Số lượng không được để trống',
+            'quantity.numeric' => 'Số lượng phải là số',
             'distribution_id.required' => 'Tên phân loại không được để trống',
             'user_id.required' => 'Người nhập không được để trống'
         ];

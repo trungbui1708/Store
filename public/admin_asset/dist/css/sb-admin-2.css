@@ -187,7 +187,25 @@ body {
     padding-bottom: 5px;
     border-bottom: 1px dotted #999;
 }
-
+.statistical {
+    height: 200px;
+    border: 1px solid;
+    border-radius: 30px;
+    padding: 10px;
+    font-size: 20px;
+    margin: 0px 45px;
+}
+.view-more
+{
+    width: 100%;
+    border-top: 1px solid;
+    padding: 5px 0px;
+}
+.icon-order{
+    font-size: 120px;
+    float: left;
+    line-height: 30px;
+}
 .chat li.left .chat-body {
     margin-left: 60px;
 }

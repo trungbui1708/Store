@@ -9,18 +9,17 @@
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
-
-                    <div class="col-lg-7" style="padding-bottom:120px">
-                    	@if(count($errors) > 0)
-                    		<div class="alert alert-danger">
-                    			@foreach($errors->all() as $err)
-                    				{{$err}} <br>
-                    			@endforeach
-                    		</div>
+                    @if(count($errors) > 0)
+                            <div class="alert alert-danger">
+                                @foreach($errors->all() as $err)
+                                    {{$err}} <br>
+                                @endforeach
+                            </div>
                         @endif
-                        <img src="" alt="">
-                        <form action="{{route('products.update',$product)}}" method="POST" enctype="multipart/form-data">
-                        	{{ csrf_field()}} {{ method_field('PUT') }}
+                <form action="{{route('products.update',$product)}}" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field()}} {{ method_field('PUT') }}
+                    <div class="col-lg-6" style="padding-bottom:120px">
+        
                             <div class="form-group">
                                 <label>Tên</label>
                             <input class="form-control" name="name" value="{{$product->name}}" placeholder="Vui lòng nhập thông tin" />
@@ -38,14 +37,17 @@
                                 <input class="form-control" name="discount" value="{{$product->discount}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
-                                <label>Màu</label>
-                                <input class="form-control" name="color" value="{{$product->color}}" placeholder="Vui lòng nhập thông tin" />
-                            </div>
-                            <div class="form-group">
                                 <label>Hot</label>
                                 <input type="number" class="form-control" name="hot" value="{{$product->hot}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
                             <div class="form-group">
+                                <label>Cập nhập thêm số lượng</label>
+                                <input type="text" class="form-control" name="quantity" value="{{old('quantity')}}" placeholder="Vui lòng nhập thông tin" />
+                                <span>Số lượng trong kho : {{$product->quantity}}</span>
+                            </div>
+                    </div>
+                    <div class="col-lg-6">
+                         <div class="form-group">
                                 <label>Ảnh nền</label>
                                 <input class="form-control" type="file" name="thumbnail" value="{{$product->thumbnail}}" placeholder="Vui lòng nhập thông tin" />
                             </div>
@@ -87,8 +89,8 @@
                             </div>
                             <button type="submit" class="btn btn-default">Sửa</button>
                             <button type="reset" class="btn btn-default">Làm mới</button>
-                        <form>
                     </div>
+                </form>
                 </div>
                 <!-- /.row -->
             </div>

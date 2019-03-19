@@ -41,11 +41,12 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreProductRequest $request)
-    {
-        $request->merge(['slug' => changeTitle($request->name)]);
+    //StoreProductRequest
+    public function store(Request $request)
+    {   
+        $request->merge(['slug' => changeTitle($request->name),'views' => 0]);
         $data = $request->except(['images','thumbnail']);
-
+       
         $allow_type = ["jpg","jpeg","png","svg","png","gif"];
         
         if($request->hasFile('images')){
@@ -63,6 +64,7 @@ class ProductController extends Controller
             }
             $json_string = json_encode($array_add);
             $data['images'] = $json_string;
+            $request->images = $json_string;
         }
 
         if($request->hasFile('thumbnail')){
@@ -72,10 +74,12 @@ class ProductController extends Controller
                 $file_name_tb = $request->thumbnail->store('products');
                 $data['thumbnail'] = $file_name_tb;
             }
+            $request->thumbnail = $file_name_tb;
         }
-        $request->images = $json_string;
-        $request->thumbnail = $file_name_tb;
+       
         $product = Product::create($data);
+        $year = now()->year;
+        $product->update(['code_id' => $year.$request->distribution_id.$product->id]);
         return redirect()->route('products.show',$product)->with('thongbao','Thêm thành công.');
     }
 
@@ -112,7 +116,7 @@ class ProductController extends Controller
      */
     public function update(UpdateProductRequest $request, Product $product)
     {
-        $request->merge(['slug' => changeTitle($request->name)]);
+        $request->merge(['slug' => changeTitle($request->name),'quantity' => $product->quantity+$request->quantity]);
         $data = $request->except(['images','thumbnail']);
 
         $allow_type = ["jpg","jpeg","png","svg","png","gif"];
@@ -131,6 +135,7 @@ class ProductController extends Controller
             }
             $json_string = json_encode($array_add);
             $data['images'] = $json_string;
+            $request->images = $json_string;
         }
         if($request->hasFile('thumbnail')){
             $thumbnail = $request->thumbnail;
@@ -139,16 +144,24 @@ class ProductController extends Controller
                 $file_name_tb = $request->thumbnail->store('products');
                 $data['thumbnail'] = $file_name_tb;
             }
+            $request->thumbnail = $file_name_tb;
         }
         $product_images = json_decode($product->images);
-        foreach($product_images as $pi)
-        {
-            Storage::delete($pi);
+
+        if($product_images){
+           foreach($product_images as $pi)
+            {
+                Storage::delete($pi);
+            } 
         }
         
-        Storage::delete($product->thumbnail);
-        $request->images = $json_string;
-        $request->thumbnail = $file_name_tb;
+        if($product->thumbnail)
+        {
+            Storage::delete($product->thumbnail);
+        }
+        
+        
+        
         $product->update($data);
         return redirect()->route('products.show',$product)->with('thongbao','Sửa thành công.');
     }
