@@ -47,24 +47,24 @@ class ProductController extends Controller
         $request->merge(['slug' => changeTitle($request->name),'views' => 0]);
         $data = $request->except(['images','thumbnail']);
        
-        $allow_type = ["jpg","jpeg","png","svg","png","gif"];
+        $allow_type = ["jpg","jpeg","png","svg","png","gif"];//Khai báo các đuôi của ảnh
         
-        if($request->hasFile('images')){
+        if($request->hasFile('images')){//Kiểm tra xem có ảnh nào được submit lên ko
             
-            $images_request = $request->images;
-            $array_add = array();
-            foreach($images_request as $ir)
+            $images_request = $request->images;//Lấy ảnh khi submit ra
+            $array_add = array();//Khai báo mảng rỗng
+            foreach($images_request as $ir)//For từng phần tử trong mảng khi mà gửi nhiều ảnh
             {
-                $img_name = $ir->getClientOriginalName();
-                $file_ext = $ir->getClientOriginalExtension();
-                if(in_array($file_ext, $allow_type)){
-                    $file_name = $ir->store('products');
-                    array_push($array_add,$file_name);
+                $img_name = $ir->getClientOriginalName();//Lấy ra cái tên của ảnh
+                $file_ext = $ir->getClientOriginalExtension();//lấy ra đuôi của ảnh
+                if(in_array($file_ext, $allow_type)){//Kiểm tra cái đuôi mk get ra có thuộc vào mảng đuôi ở trên ok
+                    $file_name = $ir->store('products');//chuyến đến thư mục chứa ảnh trên project
+                    array_push($array_add,$file_name);//add cái tên file ảnh vào mảng rỗng
                 }
             }
-            $json_string = json_encode($array_add);
-            $data['images'] = $json_string;
-            $request->images = $json_string;
+            $json_string = json_encode($array_add);//chuyển về json
+            $data['images'] = $json_string;//$request->images = cái chuỗi json đó
+            $request->images = $json_string;//$request->images = cái chuỗi json đó
         }
 
         if($request->hasFile('thumbnail')){

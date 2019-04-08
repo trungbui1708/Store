@@ -36,8 +36,8 @@
                                     </div>	
                                 </div>
                                 @php
-                                    $product_encode = json_decode($product_single->images);
-                                    //dd($product_encode);
+                                    $product_encode = json_decode($product_single->images,true);
+
                                 @endphp
                                 @if ($product_encode == "")
 
@@ -111,39 +111,6 @@
                                     <h2>{{number_format($product_single->price)}}<sup style="text-transform: lowercase">đ</sup></h2>  
                                 @endif
                             </div>
-                            {{-- <div class="single-product-desc">
-                                <p>Faded short sleeves t-shirt with high neckline. Soft and stretchy material for a comfortable fit. Accessorize with a straw hat and you're ready for summer!</p>
-                                <div class="product-in-stock">
-                                    <p>300 Items<span>In stock</span></p>
-                                </div>
-                            </div> --}}
-                            {{-- <div class="single-product-info">
-                                <a href="#"><i class="fa fa-envelope"></i></a>
-                                <a href="#"><i class="fa fa-print"></i></a>
-                                <a href="#"><i class="fa fa-heart"></i></a>
-                            </div> --}}
-                            
-                            {{-- <div class="single-product-quantity">
-                                <p class="small-title">Quantity</p> 
-                                <div class="cart-quantity">
-                                    <div class="cart-plus-minus-button single-qty-btn">
-                                        <input class="cart-plus-minus sing-pro-qty" type="text" name="qtybutton" value="0">
-                                    </div>
-                                </div>
-                            </div> --}}
-                            {{-- <div class="single-product-size">
-                                <p class="small-title">Size </p> 
-                                <select name="product-size" id="product-size">
-                                    <option value="">S</option>
-                                    <option value="">M</option>
-                                    <option value="">L</option>
-                                </select>
-                            </div> --}}
-                            {{-- <div class="single-product-color">
-                                <p class="small-title">Color </p> 
-                                <a href="#"><span></span></a>
-                                <a class="color-blue" href="#"><span></span></a>
-                            </div> --}}
                             <input type="hidden" name="_token" value="{{csrf_token()}}">
                             <div class="single-product-add-cart">
                                 <a class="add-cart-text cart_click" data-id="{{$product_single->id}}" title="Add to cart" href="#">Add to cart</a>
@@ -227,7 +194,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <div class="left-title-area">
-                            <h2 class="left-title">Sản phẩm khác</h2>
+                            <h2 class="left-title">Sản phẩm gợi ý</h2>
                         </div>	
                     </div>
                     <div class="related-product-area featured-products-area">
@@ -235,10 +202,9 @@
                             <div class=" row">
                                 <!-- RELATED-CAROUSEL START -->
                                 <div class="related-product">
-                                    @foreach ($product as $prd)
-                                     @if($prd->hot == 1)
+                                    @foreach ($product_view as $prd)
                                     <!-- SINGLE-PRODUCT-ITEM START -->
-                                    <div class="item">
+                                     <div class="item">
                                         <div class="single-product-item">
                                             <div class="product-image">
                                             <a href="#"><img src="storage/{{$prd->thumbnail}}" alt="product-image" /></a>
@@ -268,8 +234,7 @@
                                             </div>
                                         </div>							
                                     </div>
-                                    <!-- SINGLE-PRODUCT-ITEM END -->		
-                                    @endif	
+                                    <!-- SINGLE-PRODUCT-ITEM END -->
                                     @endforeach			
                                 </div>
                                 <!-- RELATED-CAROUSEL END -->
@@ -288,7 +253,7 @@
                         @foreach ($product_hot as $pr)
                             @if ($pr->hot == 1)
                             <li>
-                                <a href="#"><img width="100px;" src="storage/{{$pr->images}}" alt="" /></a>
+                                <a href="#"><img width="100px;" src="storage/{{$pr->thumbnail}}" alt="" /></a>
                                     <div class="r-sidebar-pro-content">
                                         <h5><a href="#">{{shorten_string($pr->name,7)}}</a></h5>
                                         <p>Hãng : {{$pr->brand}}</p>
@@ -316,11 +281,7 @@
                 </div>	
                 <!-- SINGLE SIDE BAR END -->
                 <!-- SINGLE SIDE BAR START -->						
-                <div class="single-product-right-sidebar">
-                    <div class="slider-right zoom-img">
-                        <a href="#"><img class="img-responsive" src="img/product/cms11.jpg" alt="sidebar left" /></a>
-                    </div>							
-                </div>
+
             </div>
             <!-- SINGLE SIDE BAR END -->				
         </div>

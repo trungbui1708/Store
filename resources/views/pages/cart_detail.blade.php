@@ -43,7 +43,7 @@
                                     </td>
                                     <td class="cart-product">
                                         <a href="product/{{$crt['item']['id']}}">
-                                            <img alt="Blouse" style="width:50px;" src="storage/{{$crt['item']['images']}}">
+                                            <img alt="Blouse" style="width:50px;" src="storage/{{$crt['item']['thumbnail']}}">
                                         </a>
                                     </td>
                                     <td class="cart-description">
@@ -106,11 +106,11 @@
                                 <i class="fa fa-chevron-left"></i>Quay lại trang chủ</a>
                             @if(Auth::check())
                             <form action="{{route('create.post.order')}}" method="post">
-                                    <input type="hidden" name="_token" value="{{csrf_token()}}">
-                                    <input type="hidden" value="" name="cart" id="cart">
-						            <input type="hidden" value="" name="list_product">
-                                    <button type="submit" class="buy-class" style="">Mua hàng <i class="fa fa-chevron-right"></i></button>
-                                </form>
+                                <input type="hidden" name="_token" value="{{csrf_token()}}">
+                                <input type="hidden" value="" name="cart" id="cart">
+					            <input type="hidden" value="" name="list_product">
+                                <button type="submit" class="buy-class" style="">Mua hàng <i class="fa fa-chevron-right"></i></button>
+                            </form>
                                 {{-- <a href="#" class="procedtocheckout">Mua hàng
                                     
                                 </a> --}}

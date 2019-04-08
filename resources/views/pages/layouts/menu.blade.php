@@ -23,7 +23,7 @@
                             <div class="shipping-item">
                                 <span class="cross-icon"><a href="#" class="delete_cart_click" data-delete="{{$crt['item']['id']}}"><i class="fa fa-times-circle"></i></a></span>
                                 <div class="shipping-item-image">
-                                <a href="#"><img style="width:80px;" src="storage/{{$crt['item']['images']}}" alt="shopping image" /></a>
+                                <a href="#"><img style="width:80px;" src="storage/{{$crt['item']['thumbnail']}}" alt="shopping image" /></a>
                                 </div>
                                 <div class="shipping-item-text">
                                 <span>{{$crt['qty']}}<span class="pro-quan-x">x</span> <a class="ellipsis" href="#" style="text-transform: lowercase;" title="{{$crt['item']['name']}}" class="pro-cat">{{shorten_string($crt['item']['name'],2)}}</a></span>

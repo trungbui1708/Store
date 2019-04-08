@@ -17,7 +17,7 @@
       <div  class="col-lg-3 statistical text-center">
         <span class="icon-order"><i class="fa fa-shopping-cart"  aria-hidden="true"></i></span>
         <p style="font-size: 70px;">{{count($order)}}</p>
-        <p>Hóa đơn mới !</p>
+        <p style="font-size: 16px;">Hóa đơn mới !</p>
         <div class="view-more">
             <p><a href="{{ route('orders.index') }}">Xem thêm...</a></p>
         </div>
@@ -25,7 +25,7 @@
       <div  class="col-lg-3 statistical text-center">
         <span class="icon-order"><i class="fa fa-university" aria-hidden="true"></i></span>
         <p style="font-size: 70px;">{{count($product)}}</p>
-        <p>Sản phẩm  !</p>
+        <p style="font-size: 16px;">Sản phẩm  !</p>
         <div class="view-more">
             <p><a href="{{ route('products.index') }}">Xem thêm...</a></p>
         </div>
@@ -33,7 +33,7 @@
       <div  class="col-lg-3 statistical text-center">
         <span class="icon-order"><i class="fa fa-file-text-o" aria-hidden="true"></i></span>
         <p style="font-size: 70px;">{{count($article)}}</p>
-        <p>Bài viết  !</p>
+        <p style="font-size: 16px;">Bài viết  !</p>
         <div class="view-more">
             <p><a href="{{ route('articles.index') }}">Xem thêm...</a></p>
         </div>

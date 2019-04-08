@@ -14,10 +14,13 @@ use App\Article;
 use App\Order;
 use App\OrderDetail;
 use App\Http\Requests\ChangePasswordRequest;
+use App\AprioriProduct;
+
+
 class PageController extends Controller
 {
     public function index(){
-        $product_seller = Product::where('best_sellers',1)->get();
+        $product_seller = Product::orderBy('views', 'desc')->take(10)->get();
         $product_view = Product::where('views',1)->get();
         $product_discount  = Product::where('discount','>',0)->get();
         $product_hot = Product::where('hot',1)->get();
@@ -28,7 +31,7 @@ class PageController extends Controller
     public function getDistribution($id)
     {
         $distribution_get = Distribution::find($id);
-        $dis_pr = Product::where('distribution_id',$id)->get();
+        $dis_pr = Product::where('distribution_id',$id)->paginate(6);
         return view('pages.list_product',compact('distribution_get','dis_pr'));
     }
 
@@ -37,7 +40,27 @@ class PageController extends Controller
         $view_plus = $product_single->views + 1;
         $product_single->views = $view_plus;
         $product_single->save();
-        return view('pages.product_ditail',compact('product_single'));
+
+        $apriori_product = AprioriProduct::all();
+        $product_view = array();
+        foreach ($apriori_product as $ap)
+        {
+            $product_pp = json_decode($ap->product_id,true);
+
+            foreach ($product_pp as $item_pp)
+            {
+                if($id == $item_pp )
+                {
+                    foreach(json_decode($ap->apriori_product_id,true) as $item_ii)
+                    {
+                        $product_ii = Product::where('id',$item_ii)->first();
+                        array_push($product_view,$product_ii);
+                    }
+                }
+            }
+
+        }
+        return view('pages.product_ditail',compact('product_single','product_view'));
     }
 
     
@@ -106,5 +129,23 @@ class PageController extends Controller
     {   
         $order = Order::find($id);
         return view('pages.orderdetail',compact('order'));
+    }
+
+    public function searchPrice(Request $request)
+    {
+        $this->validate($request,[
+            'price_begin' => 'required|numeric',
+            'price_finish' => 'required|numeric'
+        ],[]);
+
+        if($request)
+        {
+                $product_price = Product::where('price','>',$request->price_begin)->where('price','<',$request->price_finish)->paginate(5);
+                return view('pages.search-price',compact('product_price'));
+        }
+        else
+        {
+            return view('pages.search-price');
+        }
     }
 }

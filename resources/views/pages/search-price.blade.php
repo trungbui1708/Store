@@ -9,7 +9,13 @@
         <div class="bstore-breadcrumb">
           <a href="index.html">HOMe</a>
           <span><i class="fa fa-caret-right"></i></span>
-          <span>{{$distribution_get->name}}</span>
+        <span>
+         {{--  @if ($product_price)
+            Kết quả tìm kiếm đươc : {{count($product_price)}} sản phẩm
+          @else 
+            Không có sản phẩm nào
+          @endif --}}
+          </span>
         </div>
         <!-- BSTORE-BREADCRUMB END -->
       </div>
@@ -35,7 +41,7 @@
             <!-- PRODUCT-CATEGORY-TITLE START -->
             <h1>
               <span class="cat-name">Women</span>
-              <span class="count-product">Có {{count($dis_pr)}} sản phẩm.</span>
+              <span class="count-product">Tìm kiếm được {{count($product_price)}} sản phẩm.</span>
             </h1>
             <!-- PRODUCT-CATEGORY-TITLE END -->
           </div>
@@ -43,8 +49,9 @@
         <!-- ALL GATEGORY-PRODUCT START -->
         <div class="all-gategory-product">
           <div class="row">
+            @if (isset($product_price))
             <ul class="gategory-product">
-              @foreach ($dis_pr as $dp)
+              @foreach ($product_price as $dp)
               <!-- SINGLE ITEM START -->
               <li class="cat-product-list">
                 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
@@ -102,14 +109,15 @@
               </li>
               @endforeach
             </ul>
+            @endif
           </div>
         </div>
         <!-- ALL GATEGORY-PRODUCT END -->
         <!-- PRODUCT-SHOOTING-RESULT START -->
         <div class="product-shooting-result product-shooting-result-border">
-          <div class="text-center">
-            {{$dis_pr->links()}}
-          </div>
+            <div class="text-center">
+                {{$product_price->links()}}
+            </div>
         </div>
         <!-- PRODUCT-SHOOTING-RESULT END -->
       </div>

@@ -54,6 +54,7 @@ Route::get('/admin/logout','AdminController@getLogout')->name('admin.logout');
     Route::post('/change-password','PageController@postChangePassword')->name('post.change.password');
     Route::get('/pages-order','PageController@getOrder')->name('pages.order');
     Route::get('/pages-orderdetail/{id}','PageController@getOrderDetail')->name('pages.orderDetail');
+    Route::post('/search-price','PageController@searchPrice')->name('page.search.price');
 
     //Route xác thực người dùng
     Route::get('login','LoginController@getLoginPage')->name('pages.get.login');
@@ -64,7 +65,7 @@ Route::get('/admin/logout','AdminController@getLogout')->name('admin.logout');
     Route::post('/cart_ajax','CartController@addCartAjax')->name('cart.ajax');
     Route::post('/delete_ajax','CartController@deleteCartAjax')->name('delete.ajax');
     Route::get('/cart-detail','PageController@getCartAjax')->name('cart.detail');
-    
+
     Route::post('/delete_ajax_one','CartController@deleteOneCartAjax')->name('web.cart.deleteone');
 
 //'middeware' => 'customer',
@@ -79,8 +80,10 @@ Route::group(['prefix' => 'customer'],function(){
 //     $product = Product::all();
 //     $year = now()->year;
 //     foreach ($product as $v) {
-//         $v->code_id = $year.$v->distribution_id.$v->id;
+//         $v->hot = rand(0,1);
 //         $v->save();
 //     }
 //     echo "Thành công";
 // });
+
+Route::get('deptrai','AprioriController@get_sp');

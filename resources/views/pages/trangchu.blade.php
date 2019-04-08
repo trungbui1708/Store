@@ -72,7 +72,7 @@
 												<div class="new-product">
 													<div class="single-product-item">
 														<div class="product-image">
-                                                        <a href="#"><img class="lazyload" src="storage/{{$pr->images}}" alt="product-image" /></a>
+                                                        <a href="#"><img class="lazyload" src="storage/{{$pr->thumbnail}}" alt="product-image" /></a>
 															<a href="#" class="new-mark-box">new</a>
 															<div class="overlay-content">
 																<ul>
@@ -119,75 +119,71 @@
 						</div>
 						<!-- NEW-PRODUCT-AREA END -->
 					</div>
-					{{-- <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-						<!-- SALE-PRODUCTS START -->
-						<div class="Sale-Products">
+					<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+						<!-- NEW-PRODUCT-AREA START -->
+						<div class="new-product-area">
 							<div class="left-title-area">
-								<h2 class="left-title">Xem nhiều nhất</h2>
+								<h2 class="left-title">Sản phẩm được xem nhiều nhất</h2>
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
 									<div class="row">
-										<!-- SALE-CAROUSEL START -->
-										<div class="sale-carousel">
-                                            <!-- SALE-PRODUCTS-SINGLE-ITEM START -->
-                                            @foreach ($product_view as $pv)
-											<div class="item">
-												<div class="new-product">
-													<div class="single-product-item">
-														<div class="product-image">
-                                                        <a href="#"><img class="lazyload" src="storage/{{$pv->images}}" alt="product-image" /></a>
-															@if($pv->discount > 0)
-																<a href="#" class="new-mark-box">sale</a>
-															@else
+										<!-- NEW-PRO-CAROUSEL START -->
+										<div class="new-pro-carousel">
+											<!-- NEW-PRODUCT-SINGLE-ITEM START -->
+											@foreach ($product_seller as $pr)
+												<div class="item">
+													<div class="new-product">
+														<div class="single-product-item">
+															<div class="product-image">
+																<a href="#"><img class="lazyload" src="storage/{{$pr->thumbnail}}" alt="product-image" /></a>
 																<a href="#" class="new-mark-box">new</a>
-															@endif
-															<div class="overlay-content">
-																<ul>
-																	<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-																	<li><a href="" class="cart_click"  data-id="{{$pv->id}}"  title="Shopping Cart" class="cart_click" ><i class="fa fa-shopping-cart"></i></a></li>
-																	<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-																	<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
-																</ul>
-															</div>
-														</div>
-														<div class="product-info">
-															<div class="customar-comments-box">
-																<div class="rating-box">
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star"></i>
-																	<i class="fa fa-star-half-empty"></i>
-																	<i class="fa fa-star-half-empty"></i>
-																</div>
-																<div class="review-box">
-																	<span>1 Review (s)</span>
+																<div class="overlay-content">
+																	<ul>
+																		{{-- {{route('customer.cart.add',$pr->id)}} --}}
+																		<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
+																		<li><a href="#" class="cart_click"  data-id="{{$pr->id}}" title="Quick view"  ><i class="fa fa-shopping-cart"></i></a></li>
+																		<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
+																		<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
+																	</ul>
 																</div>
 															</div>
-                                  <a href="product/{{$pv->id}}" title="{{$pv->name}}">{{shorten_string($pv->name,8)}}</a>
-															<div class="price-box">
-                                @if($pv->discount > 0)
-                                    <span class="price">{{discount($pv->price,$pv->discount)}}</span>
-                                    <span class="old-price">{{number_format($pv->price)}}<sup>đ</sup></span>
-                                @else
-                                    <span class="price">{{number_format($pv->price)}}<sup>đ</sup></span>
-                                @endif
+															<div class="product-info">
+																<div class="customar-comments-box">
+																	<div class="rating-box">
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star"></i>
+																		<i class="fa fa-star-half-empty"></i>
+																		<i class="fa fa-star-half-empty"></i>
+																	</div>
+																	<div class="review-box">
+																		<span>{{$pr->views}} Review (s)</span>
+																	</div>
+																</div>
+																<a title="{{$pr->name}}" href="product/{{$pr->id}}">{{shorten_string($pr->name,7)}}</a>
+																<div class="price-box">
+																	@if($pr->discount > 0)
+																		<span class="price">{{discount($pr->price,$pr->discount)}}</span>
+																		<span class="old-price">{{number_format($pr->price)}}<sup>đ</sup></span>
+																	@else
+																		<span class="price">{{number_format($pr->price)}}<sup>đ</sup></span>
+																	@endif
+																</div>
 															</div>
 														</div>
 													</div>
 												</div>
-                                            </div>
-                                            @endforeach
-											<!-- SALE-PRODUCTS-SINGLE-ITEM END -->
-																		
+											@endforeach
 										</div>
-										<!-- SALE-CAROUSEL END -->
+										<!-- NEW-PRO-CAROUSEL END -->
 									</div>
 								</div>
 							</div>
 						</div>
-						<!-- SALE-PRODUCTS END -->
-					</div> --}}
+						<!-- NEW-PRODUCT-AREA END -->
+					</div>
+
 				</div>
 				<!-- TOW-COLUMN-PRODUCT END -->
 				<div class="row">
@@ -216,7 +212,7 @@
 							<div class="row">
 								<!-- FEARTURED-CAROUSEL START -->
 								<div class="feartured-carousel">
-                                    @foreach ($product_discount as $pd)
+                                    @foreach ($product_seller as $pd)
 									<!-- SINGLE-PRODUCT-ITEM START -->
 									<div class="item">
 										<div class="single-product-item">
@@ -274,7 +270,7 @@
 					<!-- BESTSELLER-PRODUCTS-AREA START -->
 					<div class="bestseller-products-area">
 						<div class="center-title-area">
-							<h2 class="center-title">Lựa chọn tiêu biểu</h2>
+							<h2 class="center-title">Sản phẩm hot</h2>
 						</div>	
 						<div class="col-xs-12">
 							<div class="row">
@@ -285,7 +281,7 @@
 									<div class="item">
 										<div class="single-product-item">
 											<div class="product-image">
-                                            <a href="#"><img class="lazyload" src="storage/{{$ph->images}}" alt="product-image" /></a>
+                                            <a href="#"><img class="lazyload" src="storage/{{$ph->thumbnail}}" alt="product-image" /></a>
 												@if($ph->discount > 0)
 													<a href="#" class="new-mark-box">sale</a>
 												@else
@@ -294,7 +290,7 @@
 												<div class="overlay-content">
 													<ul>
 														<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-														<li><a  href="{{route('customer.cart.add',$pr->id)}}"  title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
+														<li><a  href="{{route('customer.cart.add',$ph->id)}}"  title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
 														<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
 														<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
 													</ul>
@@ -374,7 +370,7 @@
 									<div class="item">
 										<div class="latest-news-post">
 											<div class="single-latest-post">
-											<a href="{{route('pages.single',$al->slug)}}"><img class="lazyload" src="storage/{{$al->thumbnail}}" alt="latest-post" /></a>
+											<a href="{{route('pages.single',$al->slug)}}"><img src="storage/{{$al->thumbnail}}" alt="latest-post" /></a>
 												<h2><a href="{{route('pages.single',$al->slug)}}">{{shorten_string($al->title,8)}}</a></h2>
 												<p>{{shorten_string($al->description,15)}}</p>
 												<div class="latest-post-info">

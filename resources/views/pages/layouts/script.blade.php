@@ -29,7 +29,7 @@
                             total_price+=value.price;
                             value.item.price = value.item.price.toLocaleString('en-US');
                             html+='<div class="shipping-item"><span class="cross-icon"><a href="" class="delete_cart" data-delete="'+value.item.id+'"><i class="fa fa-times-circle"></i></a></span>';
-                            html+='<div class="shipping-item-image"><a href="#"><img style="width:40px;" src="storage/'+value.item.images+'" alt="shopping image" /></a></div>';
+                            html+='<div class="shipping-item-image"><a href="#"><img style="width:80px;" src="storage/'+value.item.thumbnail+'" alt="shopping image" /></a></div>';
                             html+='<div class="shipping-item-text"><span>'+value.qty+'<span class="pro-quan-x">x</span>';
                             html+='<a href="#" style="text-transform: lowercase;" title="" class="pro-cat">'+shorten(value.item.name,10)+'</a></span>';
                             html+='<p>'+value.item.price+'<sup>đ</sup></p></div></div>';
@@ -99,7 +99,7 @@
                         total_price+=value.price;
                         value.price = value.price.toLocaleString('en-US');
                         html+='<div class="shipping-item"><span class="cross-icon"><a href="" class="delete_cart" data-delete="'+value.item.id+'"><i class="fa fa-times-circle"></i></a></span>';
-						html+='<div class="shipping-item-image"><a href="#"><img style="width:40px;" src="storage/'+value.item.images+'" alt="shopping image" /></a></div>';
+						html+='<div class="shipping-item-image"><a href="#"><img style="width:80px;" src="storage/'+value.item.thumbnail+'" alt="shopping image" /></a></div>';
 						html+='<div class="shipping-item-text"><span>'+value.qty+'<span class="pro-quan-x">x</span>';
 						html+='<a href="#" style="text-transform: lowercase;" title="" class="pro-cat">'+shorten(value.item.name,10)+'</a></span>';
                         html+='<p>'+value.item.price+'<sup>đ</sup></p></div></div>';
@@ -176,12 +176,13 @@
                         value.item.price=parseInt(value.item.price).toLocaleString('en-US');
                         
                         html+='<div class="shipping-item"><span class="cross-icon"><a href="" class="delete_cart" data-delete="'+value.item.id+'"><i class="fa fa-times-circle"></i></a></span>';
-						html+='<div class="shipping-item-image"><a href="#"><img style="width:40px;" src="storage/'+value.item.image+'" alt="shopping image" /></a></div>';
+						html+='<div class="shipping-item-image"><a href="#"><img style="width:40px;" src="storage/'+value.item.thumbnail+'" alt="shopping image" /></a></div>';
 						html+='<div class="shipping-item-text"><span>'+value.qty+'<span class="pro-quan-x">x</span>';
 						html+='<a href="#" style="text-transform: lowercase;" title="" class="pro-cat">'+value.item.name+'</a></span>';
                         html+='<p>'+value.price+'<sup>đ</sup></p></div></div>';
                         //
-                        html_cart+='<tr><td class="cart-product"><a href="#"><img alt="Blouse" style="width:50px;" src="storage/'+value.item.images+'"></a></td>';
+                        html_cart+='<tr><td class="cart-total text-right">'+value.item.code_id+'</a></td>';
+                        html_cart+='<td class="cart-product"><a href="#"><img alt="Blouse" style="width:50px;" src="storage/'+value.item.thumbnail+'"></a></td>';
                         html_cart+='<td class="cart-description"><p class="product-name"><a href="#">'+value.item.name+'</a></p>';
                         html_cart+='<td class="text-center"><ul class="price"><li class="price">'+value.item.price+'<sup>đ</sup></li></ul></td>';
                         html_cart+='<td class="cart_quantity text-center"><div class=""><input class="cart-plus-minus" type="text" value="'+value.qty+'"disabled>';
@@ -242,12 +243,13 @@
                         value.price = value.price.toLocaleString('en-US');
                         value.item.price=parseInt(value.item.price).toLocaleString('en-US');
                         html+='<div class="shipping-item"><span class="cross-icon"><a href="" class="delete_cart" data-delete="'+value.item.id+'"><i class="fa fa-times-circle"></i></a></span>';
-						html+='<div class="shipping-item-image"><a href="#"><img style="width:40px;" src="storage/'+value.item.images+'" alt="shopping image" /></a></div>';
+						html+='<div class="shipping-item-image"><a href="#"><img style="width:40px;" src="storage/'+value.item.thumbnail+'" alt="shopping image" /></a></div>';
 						html+='<div class="shipping-item-text"><span>'+value.qty+'<span class="pro-quan-x">x</span>';
 						html+='<a href="#" style="text-transform: lowercase;" title="" class="pro-cat">'+value.item.name+'</a></span>';
                         html+='<p>'+value.price+'<sup>đ</sup></p></div></div>';
                         //
-                        html_cart+='<tr><td class="cart-product"><a href="#"><img alt="Blouse" style="width:50px;" src="storage/'+value.item.images+'"></a></td>';
+                        html_cart+='<tr><td class="cart-product">'+value.item.code_id+'</a></td>';
+                        html_cart+='<td class="cart-product"><a href="#"><img alt="Blouse" style="width:50px;" src="storage/'+value.item.thumbnail+'"></a></td>';
                         html_cart+='<td class="cart-description"><p class="product-name"><a href="#">'+value.item.name+'</a></p>';
                         html_cart+='<td class="text-center"><ul class="price"><li class="price">'+value.item.price+'<sup>đ</sup></li></ul></td>';
                         html_cart+='<td class="cart_quantity text-center"><div class=""><input class="cart-plus-minus" type="text" value="'+value.qty+'"disabled>';
@@ -298,12 +300,13 @@
                         value.price = value.price.toLocaleString('en-US');
                         value.item.price=parseInt(value.item.price).toLocaleString('en-US');
                         html+='<div class="shipping-item"><span class="cross-icon"><a href="" class="delete_cart" data-delete="'+value.item.id+'"><i class="fa fa-times-circle"></i></a></span>';
-						html+='<div class="shipping-item-image"><a href="#"><img style="width:40px;" src="storage/'+value.item.images+'" alt="shopping image" /></a></div>';
+						html+='<div class="shipping-item-image"><a href="#"><img style="width:40px;" src="storage/'+value.item.thumbnail+'" alt="shopping image" /></a></div>';
 						html+='<div class="shipping-item-text"><span>'+value.qty+'<span class="pro-quan-x">x</span>';
 						html+='<a href="#" style="text-transform: lowercase;" title="" class="pro-cat">'+value.item.name+'</a></span>';
                         html+='<p>'+value.price+'<sup>đ</sup></p></div></div>';
                         //
-                        html_cart+='<tr><td class="cart-product"><a href="#"><img alt="Blouse" style="width:50px;" src="storage/'+value.item.images+'"></a></td>';
+                        html_cart+='<tr><td class="cart-product">'+value.item.code_id+'</a></td>';
+                        html_cart+='<td class="cart-product"><a href="#"><img alt="Blouse" style="width:50px;" src="storage/'+value.item.thumbnail+'"></a></td>';
                         html_cart+='<td class="cart-description"><p class="product-name"><a href="#">'+value.item.name+'</a></p>';
                         html_cart+='<td class="text-center"><ul class="price"><li class="price">'+value.item.price+'<sup>đ</sup></li></ul></td>';
                         html_cart+='<td class="cart_quantity text-center"><div class=""><input class="cart-plus-minus" type="text" value="'+value.qty+'"disabled>';
