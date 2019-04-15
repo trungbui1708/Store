@@ -85,7 +85,7 @@
                                 </li>
                             @foreach ($menu as $mn)
                             <li>
-                            <a href="shop-gird.html">{{$mn->name}}</a>
+                            <a>{{$mn->name}}</a>
                                 <!-- DRODOWN-MEGA-MENU START -->
                                 <div class="drodown-mega-menu">
                                     @foreach ($category as $ca)

@@ -42,10 +42,6 @@
                     <input class="form-control" name="name" disabled value="{{$product->discount}}" placeholder="Vui lòng nhập thông tin" />
                 </div>
                 <div class="form-group">
-                    <label>Màu sắc</label>
-                    <input class="form-control" name="name" disabled value="{{$product->color}}" placeholder="Vui lòng nhập thông tin" />
-                </div>
-                <div class="form-group">
                     <label>Sản phẩm hot</label>
                     <input class="form-control" name="name" disabled value="{{$product->hot}}" placeholder="Vui lòng nhập thông tin" />
                 </div>

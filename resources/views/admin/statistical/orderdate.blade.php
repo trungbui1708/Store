@@ -9,26 +9,36 @@
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
+                    @include('admin.layouts.menu_thongke')
+                    
                     <div class="col-lg-12 choise_date" style="margin: 20px 0;">
                         <form action="{{route('post.order.date')}}" method="post" class="form-group" >
                             @csrf
                             <div class="col-lg-4">
-                            <input type="date" name="time_begin" class="form-control">
+                                    
+                            <input type="date" name="time_begin" value="{{old('time_begin')}}" class="form-control datetime">
                             </div>
                             <div class="col-lg-4">
-                                <input type="date" name="time_finish" class="form-control">
+                                <input type="date" name="time_finish" value="{{old('time_finish')}}" class="form-control">
                             </div>
                             <div class="col-lg-4">
                                 <button type="submit" class="btn btn-success">Thống kê</button>
+                                <button type="reset" class="btn btn-default">Làm mới</button>
                             </div>
                         </form>
                     </div>
+                    
                     @if(session('thongbao'))
                         <div class="alert alert-success">
                             {{session('thongbao')}}
                         </div>
                     @endif
-                    <h3>Từ ngày </h3>
+
+                    <h3>Từ ngày : @if(isset ($time_begin)){{$time_begin}}@endif đến @if(isset ($time_finish)){{$time_finish}}@endif</h3>
+                    <h3>Tổng hóa đơn : @if(isset ($order_date)){{count($order_date)}}@endif</h3>
+                    <h3>Tổng số sản phẩm : @if(isset ($qty_product_order)){{$qty_product_order}}@endif</h3>
+                    <h3>Tổng tiền bán : @if(isset ($money_sum_order)){{number_format($money_sum_order)}}@endif <span>đ</span></h3>
+                    <h3>Sản phẩm còn trong kho : @if(isset ($product_qty)){{number_format($money_sum_order)}}@endif</h3>
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                    
                         <thead>

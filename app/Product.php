@@ -8,7 +8,7 @@ class Product extends Model
 {
     protected $table = 'products';//khai báo bảng trong cơ sở dữ liệu
     
-    protected $fillable = ['name','images','price','discount','hot','thumbnail','code_id','warranty','brand','quantity','slug','distribution_id','user_id','status'];
+    protected $fillable = ['name','images','description','price','discount','hot','thumbnail','code_id','warranty','views','brand','quantity','slug','distribution_id','user_id','status'];
     //khai báo các trường
 
     public function distribution() {

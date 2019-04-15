@@ -13,6 +13,7 @@ class AprioriController extends Controller
 	public function get_sp()
 	{
 		 $order = Order::all();
+		 dd($order);
 		 $array_set = array();
 		 foreach ($order as $or) {
 		 	$order_detail = json_decode($or->order_detail,true);

@@ -20,8 +20,9 @@ use App\AprioriProduct;
 class PageController extends Controller
 {
     public function index(){
-        $product_seller = Product::orderBy('views', 'desc')->take(10)->get();
-        $product_view = Product::where('views',1)->get();
+        $product_seller = Product::where('best_sellers','>',0)->orderBy('best_sellers', 'desc')->take(10)->get();
+        $product_view = Product::where('views','>',1)->orderBy('views','desc')->get();
+
         $product_discount  = Product::where('discount','>',0)->get();
         $product_hot = Product::where('hot',1)->get();
         $article = Article::paginate(10);
@@ -33,6 +34,13 @@ class PageController extends Controller
         $distribution_get = Distribution::find($id);
         $dis_pr = Product::where('distribution_id',$id)->paginate(6);
         return view('pages.list_product',compact('distribution_get','dis_pr'));
+    }
+    public function getCategoryProduct($id)
+    {
+        $distribution_get = Category::find($id);
+        $dis_pr = Category::find($id)->product()->paginate(6);
+        return view('pages.list_product',compact('distribution_get','dis_pr'));
+        
     }
 
     public function getProduct($id){

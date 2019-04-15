@@ -45,7 +45,7 @@
                                 <input type="checkbox" 
                                         class="form-check-input" id="exampleCheck1" name="status">
                                 <label class="form-check-label" for="exampleCheck1">Hiển thị</label>
-                              </div>
+                            </div>
                             <button type="submit" class="btn btn-default">Thêm</button>
                             <button type="reset" class="btn btn-default">Làm mới</button>
                         <form>

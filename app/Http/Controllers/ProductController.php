@@ -44,9 +44,27 @@ class ProductController extends Controller
     //StoreProductRequest
     public function store(Request $request)
     {   
-        $request->merge(['slug' => changeTitle($request->name),'views' => 0]);
+
+        if($request->hot == "on")
+        {
+            $hot = "1";
+        }
+        else
+        {
+            $hot = "0";
+        }
+        if($request->status == "on")
+        {
+            $status = "1";
+        }
+        else
+        {
+            $status = "0";
+        }
+        $request->merge(['slug' => changeTitle($request->name),'views' => 1,'hot' => $hot,'status' => $status]);
+
         $data = $request->except(['images','thumbnail']);
-       
+        
         $allow_type = ["jpg","jpeg","png","svg","png","gif"];//Khai báo các đuôi của ảnh
         
         if($request->hasFile('images')){//Kiểm tra xem có ảnh nào được submit lên ko
@@ -76,7 +94,6 @@ class ProductController extends Controller
             }
             $request->thumbnail = $file_name_tb;
         }
-       
         $product = Product::create($data);
         $year = now()->year;
         $product->update(['code_id' => $year.$request->distribution_id.$product->id]);

@@ -69,7 +69,7 @@ class ArticleController extends Controller
             }
             $request->thumbnail = $file_name_tb;
         }
-        
+        //dd($data);
         $article = Article::create($data);
         return redirect()->route('articles.show',$article)->with('thongbao','Thêm thành công.');
     }

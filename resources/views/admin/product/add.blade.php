@@ -30,22 +30,20 @@
                     <div class="form-group">
                         <label>Giá</label>
                         <input type="text" class="form-control" value="{{old('price')}}" name="price" placeholder="Vui lòng nhập thông tin" />
+                        <input type="hidden" name="views">
                     </div>
                     <div class="form-group">
                         <label>Giảm giá(%)</label>
                         <input class="form-control" name="discount" value="{{old('discount')}}" placeholder="Vui lòng nhập thông tin" />
                     </div>
-                    <div class="form-group">
-                        <label>Màu</label>
-                        <input class="form-control" name="color" value="{{old('color')}}" placeholder="Vui lòng nhập thông tin" />
-                    </div>
-                    <div class="form-group">
-                        <label>Hot</label>
-                        <input type="number" class="form-control" value="{{old('hot')}}" name="hot" placeholder="Vui lòng nhập thông tin" />
+                    <div class="form-check">
+                        <input type="checkbox" 
+                                        class="form-check-input" id="exampleCheck1" name="hot">
+                        <label class="form-check-label" for="exampleCheck1">Hot</label>
                     </div>
                     <div class="form-group">
                         <label>Số lượng</label>
-                        <input type="text" class="form-control" value="{{old('quantity')}}" name="quantity" placeholder="Vui lòng nhập thông tin" />
+                        <input type="tdext" class="form-control" value="300" name="quantity" placeholder="Vui lòng nhập thông tin" />
                     </div>
                 </div>
                 <div class="col-lg-6">
@@ -77,10 +75,15 @@
                             @endforeach
                         </select>
                     </div>
+                    <div class="form-check">
+                        <input type="checkbox" 
+                                        class="form-check-input" id="exampleCheck1" name="status">
+                        <label class="form-check-label" for="exampleCheck1">Hiển thị</label>
+                    </div>
                     <div class="form-group">
-                        <label>Trạng thái</label>
-                        <input class="form-control" name="status" value="{{old('status')}}" placeholder="Vui lòng nhập thông tin" />
-                    </div>  
+                                <label>Mô tả</label>
+                                <textarea id="demo" name="description" value="{{old('description')}}" class="form-control ckeditor" rows="5"></textarea>
+                            </div>
                     <div class="form-group">
                         <button type="submit" class="btn btn-success">Thêm</button>
                         <button type="reset" class="btn btn-warning">Làm mới</button>

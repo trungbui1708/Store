@@ -28,9 +28,15 @@ Route::group(['prefix' => 'admin','middleware' => 'admincheck'],function() {
 
     //Route::post('menu/many', 'MenuController@storeMany')->name('admin.menu.many');
     Route::resource('articles','ArticleController');
-
+    //Thống kê
     Route::get('orderDate','ThongKeController@getOrderDate')->name('get.order.date');
     Route::post('orderDate','ThongKeController@postOrderDate')->name('post.order.date');
+
+    Route::get('orderMonth','ThongKeController@getOrderMonth')->name('get.order.month');
+    Route::post('orderMonth','ThongKeController@postOrderMonth')->name('post.order.month');
+
+    Route::get('orderYear','ThongKeController@getOrderYear')->name('get.order.year');
+    Route::post('orderYear','ThongKeController@postOrderYear')->name('post.order.year');
 });
 
 //Route pages của người dùng
@@ -44,8 +50,9 @@ Route::get('/admin/logout','AdminController@getLogout')->name('admin.logout');
 
 //Route của người dùng sau khi đăng nhập
     Route::get('/','PageController@index')->name('pages.index');
+    Route::get('menu/{id}/{slug}.html','PageController@getMenuProduct');
     Route::get('list','PageController@getListPage')->name('pages.list.product');
-    Route::get('category/{id}/{slug}.html','PageController@getCategory');
+    Route::get('category/{id}/{slug}.html','PageController@getCategoryProduct');
     Route::get('distribution/{id}/{slug}.html','PageController@getDistribution');
     Route::get('product/{id}','PageController@getProduct');
     Route::get('/account','PageController@getViewAccount')->name('pages.account');

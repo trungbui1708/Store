@@ -206,13 +206,13 @@
 					<!-- FEATURED-PRODUCTS-AREA START -->
 					<div class="featured-products-area">
 						<div class="center-title-area">
-							<h2 class="center-title">Sản phẩm khuyến mã</h2>
+							<h2 class="center-title">Sản phẩm khuyến mãi</h2>
 						</div>	
 						<div class="col-xs-12">
 							<div class="row">
 								<!-- FEARTURED-CAROUSEL START -->
 								<div class="feartured-carousel">
-                                    @foreach ($product_seller as $pd)
+                                    @foreach ($product_discount as $pd)
 									<!-- SINGLE-PRODUCT-ITEM START -->
 									<div class="item">
 										<div class="single-product-item">
@@ -311,8 +311,8 @@
 												</div>
                                             <a href="product/{{$ph->id}}">{{shorten_string($ph->name,5)}}</a>
 												<div class="price-box">
-													@if($ph->discount > 0)
-													<span class="price">{{discount($ph->price,$ph->discount)}}</span>
+												@if($ph->discount > 0)
+													<span class="price">{{discount($ph->price,$ph->discount)}}<sup>đ</sup></span>
 													<span class="old-price">{{number_format($ph->price)}}<sup>đ</sup></span>
 												@else
 													<span class="price">{{number_format($ph->price)}}<sup>đ</sup></span>

@@ -1,34 +1,41 @@
 @extends('admin.layouts.index')
 @section('content')
-	   <div id="page-wrapper">
+       <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Thống kê hóa đơn theo ngày
+                        <h1 class="page-header">Thống kê hóa đơn theo tháng
                             <small>Chọn ngày</small>
                         </h1>
                     </div>
                     <!-- /.col-lg-12 -->
+                    @include('admin.layouts.menu_thongke')
+                    
                     <div class="col-lg-12 choise_date" style="margin: 20px 0;">
-                        <form action="{{route('post.order.date')}}" method="post" class="form-group" >
+                        <form action="{{route('post.order.month')}}" method="post" class="form-group" >
                             @csrf
                             <div class="col-lg-4">
-                            <input type="date" name="time_begin" class="form-control">
-                            </div>
-                            <div class="col-lg-4">
-                                <input type="date" name="time_finish" class="form-control">
+                            
+                            <input type="month" name="time_month" id="start" value="{{old('time_month')}}" class="form-control datetime" min="2018-01" value="2020-12">
                             </div>
                             <div class="col-lg-4">
                                 <button type="submit" class="btn btn-success">Thống kê</button>
+                                <button type="reset" class="btn btn-default">Làm mới</button>
                             </div>
                         </form>
                     </div>
+                    
                     @if(session('thongbao'))
                         <div class="alert alert-success">
                             {{session('thongbao')}}
                         </div>
                     @endif
-                    <h3>Từ ngày </h3>
+
+                    <h3>Tháng : @if(isset ($time_month)){{date("m-Y", strtotime($time_month))}}@endif </h3>
+                    <h3>Tổng hóa đơn : @if(isset ($order_date)){{count($order_date)}}@endif</h3>
+                    <h3>Tổng số sản phẩm : @if(isset ($qty_product_order)){{$qty_product_order}}@endif</h3>
+                    <h3>Tổng tiền bán : @if(isset ($money_sum_order)){{number_format($money_sum_order)}}@endif <span>đ</span></h3>
+                    <h3>Sản phẩm còn trong kho : @if(isset ($product_qty)){{number_format($product_qty)}}@endif</h3>
                     <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                    
                         <thead>
