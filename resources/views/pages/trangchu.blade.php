@@ -131,7 +131,7 @@
 										<!-- NEW-PRO-CAROUSEL START -->
 										<div class="new-pro-carousel">
 											<!-- NEW-PRODUCT-SINGLE-ITEM START -->
-											@foreach ($product_seller as $pr)
+											@foreach ($product_view as $pr)
 												<div class="item">
 													<div class="new-product">
 														<div class="single-product-item">

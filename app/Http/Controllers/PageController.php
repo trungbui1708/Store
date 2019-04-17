@@ -22,7 +22,6 @@ class PageController extends Controller
     public function index(){
         $product_seller = Product::where('best_sellers','>',0)->orderBy('best_sellers', 'desc')->take(10)->get();
         $product_view = Product::where('views','>',1)->orderBy('views','desc')->get();
-
         $product_discount  = Product::where('discount','>',0)->get();
         $product_hot = Product::where('hot',1)->get();
         $article = Article::paginate(10);
