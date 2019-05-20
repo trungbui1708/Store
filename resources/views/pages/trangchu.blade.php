@@ -15,8 +15,8 @@
 								<div id="wrapper">
 									<div class="slider-wrapper">
 										<div id="mainSlider" class="nivoSlider">
-											<img class="lazyload" src="page_asset/img/slider/2.jpg" alt="main slider" title="#htmlcaption"/>
-											<img class="lazyload" src="page_asset/img/slider/1.jpg" alt="main slider" title="#htmlcaption2"/>
+											<img width="100%" class="lazyload" src="banner/851x315-facebook.png" alt="main slider" title="#htmlcaption"/>
+											<img width="100%" class="lazyload" src="banner/banner1-890x340.jpg" alt="main slider" title="#htmlcaption2"/>
 										</div>
 										<div id="htmlcaption" class="nivo-html-caption slider-caption">
 											<div class="slider-progress"></div>
@@ -67,20 +67,19 @@
 										<!-- NEW-PRO-CAROUSEL START -->
 										<div class="new-pro-carousel">
                                             <!-- NEW-PRODUCT-SINGLE-ITEM START -->
-                      @foreach ($product_seller as $pr)
-                      <div class="item">
+					                      @foreach ($product_seller as $pr)
+					                      <div class="item">
 												<div class="new-product">
 													<div class="single-product-item">
 														<div class="product-image">
                                                         <a href="#"><img class="lazyload" src="storage/{{$pr->thumbnail}}" alt="product-image" /></a>
-															<a href="#" class="new-mark-box">new</a>
+															<a href="product/{{$pr->id}}" class="new-mark-box">new</a>
 															<div class="overlay-content">
 																<ul>
 																	{{-- {{route('customer.cart.add',$pr->id)}} --}}
-																	<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
+																	<li><a href="product/{{$pr->id}}" title="Quick view"><i class="fa fa-search"></i></a></li>
 																	<li><a href="#" class="cart_click"  data-id="{{$pr->id}}" title="Quick view"  ><i class="fa fa-shopping-cart"></i></a></li>
-																	<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-																	<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
+																
 																</ul>
 															</div>
 														</div>
@@ -136,15 +135,14 @@
 													<div class="new-product">
 														<div class="single-product-item">
 															<div class="product-image">
-																<a href="#"><img class="lazyload" src="storage/{{$pr->thumbnail}}" alt="product-image" /></a>
+																<a href="product/{{$pr->id}}"><img  src="storage/{{$pr->thumbnail}}" alt="product-image" /></a>
 																<a href="#" class="new-mark-box">new</a>
 																<div class="overlay-content">
 																	<ul>
 																		{{-- {{route('customer.cart.add',$pr->id)}} --}}
-																		<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
+																		<li><a href="product/{{$pr->id}}" title="Quick view"><i class="fa fa-search"></i></a></li>
 																		<li><a href="#" class="cart_click"  data-id="{{$pr->id}}" title="Quick view"  ><i class="fa fa-shopping-cart"></i></a></li>
-																		<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-																		<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
+																		
 																	</ul>
 																</div>
 															</div>
@@ -217,7 +215,7 @@
 									<div class="item">
 										<div class="single-product-item">
 											<div class="product-image">
-                                            <a href="#"><img class="lazyload" src="storage/{{$pd->thumbnail}}" alt="product-image" /></a>
+                                            <a href="product/{{$pd->id}}"><img class="lazyload" src="storage/{{$pd->thumbnail}}" alt="product-image" /></a>
 													@if($pd->discount > 0)
 														<a href="#" class="new-mark-box">sale</a>
 													@else
@@ -225,10 +223,9 @@
 													@endif
 												<div class="overlay-content">
 													<ul>
-														<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
+														<li><a href="product/{{$pd->id}}" title="Quick view"><i class="fa fa-search"></i></a></li>
 														<li><a href="#"  class="cart_click"  data-id="{{$pd->id}}" title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-														<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-														<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
+														
 													</ul>
 												</div>
 											</div>
@@ -281,7 +278,7 @@
 									<div class="item">
 										<div class="single-product-item">
 											<div class="product-image">
-                                            <a href="#"><img class="lazyload" src="storage/{{$ph->thumbnail}}" alt="product-image" /></a>
+                                            <a href="product/{{$ph->id}}"><img class="lazyload" src="storage/{{$ph->thumbnail}}" alt="product-image" /></a>
 												@if($ph->discount > 0)
 													<a href="#" class="new-mark-box">sale</a>
 												@else
@@ -289,10 +286,8 @@
 												@endif
 												<div class="overlay-content">
 													<ul>
-														<li><a href="#" title="Quick view"><i class="fa fa-search"></i></a></li>
-														<li><a  href="{{route('customer.cart.add',$ph->id)}}"  title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
-														<li><a href="#" title="Quick view"><i class="fa fa-retweet"></i></a></li>
-														<li><a href="#" title="Quick view"><i class="fa fa-heart-o"></i></a></li>
+														<li><a href="product/{{$ph->id}}" title="Quick view"><i class="fa fa-search"></i></a></li>
+														<li><a class="cart_click" href="{{route('customer.cart.add',$ph->id)}}"  title="Quick view"><i class="fa fa-shopping-cart"></i></a></li>
 													</ul>
 												</div>
 											</div>

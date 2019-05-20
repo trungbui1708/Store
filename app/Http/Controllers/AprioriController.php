@@ -13,7 +13,6 @@ class AprioriController extends Controller
 	public function get_sp()
 	{
 		 $order = Order::all();
-		 dd($order);
 		 $array_set = array();
 		 foreach ($order as $or) {
 		 	$order_detail = json_decode($or->order_detail,true);
@@ -28,22 +27,20 @@ class AprioriController extends Controller
 		 	array_push($array_set,$array_1);
 		 }
 		//$samples = [['A', 'C', 'D'], ['B', 'C', 'E'], ['A', 'B', 'C','E'], ['B', 'E']];
-//         $samples = [
-//             ['táo', 'lê', 'đào', 'bò', 'lợn', 'gà'],
-//             ['táo', 'lê', 'dưa',  'bò', 'lợn', 'gà'],
-//             ['táo', 'đào', 'lê', 'bò', 'lợn', 'gà'],
-//             ['lê', 'đào', 'táo', 'bò', 'lợn', 'gà'],
-//             ['táo', 'cải', 'bò', 'gà'],
-//             ['táo', 'cải', 'đào' , 'lê', 'lợn']
-//         ];
+        $samples = [
+            ['táo', 'lê', 'đào', 'bò', 'lợn', 'gà'],
+            ['táo', 'lê', 'dưa',  'bò', 'lợn', 'gà'],
+            ['táo', 'đào', 'lê', 'bò', 'lợn', 'gà'],
+            ['lê', 'đào', 'táo', 'bò', 'lợn', 'gà'],
+            ['táo', 'cải', 'bò', 'gà'],
+            ['táo', 'cải', 'đào' , 'lê', 'lợn']
+        ];
 		$labels = [];
-		$associator = new Apriori($support = 0.5, $confidence = 0.5);
+		$associator = new Apriori($support = 0.8, $confidence = 0.6);
 		$associator->train($array_set, $labels);
         $associator->apriori();
         $associator->getRules();
-        //dd($associator);
-        //h tao dd nó ra nhé
-        // làm sao để t lấy được dữ trong cái rules nó ra nhỉ
+       
         foreach ($associator->getRules() as $ac)
         {
             $antecedent = json_encode($ac['antecedent']);

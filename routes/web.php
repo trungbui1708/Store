@@ -83,14 +83,14 @@ Route::group(['prefix' => 'customer'],function(){
     Route::post('/create/order','CartController@createPostOrder')->name('create.post.order');
 });
 
-// Route::get('return_o',function(){
-//     $product = Product::all();
-//     $year = now()->year;
-//     foreach ($product as $v) {
-//         $v->hot = rand(0,1);
-//         $v->save();
-//     }
-//     echo "Thành công";
-// });
+Route::get('return_o',function(){
+    $product = Product::all();
+   
+    foreach ($product as $v) {
+        $v->best_sellers = rand(1,100);
+        $v->save();
+    }
+    echo "Thành công";
+});
 
 Route::get('deptrai','AprioriController@get_sp');

@@ -39,7 +39,6 @@ class PageController extends Controller
         $distribution_get = Category::find($id);
         $dis_pr = Category::find($id)->product()->paginate(6);
         return view('pages.list_product',compact('distribution_get','dis_pr'));
-        
     }
 
     public function getProduct($id){
@@ -47,7 +46,6 @@ class PageController extends Controller
         $view_plus = $product_single->views + 1;
         $product_single->views = $view_plus;
         $product_single->save();
-
         $apriori_product = AprioriProduct::all();
         $product_view = array();
         foreach ($apriori_product as $ap)
